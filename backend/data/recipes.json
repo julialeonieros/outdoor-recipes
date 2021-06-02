@@ -1,37 +1,3 @@
-const Recipe = mongoose.model('Recipe', 
-{
-  title: {
-    type: String,
-    lowercase: true
-  },
-  portions: Number,
-  ingredients: {
-    type: String,
-    lowercase: true
-  },
-  type: {
-    type: String,
-    lowercase: true,
-    enum: ['breakfast', 'lunch/dinner', 'fika', 'beverage']
-  },
-  tags: {
-    type: String,
-    lowercase: true,
-    enum: ['veg', 'gluten-free', 'quick', 'fire']
-  },
-  instructions: {
-    type: String,
-    lowercase: true
-  },
-  createdBy: {
-    type: String,
-    lowercase: true
-  },
-  url: String,
-  image: String,
-  photographer: String
-})
-
 [
   {
     "title": "Kolbullar",
@@ -46,10 +12,15 @@ const Recipe = mongoose.model('Recipe',
     ],
     "type": "lunch/dinner",
     "tags": "fire",
-    "instructions": "Elda med lövved för bästa eld. Blanda smeten dagen innan och häll upp i en PET-flaska för enkel hantering. Använd en rejäl gjutjärnspanna med sluttande kanter, låt gärna lågorna slå upp runt pannan. Låt fläsket bryna tills det är knaperstekt och slå sedan på smeten. Stek på båda sidor.",
+    "instructions": [
+      "Elda med lövved för bästa eld.",
+      "Blanda smeten dagen innan och häll upp i en PET-flaska för enkel hantering.",
+      "Använd en rejäl gjutjärnspanna med sluttande kanter, låt gärna lågorna slå upp runt pannan.",
+      "Låt fläsket bryna tills det är knaperstekt och slå sedan på smeten. Stek på båda sidor."
+    ],
     "createdBy": "Okänd",
     "url": "https://adventuresweden.com/kolbulle-pa-traditionellt-vis/?lang=sv",
-    "image": "",
+    "image": "https://res.cloudinary.com/dtsyqfltv/image/upload/v1622465348/IMG_2444_qo1g0m.heic",
     "photographer": "Agnes Ros"
   },
   {
@@ -61,10 +32,13 @@ const Recipe = mongoose.model('Recipe',
     ],
     "type": "beverage",
     "tags": "fire",
-    "instructions": "Slå i kallt vatten i en kaffepanna. Koka gärna upp innan du tillsätter kaffet, en skopa per kopp vatten och en extra skopa för pannan. Lyft kaffepannan 3-4 gånger precis när det kokar upp. Ta från elden och häll en skvätt kallt vatten i pipen för att eventuell sump ska rinna ner. Låt dra några minuter.",
+    "instructions": [
+      "Slå i kallt vatten i en kaffepanna. Koka gärna upp innan du tillsätter kaffet, en skopa per kopp vatten och en extra skopa för pannan.", 
+      "Lyft kaffepannan 3-4 gånger precis när det kokar upp. Ta från elden och häll en skvätt kallt vatten i pipen för att eventuell sump ska rinna ner. Låt dra några minuter."
+    ],
     "createdBy": "Okänd",
     "url": null,
-    "image": "",
+    "image": "https://res.cloudinary.com/dtsyqfltv/image/upload/v1622465360/IMG_3138_wauezu.heic",
     "photographer": "Agnes Ros"
   },
   {
@@ -80,7 +54,11 @@ const Recipe = mongoose.model('Recipe',
     ],
     "type": "fika",
     "tags": "fire",
-    "instructions": "Blanda kanel, kokossocker, och smör. Rulla ut degen och bred ett lager av kanelblandningen. Rulla ihop och dela i ca 12 bullar. Stek i smör och ringla över lönnsirap, toppa med pekannötter. Ät och njut av din dag utomhus!",
+    "instructions": [
+      "Blanda kanel, kokossocker, och smör.",
+      "Rulla ut degen och bred ett lager av kanelblandningen. Rulla ihop och dela i ca 12 bullar.",
+      "Stek i smör och ringla över lönnsirap, toppa med pekannötter. Ät och njut av din dag utomhus!"
+    ],
     "createdBy": "Nathalie Spjälle",
     "url": "https://www.foodbynatta.com/blog/kanelbullartrangia",
     "image": "",
@@ -97,7 +75,10 @@ const Recipe = mongoose.model('Recipe',
     ],
     "type": "fika",
     "tags": "fire",
-    "instructions": "Bred nutella på halva tortillan och toppa med bananskivor. Vik ihop tortillan och stek några minuter på varje sida. Ät med färska jordgubbar.",
+    "instructions": [
+      "Bred nutella på halva tortillan och toppa med bananskivor.", 
+      "Vik ihop tortillan och stek några minuter på varje sida. Ät med färska jordgubbar."
+    ],
     "createdBy": "Nathalie Spjälle",
     "url": "https://www.foodbynatta.com/blog/nutella-tortilla-trangia",
     "image": "",
@@ -141,25 +122,13 @@ const Recipe = mongoose.model('Recipe',
       "Breakfast"
     ],
     "tags": "Quick",
-    "instructions": "Bred hummus på brödet och toppa med mosad eller skivad avokado, smulad fetaost samt babyspenat. Njut av utsikten.",
+    "instructions": [
+      "Bred hummus på brödet och toppa med mosad eller skivad avokado, smulad fetaost samt babyspenat.", 
+      "Ät och njut av utsikten."
+    ],
     "createdBy": "Agnes Ros",
     "url": null,
     "image": "",
     "photographer": "Agnes Ros"
   }
-  // {
-  //   "title": "",
-  //   "portions": ,
-  //   "ingredients": [
-  //     "",
-  //     ""
-  //   ],
-  //   "type": "",
-  //   "tags": "",
-  //   "instructions": "",
-  //   "createdBy": "",
-  //   "url": "",
-  //   "image": "",
-  // "photographer": ""
-  // }
 ]
