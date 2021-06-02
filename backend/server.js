@@ -1,12 +1,15 @@
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
+// import dotenv from 'dotenv'
 
 import recipes from './data/recipes.json'
 
-// const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/recipesAPI"
-// mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
-// mongoose.Promise = Promise
+// dotenv.config()
+
+const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/outdoorRecipes"
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.Promise = Promise
 
 const port = process.env.PORT || 8080
 const app = express()
@@ -25,14 +28,12 @@ const Recipe = mongoose.model('Recipe', {
     lowercase: true
   },
   type: {
-    type: String,
-    lowercase: true,
-    enum: ['breakfast', 'lunch/dinner', 'fika', 'beverage']
+    type: Array,
+    lowercase: true
   },
   tags: {
-    type: String,
-    lowercase: true,
-    enum: ['veg', 'gluten-free', 'quick', 'fire']
+    type: Array,
+    lowercase: true
   },
   instructions: {
     type: Array,
@@ -54,7 +55,7 @@ app.get('/', (req, res) => {
 
 // get all recipes
 app.get('/recipes', async (req, res) => {
-  // const recipes = await Recipe.find()
+  const recipes = await Recipe.find()
   res.json({ length: recipes.length, data: recipes })
 })
 

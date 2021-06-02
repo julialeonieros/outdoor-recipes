@@ -10,8 +10,12 @@
       "Olja att steka i",
       "Lingonsylt till servering"
     ],
-    "type": "lunch/dinner",
-    "tags": "fire",
+    "type": [
+      "lunch/dinner"
+    ],
+    "tags": [
+      "fire"
+    ],
     "instructions": [
       "Elda med lövved för bästa eld.",
       "Blanda smeten dagen innan och häll upp i en PET-flaska för enkel hantering.",
@@ -30,8 +34,12 @@
       "Kokmalet kaffe",
       "Vatten"
     ],
-    "type": "beverage",
-    "tags": "fire",
+    "type": [
+      "beverage"
+    ],
+    "tags": [
+      "fire"
+    ],
     "instructions": [
       "Slå i kallt vatten i en kaffepanna. Koka gärna upp innan du tillsätter kaffet, en skopa per kopp vatten och en extra skopa för pannan.", 
       "Lyft kaffepannan 3-4 gånger precis när det kokar upp. Ta från elden och häll en skvätt kallt vatten i pipen för att eventuell sump ska rinna ner. Låt dra några minuter."
@@ -52,8 +60,12 @@
       "100 g pekannötter",
       "Lönnsirap"
     ],
-    "type": "fika",
-    "tags": "fire",
+    "type": [
+      "fika"
+    ],
+    "tags": [
+      "fire"
+    ],
     "instructions": [
       "Blanda kanel, kokossocker, och smör.",
       "Rulla ut degen och bred ett lager av kanelblandningen. Rulla ihop och dela i ca 12 bullar.",
@@ -73,8 +85,12 @@
       "5 st skivade jordgubbar",
       "2 dl nutella"
     ],
-    "type": "fika",
-    "tags": "fire",
+    "type": [
+      "fika"
+    ],
+    "tags": [
+      "fire"
+    ],
     "instructions": [
       "Bred nutella på halva tortillan och toppa med bananskivor.", 
       "Vik ihop tortillan och stek några minuter på varje sida. Ät med färska jordgubbar."
@@ -99,8 +115,12 @@
       "Valfri pasta",
       "Salt och peppar"
     ],
-    "type": "lunch/dinner",
-    "tags": "fire",
+    "type": [
+      "lunch/dinner"
+    ],
+    "tags": [
+      "fire"
+    ],
     "instructions": "",
     "createdBy": "Agnes Ros",
     "url": "https://www.instagram.com/p/CO48g9fpl0R/",
@@ -121,7 +141,9 @@
       "Fika",
       "Breakfast"
     ],
-    "tags": "Quick",
+    "tags": [
+      "Quick"
+    ],
     "instructions": [
       "Bred hummus på brödet och toppa med mosad eller skivad avokado, smulad fetaost samt babyspenat.", 
       "Ät och njut av utsikten."

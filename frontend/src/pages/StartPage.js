@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-import Footer from '../components/Footer'
+// import Footer from 'components/Footer'
 
 const StartPage = () => {
   return (
@@ -18,7 +18,7 @@ const StartPage = () => {
           <Info>Här är lite text ... Här är lite text ... Här är lite text ... Här är lite text ...</Info>
         </InfoBackground>
       </InfoWrapper>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
@@ -65,6 +65,4 @@ const InfoBackground = styled.div`
   height: 200px;
   padding: 20px 30px;
 `
-const Info = styled.p`
-  text-align: center;
-`
+const Info = styled.p``
