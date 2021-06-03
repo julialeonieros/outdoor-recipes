@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-// import Footer from 'components/Footer'
+import Gallery from '../components/Gallery'
 
 const StartPage = () => {
   return (
@@ -18,7 +18,7 @@ const StartPage = () => {
           <Info>Här är lite text ... Här är lite text ... Här är lite text ... Här är lite text ...</Info>
         </InfoBackground>
       </InfoWrapper>
-      {/* <Footer /> */}
+      <Gallery />
     </>
   )
 }

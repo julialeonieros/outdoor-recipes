@@ -1,15 +1,12 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-import Navbar from '../components/Navbar'
-
 const HeaderSmall = () => {
   return (
     <>
       <ImageContainer>
         <Image src="/assets/header-image-small.jpg" alt=""/>
       </ImageContainer>
-      <Navbar />
     </>
   )
 }

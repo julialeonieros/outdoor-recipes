@@ -10,10 +10,6 @@ const SingleRecipePage = () => {
       <HeaderSmall />
       <RecipeWrapper>
         <SingleRecipe />
-        <SingleRecipe />
-        <SingleRecipe />
-        <SingleRecipe />
-        <SingleRecipe />
       </RecipeWrapper>
     </>
   )

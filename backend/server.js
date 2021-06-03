@@ -1,11 +1,11 @@
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
-// import dotenv from 'dotenv'
+import dotenv from 'dotenv'
 
 // import recipes from './data/recipes.json'
 
-// dotenv.config()
+dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/outdoorRecipes"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
