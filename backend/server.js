@@ -3,7 +3,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 // import dotenv from 'dotenv'
 
-import recipes from './data/recipes.json'
+// import recipes from './data/recipes.json'
 
 // dotenv.config()
 

@@ -1,15 +1,23 @@
 import React from 'react'
-
+import { BrowserRouter, Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 const Navbar = () => {
   return (
     <Nav>
-      <Links>
-        <Li>Start</Li>
-        <Li>Lägg till recept</Li> 
-        <Li>Kontakt</Li>   
-      </Links>
+      <BrowserRouter>
+        <Links>
+          <Link to="/">
+            <Li>Start</Li>
+          </Link>
+          <Link>
+            <Li>Lägg till recept</Li>
+          </Link> 
+          <Link to="kontakt">
+            <Li>Kontakt</Li>
+          </Link>   
+        </Links>
+      </BrowserRouter>
     </Nav>
   )
 }
