@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
+import Navbar from './components/Navbar'
 import StartPage from './pages/StartPage'
 // import SingleRecipePage from './pages/SingleRecipePage'
 import ContactPage from './pages/ContactPage'
-import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={StartPage}/>
-          {/* <Route path="/" component={SingleRecipePage} /> */}
+          {/* <Route path="/:_id" component={SingleRecipePage} /> */}
           <Route path="/kontakt" component={ContactPage}/>
         </Switch>
       </BrowserRouter>

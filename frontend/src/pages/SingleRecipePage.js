@@ -2,14 +2,14 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 import HeaderSmall from '../components/HeaderSmall'
-import SingleRecipe from '../components/SingleRecipe'
+// import SingleRecipe from '../components/RecipeCard'
 
 const SingleRecipePage = () => {
   return (
     <>
       <HeaderSmall />
       <RecipeWrapper>
-        <SingleRecipe />
+        {/* <SingleRecipe /> */}
       </RecipeWrapper>
     </>
   )

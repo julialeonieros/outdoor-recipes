@@ -53,10 +53,19 @@ app.get('/', (req, res) => {
   res.send('Hello world!')
 })
 
-// get all recipes
+// Endpoint that returns one recipe if queried, otherwise returns all recipes in DB.
 app.get('/recipes', async (req, res) => {
-  const recipes = await Recipe.find()
-  res.json({ length: recipes.length, data: recipes })
+  const { recipe } = req.query
+
+  if (recipe) {
+    const recipeRegex = new RegExp(recipe, 'i')
+    const recipes = await Recipe.find({ recipe: recipeRegex })
+    res.json(recipes)
+  } else {
+    const recipes = await Recipe.find()
+    res.json({ length: recipes.length, data: recipes })
+  }
+  
 })
 
 app.listen(port, () => {

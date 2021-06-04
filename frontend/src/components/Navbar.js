@@ -1,23 +1,26 @@
 import React from 'react'
 import { BrowserRouter, Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import uniqid from 'uniqid'
 
 const Navbar = () => {
+  const id = uniqid()
+
   return (
     <Nav>
-      <BrowserRouter>
-        <Links>
-          <Link to="/">
-            <Li>Start</Li>
-          </Link>
-          <Link>
-            <Li>Lägg till recept</Li>
-          </Link> 
-          <Link to="kontakt">
-            <Li>Kontakt</Li>
-          </Link>   
-        </Links>
-      </BrowserRouter>
+      <Ul>
+        <BrowserRouter>
+          <Li>
+            <Link key={id} to='/'>Start</Link>
+          </Li>
+          <Li>
+            <Link>Lägg till recept</Link>
+          </Li>
+          <Li>
+            <Link key={id} to='/kontakt'>Kontakt</Link>
+          </Li>
+        </BrowserRouter>
+      </Ul>
     </Nav>
   )
 }
@@ -29,13 +32,14 @@ const Nav = styled.nav`
   width: 100%;
   position: fixed;
   top: 0;
-  padding: 5px 30px;
+  padding: 18px 30px;
   z-index: 1;
 `
-const Links = styled.ul`
+const Ul = styled.ul`
   display: flex;
   flex-direction: row;
 `
+
 const Li = styled.li`
   text-decoration: none;
   list-style-type: none;
