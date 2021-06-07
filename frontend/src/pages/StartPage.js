@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
+import Searchbar from '../components/Searchbar'
 import Gallery from '../components/Gallery'
 
 const StartPage = () => {
@@ -18,6 +19,7 @@ const StartPage = () => {
           <Info>Här är lite text ... Här är lite text ... Här är lite text ... Här är lite text ...</Info>
         </InfoBackground>
       </InfoWrapper>
+      <Searchbar />
       <Gallery />
     </>
   )

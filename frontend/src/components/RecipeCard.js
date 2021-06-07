@@ -5,12 +5,12 @@ import styled from 'styled-components/macro'
 const RecipeCard = ({ title, image }) => {
   return (
     <RecipeWrapper>
-      {/* <Imagecontainer> */}
-        <IMG 
-          src={image}
-          alt={title}
-        />
-      {/* </Imagecontainer> */}
+    {/* <Imagecontainer> */}
+      <IMG 
+        src={image}
+        alt={title}
+      />
+    {/* </Imagecontainer> */}
       <Text>{title}</Text>
     </RecipeWrapper>
   )
