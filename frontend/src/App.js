@@ -10,15 +10,15 @@ import Footer from './components/Footer'
 const App = () => {
   return (
     <>
-      <Navbar />
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={StartPage}/>
-          {/* <Route path="/:_id" component={SingleRecipePage} /> */}
-          <Route path="/kontakt" component={ContactPage}/>
-        </Switch>
+        <Navbar />
+          <Switch>
+            <Route exact path="/" component={StartPage}/>
+            {/* <Route path="/:_id" component={SingleRecipePage} /> */}
+            <Route path="/kontakt" component={ContactPage}/>
+          </Switch>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </>
   )
 }
