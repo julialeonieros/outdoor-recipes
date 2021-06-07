@@ -23,7 +23,7 @@ const Searchbar = () => {
           <TagBtn 
             id="tags"
             value="veg">
-              veg.
+              vego
           </TagBtn>
           <TagBtn 
             id="tags"

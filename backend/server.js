@@ -23,20 +23,20 @@ const Recipe = mongoose.model('Recipe', {
     lowercase: true
   },
   portions: Number,
-  ingredients: {
-    type: [String],
+  ingredients: [{
+    type: String,
     lowercase: true
-  },
-  type: {
-    type: [String],
+  }],
+  type: [{
+    type: String,
     lowercase: true
-  },
-  tags: {
-    type: [String],
+  }],
+  tags: [{
+    type: String,
     lowercase: true
-  },
+  }],
   instructions: {
-    type: [String],
+    type: String,
     lowercase: true
   },
   createdBy: {
@@ -54,17 +54,19 @@ app.get('/', (req, res) => {
 })
 
 // Endpoint that returns one recipe if queried, otherwise returns all recipes in DB.
+// localhost:8080/recipes?title='title'
+// http://localhost:51796/recipes?title=kolbulle
 app.get('/recipes', async (req, res) => {
-  const { recipe } = req.query
+  const { recipe, title } = req.query
+  const titleRegex = new RegExp(title, 'i')
 
-  if (recipe) {
-    const recipeRegex = new RegExp(recipe, 'i')
-    const recipes = await Recipe.find({ recipe: recipeRegex })
-    // const recipes = await Recipe.find({ recipe })
-    res.json(recipes)
-  } else {
-    const recipes = await Recipe.find()
-    res.json({ length: recipes.length, data: recipes })
+  try {
+    const recipes = await Recipe.find({
+      title: titleRegex
+    })
+    res.json({ length: recipes.length, data: recipes})
+  } catch (error) {
+    res.status(400).json({ error: 'Something went wrong', details: error })
   }
 })
 

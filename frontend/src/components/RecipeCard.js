@@ -1,17 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import styled from 'styled-components/macro'
 
-const RecipeCard = ({ title, image }) => {
+const RecipeCard = ({ id, title, image }) => {
   return (
     <RecipeWrapper>
-    {/* <Imagecontainer> */}
-      <IMG 
-        src={image}
-        alt={title}
-      />
-    {/* </Imagecontainer> */}
-      <Text>{title}</Text>
+      <Link to={`/recipes/${id}`}>
+        <IMG 
+          src={image}
+          alt={title}
+        />
+        <Text>{title}</Text>
+      </Link>
     </RecipeWrapper>
   )
 }
