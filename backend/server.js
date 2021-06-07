@@ -60,12 +60,27 @@ app.get('/recipes', async (req, res) => {
   if (recipe) {
     const recipeRegex = new RegExp(recipe, 'i')
     const recipes = await Recipe.find({ recipe: recipeRegex })
+    const recipes = await Recipe.find({ recipe })
     res.json(recipes)
   } else {
     const recipes = await Recipe.find()
     res.json({ length: recipes.length, data: recipes })
   }
-  
+})
+
+// Endpoint to link to a single recipe by its id. Use this endpoint to link to SingleRecipePage
+app.get('/recipes/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const findRecipe = await Recipe.findOne({ _id: id })
+    if (findRecipe) {
+      res.json(findRecipe)
+    } else {
+      res.status(404).json({ error: 'id not found' })
+    }
+  } catch (error) {
+    res.status(400).json({ error: 'request not valid' })
+  }
 })
 
 app.listen(port, () => {
