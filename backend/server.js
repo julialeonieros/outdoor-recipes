@@ -24,19 +24,19 @@ const Recipe = mongoose.model('Recipe', {
   },
   portions: Number,
   ingredients: {
-    type: Array,
+    type: [String],
     lowercase: true
   },
   type: {
-    type: Array,
+    type: [String],
     lowercase: true
   },
   tags: {
-    type: Array,
+    type: [String],
     lowercase: true
   },
   instructions: {
-    type: Array,
+    type: [String],
     lowercase: true
   },
   createdBy: {
