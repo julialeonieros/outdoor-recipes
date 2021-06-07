@@ -60,7 +60,7 @@ app.get('/recipes', async (req, res) => {
   if (recipe) {
     const recipeRegex = new RegExp(recipe, 'i')
     const recipes = await Recipe.find({ recipe: recipeRegex })
-    const recipes = await Recipe.find({ recipe })
+    //const recipes = await Recipe.find({ recipe })
     res.json(recipes)
   } else {
     const recipes = await Recipe.find()
