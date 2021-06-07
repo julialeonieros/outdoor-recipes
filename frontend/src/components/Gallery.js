@@ -1,8 +1,11 @@
 import { React, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
+// import { Link } from 'react-router-dom' 
+
 import {API_URL} from '../reusables/urls'
 import RecipeCard from './RecipeCard'
+// import SingleRecipePage from '../pages/SingleRecipePage'
 
 const Gallery = () => {
 
@@ -14,7 +17,6 @@ const Gallery = () => {
      .then(data => setRecipe(data.data))
   },[])
  
-
   return (
     <GalleryWrapper>
       {recipe.map(recipe => (

@@ -1,22 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import uniqid from 'uniqid'
 
 const Navbar = () => {
-  const id = uniqid()
 
   return (
     <Nav>
       <Ul>
         <Li>
-          <Link key={id} to='/'>Start</Link>
+          <Link to="/">Start</Link>
         </Li>
         <Li>
           <Link>Lägg till recept</Link>
         </Li>
         <Li>
-          <Link key={id} to='/kontakt'>Kontakt</Link>
+          <Link to="/kontakt">Kontakt</Link>
         </Li>
       </Ul>
     </Nav>
