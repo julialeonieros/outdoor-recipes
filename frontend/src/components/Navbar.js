@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import uniqid from 'uniqid'
 
@@ -9,17 +9,15 @@ const Navbar = () => {
   return (
     <Nav>
       <Ul>
-        <BrowserRouter>
-          <Li>
-            <Link key={id} to='/'>Start</Link>
-          </Li>
-          <Li>
-            <Link>Lägg till recept</Link>
-          </Li>
-          <Li>
-            <Link key={id} to='/kontakt'>Kontakt</Link>
-          </Li>
-        </BrowserRouter>
+        <Li>
+          <Link key={id} to='/'>Start</Link>
+        </Li>
+        <Li>
+          <Link>Lägg till recept</Link>
+        </Li>
+        <Li>
+          <Link key={id} to='/kontakt'>Kontakt</Link>
+        </Li>
       </Ul>
     </Nav>
   )

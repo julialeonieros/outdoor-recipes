@@ -24,19 +24,19 @@ const Recipe = mongoose.model('Recipe', {
   },
   portions: Number,
   ingredients: {
-    type: Array,
+    type: [String],
     lowercase: true
   },
   type: {
-    type: Array,
+    type: [String],
     lowercase: true
   },
   tags: {
-    type: Array,
+    type: [String],
     lowercase: true
   },
   instructions: {
-    type: Array,
+    type: [String],
     lowercase: true
   },
   createdBy: {
@@ -60,7 +60,7 @@ app.get('/recipes', async (req, res) => {
   if (recipe) {
     const recipeRegex = new RegExp(recipe, 'i')
     const recipes = await Recipe.find({ recipe: recipeRegex })
-    //const recipes = await Recipe.find({ recipe })
+    // const recipes = await Recipe.find({ recipe })
     res.json(recipes)
   } else {
     const recipes = await Recipe.find()
