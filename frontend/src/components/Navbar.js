@@ -8,13 +8,13 @@ const Navbar = () => {
     <Nav>
       <Ul>
         <Li>
-          <Link to="/">Start</Link>
+          <Link to="/" style={{ textDecoration: 'none', color: '#000', fontSize: '20px'}}>Start</Link>
         </Li>
         <Li>
-          <Link>Lägg till recept</Link>
+          <Link style={{ textDecoration: 'none', color: '#000', fontSize: '20px' }}>Lägg till recept</Link>
         </Li>
         <Li>
-          <Link to="/kontakt">Kontakt</Link>
+          <Link to="/kontakt" style={{ textDecoration: 'none', color: '#000', fontSize: '20px' }}>Kontakt</Link>
         </Li>
       </Ul>
     </Nav>
@@ -24,7 +24,7 @@ const Navbar = () => {
 export default Navbar
 
 const Nav = styled.nav`
-  background-color: #FFF;
+  background-color: rgba(255,255,255, 0.5);
   width: 100%;
   position: fixed;
   top: 0;
@@ -35,10 +35,9 @@ const Ul = styled.ul`
   display: flex;
   flex-direction: row;
 `
-
 const Li = styled.li`
-  text-decoration: none;
   list-style-type: none;
   padding: 0 16px;
   cursor: pointer;
+  
 `
