@@ -3,12 +3,12 @@ import {  useDispatch, useSelector } from 'react-redux'
 
 import styled from 'styled-components/macro'
 
-import { filter } from '../reducers/filter'
-// import { filter, searchRecipes } from '../reducers/filter'
+// import { filter } from '../reducers/filter'
+import { filter, searchRecipes } from '../reducers/filter'
 import { API_URL } from '../reusables/urls'
 
 const Searchbar = () => {
-  const dispatch = useDispatch
+  const dispatch = useDispatch()
 
   const searchField = useSelector(store => store.filter.searchField)
 
@@ -19,15 +19,15 @@ const Searchbar = () => {
     console.log(url)
   }
 
-  // const handleSearch = event => {
-  //   event.preventDefault()
-  //   dispatch(searchRecipes(url))
-  // }
+  const handleSearch = event => {
+    event.preventDefault()
+    dispatch(searchRecipes(url))
+  }
 
   return (
     <>
-      {/* <Form onSubmit={handleSearch}> */}
-      <Form>
+      <Form onSubmit={handleSearch}>
+      {/* <Form> */}
         <Input 
           id="search-field"
           type="text"

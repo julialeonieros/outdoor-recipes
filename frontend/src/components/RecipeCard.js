@@ -30,7 +30,6 @@ const RecipeWrapper = styled.div`
   position: relative;
   overflow: hidden;
   width: 25%;
-  border: solid purple 3px;
 `
 // const Imagecontainer = styled.div``
 
