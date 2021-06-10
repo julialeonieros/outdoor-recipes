@@ -56,13 +56,16 @@ app.get('/', (req, res) => {
 // Endpoint that returns one recipe if queried, otherwise returns all recipes in DB.
 // localhost:8080/recipes?title='title'
 // http://localhost:51796/recipes?title=kolbulle
+
 app.get('/recipes', async (req, res) => {
-  const { recipe, title } = req.query
+  const { recipe, title, tags } = req.query
   const titleRegex = new RegExp(title, 'i')
+  const tagsRegex = new RegExp(tags, 'i')
 
   try {
     const recipes = await Recipe.find({
-      title: titleRegex
+      title: titleRegex,
+      tags: tagsRegex
     })
     res.json({ length: recipes.length, data: recipes})
   } catch (error) {

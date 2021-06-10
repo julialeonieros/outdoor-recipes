@@ -9,19 +9,29 @@ import { API_URL } from '../reusables/urls'
 
 const Searchbar = () => {
   const dispatch = useDispatch()
-
+  const searchBtn = useSelector(store => store.filter.searchTag)
   const searchField = useSelector(store => store.filter.searchField)
 
-  const url = `${API_URL}?title=${searchField}`
+  const searchTag = ['veg', 'gluten-free', 'quick', 'fire']
+
+  const url_title = `${API_URL}?title=${searchField}`
+  const url_tags = `${API_URL}?tags=${searchBtn}`
 
   const handleSearchFieldChange = event => {
     dispatch(filter.actions.setSearchField(event.target.value))
-    console.log(url)
+    //console.log(url)
   }
 
   const handleSearch = event => {
     event.preventDefault()
-    dispatch(searchRecipes(url))
+    dispatch(searchRecipes(url_title))
+  }
+
+  const handleClick = (index) => {
+    dispatch(filter.actions.setSearchTag(searchTag[index]))
+    dispatch(searchRecipes(url_tags))
+    console.log(url_tags)
+    console.log(searchBtn)
   }
 
   return (
@@ -42,8 +52,17 @@ const Searchbar = () => {
           <option value="fika">Fika</option>
           <option value="dryck">Dryck</option>
         </Select>
+
+         <SubmitButton type="submit">sök</SubmitButton>
+      </Form>
+
         <TagsContainer>
-          <TagBtn 
+          {searchTag.map((btn, index) => (
+            <div key={index}>
+              <button onClick={() => handleClick(index)}>{btn}</button>
+            </div>
+          ))}
+          {/* <TagBtn 
             id="tags"
             value="veg">
               vego
@@ -62,10 +81,9 @@ const Searchbar = () => {
             id="tags"
             value="eldKok">
               eld/kök
-          </TagBtn>
+          </TagBtn> */}
         </TagsContainer>
-        <SubmitButton type="submit">sök</SubmitButton>
-      </Form>
+       
     </>
   )
 }

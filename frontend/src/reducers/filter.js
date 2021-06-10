@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+//const searchTag = ['veg', 'gluten-free', 'quick', 'fire']
+
 export const filter = createSlice({
   name: 'filter',
   initialState: {
@@ -7,7 +9,7 @@ export const filter = createSlice({
     notFound: false,
     searchField: "",
     searchType: "",
-    searchTag: "",
+    searchTag: '',
     recipeArray: []
   },
   reducers: {
@@ -25,8 +27,11 @@ export const filter = createSlice({
     },
     setSearchTag: (store, action) => {
       store.searchTag = action.payload
-    }
+    },
     // push selected values into recipeArray
+    setCurrentQuery: (store, action) => {
+      store.recipeArray.push(action.payload) 
+    }
   }
 })
 
@@ -37,12 +42,14 @@ export const searchRecipes = (url) => {
       .then((res) => {
         if (res.ok) {
           return res.json()
+          // eslint-disable-next-line no-unreachable
+          //console.log(res.json())
         } else {
           console.log('Inga recept hittades')
         }
       })
       .then(data => {
-        dispatch(filter.actions.setCurrentQuery(data.filter))
+        dispatch(filter.actions.setCurrentQuery(data))
         dispatch(filter.actions.setNotFound(false))
         dispatch(filter.actions.setLoading(false))
       })
