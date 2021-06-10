@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 import Searchbar from '../components/Searchbar'
-import Gallery from '../components/Gallery'
+// import Gallery from '../components/Gallery'
 
 const StartPage = () => {
   return (
@@ -20,7 +20,7 @@ const StartPage = () => {
         </InfoBackground>
       </InfoWrapper>
       <Searchbar />
-      <Gallery />
+      {/* <Gallery /> */}
     </>
   )
 }

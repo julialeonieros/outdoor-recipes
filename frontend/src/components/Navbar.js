@@ -11,7 +11,7 @@ const Navbar = () => {
           <Link to="/" style={{ textDecoration: 'none', color: '#000', fontSize: '20px'}}>Start</Link>
         </Li>
         <Li>
-          <Link style={{ textDecoration: 'none', color: '#000', fontSize: '20px' }}>Lägg till recept</Link>
+          <Link to="/skapa-recept" style={{ textDecoration: 'none', color: '#000', fontSize: '20px' }}>Lägg till recept</Link>
         </Li>
         <Li>
           <Link to="/kontakt" style={{ textDecoration: 'none', color: '#000', fontSize: '20px' }}>Kontakt</Link>

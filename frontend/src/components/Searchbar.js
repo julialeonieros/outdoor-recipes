@@ -1,33 +1,35 @@
-import React from 'react'
-import {  useDispatch, useSelector } from 'react-redux'
-
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 
-// import { filter } from '../reducers/filter'
-import { filter, searchRecipes } from '../reducers/filter'
 import { API_URL } from '../reusables/urls'
+import RecipeCard from '../components/RecipeCard'
 
 const Searchbar = () => {
-  const dispatch = useDispatch()
 
-  const searchField = useSelector(store => store.filter.searchField)
+  const [searchField, setSearchField] = useState('')
+  const [recipeArray, setRecipeArray] = useState([])
 
   const url = `${API_URL}?title=${searchField}`
 
-  const handleSearchFieldChange = event => {
-    dispatch(filter.actions.setSearchField(event.target.value))
-    console.log(url)
+  const handleSearchFieldChange = (event) => {
+    setSearchField(event.target.value)
   }
 
-  const handleSearch = event => {
+  const HandleSearch = (event, data) => {
     event.preventDefault()
-    dispatch(searchRecipes(url))
-  }
+    setRecipeArray(data)
+    console.log('recipeArray:', recipeArray)
+    }
+
+    useEffect(() => {
+      fetch(url)
+        .then(res => res.json())
+        .then(json => setRecipeArray(json.data))
+    }, [url])
 
   return (
     <>
-      <Form onSubmit={handleSearch}>
-      {/* <Form> */}
+      <Form onSubmit={HandleSearch}>
         <Input 
           id="search-field"
           type="text"
@@ -66,6 +68,12 @@ const Searchbar = () => {
         </TagsContainer>
         <SubmitButton type="submit">sök</SubmitButton>
       </Form>
+      <GalleryWrapper>
+        {recipeArray.map(recipe => (
+          <RecipeCard {...recipe} key={recipe._id}/>
+        ))}
+      </GalleryWrapper>
+      )
     </>
   )
 }
@@ -117,4 +125,9 @@ const TagBtn = styled.button`
 `
 const SubmitButton = styled(TagBtn)`
   background-color: lavender;
+`
+const GalleryWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 `

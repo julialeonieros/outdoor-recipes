@@ -4,7 +4,6 @@ export const filter = createSlice({
   name: 'filter',
   initialState: {
     isLoading: false,
-    notFound: false,
     searchField: "",
     searchType: "",
     searchTag: "",
@@ -14,9 +13,6 @@ export const filter = createSlice({
     setLoading: (store, action) => {
       store.isLoading = action.payload
     },
-    setNotFound: (store, action) => {
-      store.notFound = action.payload
-    },
     setSearchField: (store, action) => {
       store.searchField = action.payload
     },
@@ -25,30 +21,33 @@ export const filter = createSlice({
     },
     setSearchTag: (store, action) => {
       store.searchTag = action.payload
+    },
+    setRecipeArray: (store, action) => {
+      store.recipeArray = action.payload
     }
     // push selected values into recipeArray
   }
 })
 
-export const searchRecipes = (url) => {
-  return (dispatch) => {
-    dispatch(filter.actions.setLoading(true))
-    fetch(url)
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          console.log('Inga recept hittades')
-        }
-      })
-      .then(data => {
-        dispatch(filter.actions.setCurrentQuery(data.filter))
-        dispatch(filter.actions.setNotFound(false))
-        dispatch(filter.actions.setLoading(false))
-      })
-      .catch((error) => {
-        dispatch(filter.actions.setNotFound(true))
-        dispatch(filter.actions.setLoading(false))
-      })
-  }
-}
+// export const searchRecipes = (url) => {
+//   return (dispatch) => {
+//     dispatch(filter.actions.setLoading(true))
+//     fetch(url)
+//       .then((res) => {
+//         if (res.ok) {
+//           return res.json()
+//         } else {
+//           console.log('Inga recept hittades')
+//         }
+//       })
+//       .then(data => {
+//         dispatch(filter.actions.setCurrentQuery(data.filter))
+//         dispatch(filter.actions.setNotFound(false))
+//         dispatch(filter.actions.setLoading(false))
+//       })
+//       .catch((error) => {
+//         dispatch(filter.actions.setNotFound(true))
+//         dispatch(filter.actions.setLoading(false))
+//       })
+//   }
+// }
