@@ -10,6 +10,7 @@ const Searchbar = () => {
   const [recipeArray, setRecipeArray] = useState([])
 
   const url = `${API_URL}?title=${searchField}`
+  // &ingredients=${searchField}`
 
   const handleSearchFieldChange = (event) => {
     setSearchField(event.target.value)
