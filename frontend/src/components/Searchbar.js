@@ -13,9 +13,11 @@ const Searchbar = () => {
   const searchField = useSelector(store => store.filter.searchField)
 
   const searchTag = ['veg', 'gluten-free', 'quick', 'fire']
+  let index
 
   const url_title = `${API_URL}?title=${searchField}`
-  const url_tags = `${API_URL}?tags=${searchBtn}`
+  //const url_tags = `${API_URL}?tags=${searchBtn}`
+  
 
   const handleSearchFieldChange = event => {
     dispatch(filter.actions.setSearchField(event.target.value))
@@ -28,7 +30,11 @@ const Searchbar = () => {
   }
 
   const handleClick = (index) => {
-    dispatch(filter.actions.setSearchTag(searchTag[index]))
+    const URL = 'http://localhost:8080/recipes'
+    const url_tags = `${URL}?tags=${searchTag[index]}`
+
+    //const url_tags = `${API_URL}?tags=${searchTag[index]}`
+    //dispatch(filter.actions.setSearchTag(searchTag[index]))
     dispatch(searchRecipes(url_tags))
     console.log(url_tags)
     console.log(searchBtn)

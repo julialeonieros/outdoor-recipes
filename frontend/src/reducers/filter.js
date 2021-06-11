@@ -42,14 +42,15 @@ export const searchRecipes = (url) => {
       .then((res) => {
         if (res.ok) {
           return res.json()
-          // eslint-disable-next-line no-unreachable
-          //console.log(res.json())
+          //
         } else {
           console.log('Inga recept hittades')
         }
       })
       .then(data => {
-        dispatch(filter.actions.setCurrentQuery(data))
+        console.log('this', url, data)
+        dispatch(filter.actions.setCurrentQuery(data.data))
+        dispatch(filter.actions.setSearchTag())
         dispatch(filter.actions.setNotFound(false))
         dispatch(filter.actions.setLoading(false))
       })
