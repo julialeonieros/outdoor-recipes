@@ -8,6 +8,9 @@ const ContactPage = () => {
   const [title, setTitle] = useState('')
   const [portions, setPortions] = useState('')
   const [ingredients, setIngredients] = useState([{ value: null }])
+  const [type, setType] = useState('')
+
+  const types = ['breakfast', 'lunchDinner', 'fika', 'beverage']
 
   return (
     <>
@@ -48,6 +51,17 @@ const ContactPage = () => {
             />
           </RecipeLabel>
 
+          <RecipeLabelTypes>
+            Typ:
+            {types.map(type => (
+              <InputField
+                type="checkbox"
+                onChange={(event) => {setType(event.target.value)}}
+                value={type}
+                placeholder=""
+            />
+            ))}
+          </RecipeLabelTypes>
             
         </RecipeForm>
       </FormWrapper>
@@ -75,6 +89,10 @@ const RecipeLabel = styled.label`
   flex-direction: column;
   margin-top: 16px;
   color: #2f2f2f;
+  border: solid black 2px;
+`
+const RecipeLabelTypes = styled(RecipeLabel)`
+  flex-direction: row;
 `
 const InputField = styled.input`
   border: 1px solid #CCC;

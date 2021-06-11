@@ -15,4 +15,4 @@
   // }
 
   // tags: ['veg', 'gluten-free', 'quick', 'fire']
-  // type: ['breakfast', 'lunch/dinner', 'fika', 'beverage']
+  // type: ['breakfast', 'lunchDinner', 'fika', 'beverage']
