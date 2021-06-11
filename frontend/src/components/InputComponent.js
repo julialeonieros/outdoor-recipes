@@ -58,7 +58,7 @@ const InputContainer = styled.div`
 const InputField = styled.input`
   border: 1px solid #CCC;
   padding: 10px;
-  width: 200px;
+  width: 300px;
   height: 40px;
 `
 const Btn = styled.button`

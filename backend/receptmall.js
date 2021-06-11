@@ -14,5 +14,5 @@
   // "photographer": ""
   // }
 
-  // tags: ['veg', 'gluten-free', 'quick', 'fire']
+  // tags: ['veg', 'glutenFree', 'quick', 'fire']
   // type: ['breakfast', 'lunchDinner', 'fika', 'beverage']
