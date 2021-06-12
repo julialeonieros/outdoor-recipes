@@ -1,5 +1,5 @@
 import React from 'react'
-//import styled from 'styled-components'
+import styled from 'styled-components'
 
 const InputSelect = ({ data, setData }) => {
 
@@ -13,39 +13,31 @@ const InputSelect = ({ data, setData }) => {
   }
 
   return (
-    <div>
-      <select
+    <Wrapper>
+      <Select
         value={data}
         onChange={event => handleChange(event)}
       >
         {data.map((item, id) => (
           <option value={item.value}>{item.title}</option>
         ))}
-      </select>
-    </div>
+      </Select>
+    </Wrapper>
   )
 }
 
 export default InputSelect
 
-// const Wrapper = styled.div`
-//   display: flex;  
-//   flex-direction: row;
-//   justify-content: space-between;
-//   margin-top: 8px;
-//   padding: 3px;
-//   width: 300px;
-// `
-// const TypesContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   font-weight: normal;
-// `
-// const InputField = styled.input`
-//   border: 1px solid #CCC;
-//   margin: 0px;
-//   padding: 10px;
-//   width: 25px;
-//   height: 40px;
-// `
+const Wrapper = styled.div`
+  margin-top: 12px;
+`
+
+const Select = styled.select`
+  border: 1px solid #CCC;
+  margin: 0;
+  padding: 10px;
+  width: 150px;
+  height: 40px;
+  font-size: 14px;
+  color: #2f2f2f;
+`

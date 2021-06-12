@@ -9,6 +9,7 @@ import InputSelect from '../components/InputSelect'
 import {API_URL } from '../reusables/urls'
 
 const ContactPage = () => {
+  const history = useHistory()
   const [title, setTitle] = useState('')
   const [portions, setPortions] = useState('')
   // const [ingredients, setIngredients] = useState([{ value: null }])
@@ -16,10 +17,10 @@ const ContactPage = () => {
   const [type, setType] = useState([])
   const [tags, setTags] = useState([])
   const [createdBy, setCreatedBy] = useState('')
-  const history = useHistory()
+  const disabled = 'disabled'
 
   // const types = ['breakfast', 'lunchDinner', 'fika', 'beverage']
-  const typesArray = [{value: 'breakfast', title: 'frukost'}, {value: 'lunchDinner', title: 'lunch/middag'}, {value: 'fika', title: 'fika'}, {value: 'beverage', title: 'dryck'}]
+  const typesArray = [{disabled}, {value: 'breakfast', title: 'frukost'}, {value: 'lunchDinner', title: 'lunch/middag'}, {value: 'fika', title: 'fika'}, {value: 'beverage', title: 'dryck'}]
   const tagsArray = [{value: 'veg', title: 'vego'}, {value: 'glutenFree', title: 'glutenfri'}, {value: 'quick', title: 'snabbt'}, {value: 'fire', title: 'eld/kök'}]
 
   const handleFormSubmit = (event) => {
