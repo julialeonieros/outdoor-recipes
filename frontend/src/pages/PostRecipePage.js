@@ -3,7 +3,9 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import HeaderSmall from '../components/HeaderSmall'
-// import InputComponent from '../components/InputComponent'
+import InputCheckboxes from '../components/InputCheckboxes'
+import InputSelect from '../components/InputSelect'
+// import InputMultipleFields from '../components/InputComponent'
 import {API_URL } from '../reusables/urls'
 
 const ContactPage = () => {
@@ -11,8 +13,8 @@ const ContactPage = () => {
   const [portions, setPortions] = useState('')
   // const [ingredients, setIngredients] = useState([{ value: null }])
   const [instructions, setInstructions] = useState('')
-  const [type, setType] = useState([{ value: null }])
-  const [tags, setTags] = useState([{ value: null }])
+  const [type, setType] = useState([])
+  const [tags, setTags] = useState([])
   const [createdBy, setCreatedBy] = useState('')
   const history = useHistory()
 
@@ -33,7 +35,7 @@ const ContactPage = () => {
         portions, 
         instructions, 
         type: type.map((item) => item.value),
-        tags: tags.map((item) => item.value), 
+        tags: tags.map((item) => item.value),
         createdBy
       })
     }
@@ -76,7 +78,7 @@ const ContactPage = () => {
 
           {/* <RecipeLabel>
             Ingredienser:
-            <InputComponent
+            <InputMultipleFields
               placeholder="Lägg till ingrediens"
               type={ingredients}
               setType={setIngredients}
@@ -88,44 +90,26 @@ const ContactPage = () => {
             <InputFieldInstructions
               required
               type="text"
-              onChange={(event) => setInstructions(event.target.value)}
+              onChange={event => setInstructions(event.target.value)}
               value={instructions}
               placeholder="Instruktioner"
             />
           </RecipeLabel>
 
           <RecipeLabelCheckbox>
-            Typ:
-            <Flex>
-              {typesArray.map(item => (
-                <TypesContainer>
-                  {item.title}
-                  <InputFieldTypes
-                    key={item.title}
-                    type="checkbox"
-                    onChange={(event) => {setType(event.target.value)}}
-                    value={item.value === type}
-                  />
-                </TypesContainer>
-              ))}
-            </Flex>
+            Taggar:
+            <InputCheckboxes 
+              data={tagsArray}
+              setData={setTags}
+            />
           </RecipeLabelCheckbox>
 
           <RecipeLabelCheckbox>
-            Taggar:
-            <Flex>
-              {tagsArray.map(item => (
-                <TypesContainer>
-                  {item.title}
-                  <InputFieldTypes
-                    key={item.title}
-                    type="checkbox"
-                    onChange={(event) => {setTags(event.target.value)}}
-                    value={item.value === tags}
-                  />
-                </TypesContainer>
-              ))}
-            </Flex>
+            Typ:
+            <InputSelect 
+              data={typesArray}
+              setData={setType}
+            />
           </RecipeLabelCheckbox>
 
           <RecipeLabel>
@@ -175,20 +159,20 @@ const RecipeLabelCheckbox = styled(RecipeLabel)`
   margin-top: 20px;
 
 `
-const Flex = styled.div`
-  display: flex;  
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 8px;
-  padding: 3px;
-  width: 300px;
-`
-const TypesContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: normal;
-`
+// const Flex = styled.div`
+//   display: flex;  
+//   flex-direction: row;
+//   justify-content: space-between;
+//   margin-top: 8px;
+//   padding: 3px;
+//   width: 300px;
+// `
+// const TypesContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   font-weight: normal;
+// `
 const InputField = styled.input`
   border: 1px solid #CCC;
   margin-top: 8px;
@@ -205,9 +189,9 @@ const InputFieldInstructions = styled.textarea`
   height: 100px;
   font-family: sans-serif;
 `
-const InputFieldTypes = styled(InputField)`
-  margin: 0px;
-  width: 25px;
-`
+// const InputFieldTypes = styled(InputField)`
+//   margin: 0px;
+//   width: 25px;
+// `
 
 

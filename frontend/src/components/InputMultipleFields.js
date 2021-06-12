@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const InputComponent = ({ type, setType, placeholder, input, setInput }) => {
+const InputMultipleFields = ({ type, setType, placeholder, input, setInput }) => {
 
   // const handleChange = (index, event) => {
   //   event.preventDefault()
@@ -39,7 +39,7 @@ const InputComponent = ({ type, setType, placeholder, input, setInput }) => {
   )
 }
 
-export default InputComponent
+export default InputMultipleFields
 
 const Wrapper = styled.div`
   display: flex;
