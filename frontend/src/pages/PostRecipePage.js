@@ -1,21 +1,48 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import HeaderSmall from '../components/HeaderSmall'
-import InputComponent from '../components/InputComponent'
+// import InputComponent from '../components/InputComponent'
+import {API_URL } from '../reusables/urls'
 
 const ContactPage = () => {
   const [title, setTitle] = useState('')
   const [portions, setPortions] = useState('')
-  const [ingredients, setIngredients] = useState([{ value: null }])
+  // const [ingredients, setIngredients] = useState([{ value: null }])
   const [instructions, setInstructions] = useState('')
   const [type, setType] = useState([{ value: null }])
   const [tags, setTags] = useState([{ value: null }])
   const [createdBy, setCreatedBy] = useState('')
+  const history = useHistory()
 
   // const types = ['breakfast', 'lunchDinner', 'fika', 'beverage']
   const typesArray = [{value: 'breakfast', title: 'frukost'}, {value: 'lunchDinner', title: 'lunch/middag'}, {value: 'fika', title: 'fika'}, {value: 'beverage', title: 'dryck'}]
   const tagsArray = [{value: 'veg', title: 'vego'}, {value: 'glutenFree', title: 'glutenfri'}, {value: 'quick', title: 'snabbt'}, {value: 'fire', title: 'eld/kök'}]
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title, 
+        portions, 
+        instructions, 
+        type: type.map((item) => item.value),
+        tags: tags.map((item) => item.value), 
+        createdBy
+      })
+    }
+    fetch(API_URL, options)
+    .then(res => res.json())
+    .then(() => {
+      history.push("/")
+    })
+  }
 
   return (
     <>
@@ -23,7 +50,7 @@ const ContactPage = () => {
       <FormWrapper>
         <H2>Lägg till ditt favoritrecept!</H2>
         <RecipeForm
-          onSubmit>
+          onSubmit={(event) => handleFormSubmit(event)}>
 
           <RecipeLabel>
             Titel:
@@ -47,14 +74,14 @@ const ContactPage = () => {
             />
           </RecipeLabel>
 
-          <RecipeLabel>
+          {/* <RecipeLabel>
             Ingredienser:
             <InputComponent
               placeholder="Lägg till ingrediens"
               type={ingredients}
               setType={setIngredients}
             />
-          </RecipeLabel>
+          </RecipeLabel> */}
 
           <RecipeLabel>
             Instruktioner:
@@ -111,6 +138,8 @@ const ContactPage = () => {
               placeholder="Receptets skapare"
             />
           </RecipeLabel>
+
+          <button type="submit">Lägg till recept</button>
 
         </RecipeForm>
       </FormWrapper>
