@@ -20,7 +20,7 @@ const StartPage = () => {
         </InfoBackground>
       </InfoWrapper>
       <Searchbar />
-      <Gallery />
+      <Gallery />   
     </>
   )
 }

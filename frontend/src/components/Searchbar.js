@@ -9,7 +9,7 @@ import { API_URL } from '../reusables/urls'
 
 const Searchbar = () => {
   const dispatch = useDispatch()
-  const searchBtn = useSelector(store => store.filter.searchTag)
+  //const searchBtn = useSelector(store => store.filter.searchTag)
   const searchField = useSelector(store => store.filter.searchField)
 
   const searchTag = ['veg', 'gluten-free', 'quick', 'fire']
@@ -36,8 +36,8 @@ const Searchbar = () => {
     //const url_tags = `${API_URL}?tags=${searchTag[index]}`
     //dispatch(filter.actions.setSearchTag(searchTag[index]))
     dispatch(searchRecipes(url_tags))
-    console.log(url_tags)
-    console.log(searchBtn)
+    // console.log(url_tags)
+    // console.log(searchBtn)
   }
 
   return (

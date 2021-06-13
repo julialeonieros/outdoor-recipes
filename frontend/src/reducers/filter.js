@@ -5,6 +5,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const filter = createSlice({
   name: 'filter',
   initialState: {
+    isFiltering: false,
     isLoading: false,
     notFound: false,
     searchField: "",
@@ -13,6 +14,9 @@ export const filter = createSlice({
     recipeArray: []
   },
   reducers: {
+    setFiltering: (store, action) => {
+      store.isFiltering = action.payload
+    },
     setLoading: (store, action) => {
       store.isLoading = action.payload
     },
@@ -30,7 +34,8 @@ export const filter = createSlice({
     },
     // push selected values into recipeArray
     setCurrentQuery: (store, action) => {
-      store.recipeArray.push(action.payload) 
+      store.recipeArray = []
+      store.recipeArray.push(action.payload)
     }
   }
 })
@@ -50,6 +55,7 @@ export const searchRecipes = (url) => {
       .then(data => {
         console.log('this', url, data)
         dispatch(filter.actions.setCurrentQuery(data.data))
+        dispatch(filter.actions.setFiltering(true))
         dispatch(filter.actions.setSearchTag())
         dispatch(filter.actions.setNotFound(false))
         dispatch(filter.actions.setLoading(false))
