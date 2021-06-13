@@ -5,7 +5,6 @@ const InputCheckboxes = ({ data, setData }) => {
 
   // assigns value to each checkbox
   const handleChange = (index, event) => {
-    event.preventDefault()
     const check = [...data]
     check[index].value = event.target.value
 
@@ -14,15 +13,14 @@ const InputCheckboxes = ({ data, setData }) => {
 
   return (
     <Wrapper>
-      {data.map((item) => (
+      {data.map((item, id) => (
         <TypesContainer>
           {item.title}
           <InputField
             key={item.title}
             type="checkbox"
             value={item.value}
-            // value={item.value === tags}
-            onChange={event => handleChange(event)}
+            onChange={event => handleChange(id, event)}
           />
         </TypesContainer>
       ))}

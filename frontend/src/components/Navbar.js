@@ -8,13 +8,13 @@ const Navbar = () => {
     <Nav>
       <IconContainer>
         <Icon>
-          <i class="fas fa-campground"></i>
+          <i className="fas fa-campground"></i>
         </Icon>
         <Icon>
-          <i class="fas fa-tree"></i>
+          <i className="fas fa-tree"></i>
         </Icon>
         <Icon>
-          <i class="fas fa-mountain"></i>
+          <i className="fas fa-mountain"></i>
         </Icon>
       </IconContainer>
       <Ul>

@@ -14,14 +14,14 @@ const ContactPage = () => {
   const [portions, setPortions] = useState('')
   // const [ingredients, setIngredients] = useState([{ value: null }])
   const [instructions, setInstructions] = useState('')
-  const [type, setType] = useState([])
+  const [type, setType] = useState('')
   const [tags, setTags] = useState([])
   const [createdBy, setCreatedBy] = useState('')
   const disabled = 'disabled'
 
   // const types = ['breakfast', 'lunchDinner', 'fika', 'beverage']
   const typesArray = [{disabled}, {value: 'breakfast', title: 'frukost'}, {value: 'lunchDinner', title: 'lunch/middag'}, {value: 'fika', title: 'fika'}, {value: 'beverage', title: 'dryck'}]
-  const tagsArray = [{value: 'veg', title: 'vego'}, {value: 'glutenFree', title: 'glutenfri'}, {value: 'quick', title: 'snabbt'}, {value: 'fire', title: 'eld/kök'}]
+  const tagsArray = [{value: 'veg', title: 'vego'}, {value: 'glutenFree', title: 'glutenfritt'}, {value: 'quick', title: 'snabbt'}, {value: 'fire', title: 'eld/kök'}]
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -35,7 +35,7 @@ const ContactPage = () => {
         title, 
         portions, 
         instructions, 
-        type: type.map((item) => item.value),
+        type,
         tags: tags.map((item) => item.value),
         createdBy
       })
@@ -82,8 +82,8 @@ const ContactPage = () => {
               Ingredienser:
               <InputMultipleFields
                 placeholder="Lägg till ingrediens"
-                type={ingredients}
-                setType={setIngredients}
+                data={ingredients}
+                setData={setIngredients}
               />
             </RecipeLabel> */}
 
@@ -136,9 +136,9 @@ const ContactPage = () => {
 
 export default ContactPage
 
-const Background = styled.div`
-  background-color: #668479;
-`
+// const Background = styled.div`
+//   background-color: #668479;
+// `
 const FormWrapper = styled.div`
   background-color: #668479;
   // background-color: #FFDAE0;

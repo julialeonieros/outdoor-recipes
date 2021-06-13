@@ -3,23 +3,18 @@ import styled from 'styled-components'
 
 const InputSelect = ({ data, setData }) => {
 
-  // assigns value to each option
-  const handleChange = (index, event) => {
-    event.preventDefault()
-    const select = [...data]
-    select[index].value = event.target.value
-
-    setData(select)
-  }
-
   return (
     <Wrapper>
       <Select
-        value={data}
-        onChange={event => handleChange(event)}
+        // value={data}
+        //value={}
+        onChange={event => setData(event.target.value)}
       >
-        {data.map((item, id) => (
-          <option value={item.value}>{item.title}</option>
+        {data.map((item) => (
+          <option 
+            value={item.value || ''} 
+            key={item.title}
+          >{item.title}</option>
         ))}
       </Select>
     </Wrapper>
