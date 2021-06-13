@@ -6,15 +6,32 @@ const Navbar = () => {
 
   return (
     <Nav>
+      <IconContainer>
+        <Icon>
+          <i className="fas fa-campground"></i>
+        </Icon>
+        <Icon>
+          <i className="fas fa-tree"></i>
+        </Icon>
+        <Icon>
+          <i className="fas fa-mountain"></i>
+        </Icon>
+      </IconContainer>
       <Ul>
         <Li>
-          <Link to="/" style={{ textDecoration: 'none', color: '#000', fontSize: '20px'}}>Start</Link>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <NavLink>Start</NavLink>
+          </Link>
         </Li>
         <Li>
-          <Link style={{ textDecoration: 'none', color: '#000', fontSize: '20px' }}>Lägg till recept</Link>
+          <Link to="/skapa-recept" style={{ textDecoration: 'none' }}>
+            <NavLink>Lägg till recept</NavLink>
+          </Link>
         </Li>
         <Li>
-          <Link to="/kontakt" style={{ textDecoration: 'none', color: '#000', fontSize: '20px' }}>Kontakt</Link>
+          <Link to="/kontakt" style={{ textDecoration: 'none' }}>
+            <NavLink>Kontakt</NavLink>
+          </Link>
         </Li>
       </Ul>
     </Nav>
@@ -30,6 +47,17 @@ const Nav = styled.nav`
   top: 0;
   padding: 18px 30px;
   z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: xx-large;
+`
+const Icon = styled.div`
+  margin-left: 7px;
 `
 const Ul = styled.ul`
   display: flex;
@@ -39,5 +67,12 @@ const Li = styled.li`
   list-style-type: none;
   padding: 0 16px;
   cursor: pointer;
+`
+const NavLink = styled.a`
+  color: #000;
+  font-size: 20px;
   
+  &:hover {
+    color: #013220;
+  }
 `

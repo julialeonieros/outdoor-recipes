@@ -76,6 +76,23 @@ app.get('/recipes', async (req, res) => {
   }
 })
 
+app.post('/recipes', async (req, res) => {
+  try {
+    const { title,  portions, instructions, type, tags, createdBy } = req.body
+    const newRecipe = await new Recipe({
+      title, 
+      portions, 
+      instructions, 
+      type, 
+      tags, 
+      createdBy
+    }).save()
+    res.json(newRecipe)
+  } catch (error) {
+    res.json(400).json(error)
+  }
+})
+
 // Endpoint to link to a single recipe by its id. Use this endpoint to link to SingleRecipePage
 app.get('/recipes/:id', async (req, res) => {
   const { id } = req.params

@@ -9,16 +9,16 @@ const StartPage = () => {
     <>
       <Header>
         <Image src="/assets/header-image.jpg" alt=""/>
-          <TitleWrapper>
-            <Title>Friluftsmat</Title>
-            <TitleTwo>Laga din mat ute!</TitleTwo>
-          </TitleWrapper>
+        <TitleWrapper>
+          <Title>(&thinsp;Friluftsmat&thinsp;)</Title>
+          <TitleTwo>Laga din mat ute!</TitleTwo>
+        </TitleWrapper>
       </Header>
-      <InfoWrapper>
-        <InfoBackground>
+      <InfoContainer>
+        {/* <InfoBackground> */}
           <Info>Här är lite text ... Här är lite text ... Här är lite text ... Här är lite text ...</Info>
-        </InfoBackground>
-      </InfoWrapper>
+        {/* </InfoBackground> */}
+      </InfoContainer>
       <Searchbar />
       <Gallery />   
     </>
@@ -48,23 +48,21 @@ const TitleWrapper = styled.div`
   font-family: 'Josefin Sans'
 `
 const Title = styled.h1`
-  font-size: 60px;
+  font-size: 95px;
   color: #FFF;
+  font-family: 'brokenbrushregular';
+  margin: 0;
 `
 const TitleTwo = styled(Title)`
   font-size: 40px;
+  font-family: 'Josefin Sans', sans-serif;
 `
-const InfoWrapper = styled.div`
-  width: 100%;
-  padding: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-const InfoBackground = styled.div`
-  background-color: #999;
+const InfoContainer = styled.div`
+  // background-color: #668479;
+  background-color: #FFDAE0;
   width: 400px;
   height: 200px;
   padding: 20px 30px;
+  margin: 30px auto 40px;
 `
 const Info = styled.p``

@@ -18,11 +18,12 @@ const Footer = () => {
 export default Footer
 
 const Background = styled.div`
-  background-color: #999;
+  background-color: #013220;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #FFF;
 `
 const FooterWrapper = styled.div`
   display: flex;

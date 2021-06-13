@@ -91,9 +91,9 @@ const SearchWrapper = styled.div`
   align-items: center;
 `
 const Form = styled.form`
-  background-color: pink;
-  width: 40%;
-  margin: 20px auto;
+  background-color: #668479;
+  width: 80%;
+  margin: 20px auto 45px;
   padding: 15px 20px;
   display: flex;
   justify-content: space-evenly;
@@ -165,7 +165,12 @@ const TagBtn = styled.button`
   }
 `
 const SubmitButton = styled(TagBtn)`
-  background-color: lavender;
+  background-color: #FFDAE0;
+  font-weight: bold;
+
+  &:hover {
+    background-color: pink;
+  }
 `
 // const Select = styled.select`
 //   border: 1px solid #CCC;
