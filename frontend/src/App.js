@@ -7,6 +7,7 @@ import { filter } from './reducers/filter'
 import Navbar from './components/Navbar'
 import StartPage from './pages/StartPage'
 import SingleRecipePage from './pages/SingleRecipePage'
+import PostRecipePage from './pages/PostRecipePage'
 import ContactPage from './pages/ContactPage'
 import Footer from './components/Footer'
 
@@ -24,6 +25,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={StartPage}/>
             <Route path="/recipes/:id" component={SingleRecipePage} />
+            <Route path="/skapa-recept" component={PostRecipePage} />
             <Route path="/kontakt" component={ContactPage}/>
           </Switch>
         <Footer />
