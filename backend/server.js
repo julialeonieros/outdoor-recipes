@@ -59,14 +59,16 @@ app.get('/', (req, res) => {
 // http://localhost:51796/recipes?title=kolbulle
 
 app.get('/recipes', async (req, res) => {
-  const { recipe, title, tags } = req.query
+  const { recipe, title, tags, type } = req.query
   const titleRegex = new RegExp(title, 'i')
   const tagsRegex = new RegExp(tags, 'i')
+  const typeRegex = new RegExp(type, 'i')
 
   try {
     const recipes = await Recipe.find({
       title: titleRegex,
-      tags: tagsRegex
+      tags: tagsRegex,
+      type: typeRegex
     })
     res.json({ length: recipes.length, data: recipes})
   } catch (error) {

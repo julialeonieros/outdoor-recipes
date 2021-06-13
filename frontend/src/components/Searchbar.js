@@ -13,7 +13,7 @@ const Searchbar = () => {
   const searchField = useSelector(store => store.filter.searchField)
 
   const searchTag = ['veg', 'gluten-free', 'quick', 'fire']
-  let index
+  const searchType = ['breakfast', 'lunchDinner', 'fika', 'beverage']
 
   const url_title = `${API_URL}?title=${searchField}`
   //const url_tags = `${API_URL}?tags=${searchBtn}`
@@ -29,19 +29,22 @@ const Searchbar = () => {
     dispatch(searchRecipes(url_title))
   }
 
-  const handleClick = (index) => {
+  const handleTypeClick = (index) => {
+    const URL = 'http://localhost:8080/recipes'
+    const url_tags = `${URL}?type=${searchType[index]}`
+    dispatch(searchRecipes(url_tags))
+  }
+
+  const handleTagClick = (index) => {
     const URL = 'http://localhost:8080/recipes'
     const url_tags = `${URL}?tags=${searchTag[index]}`
-
+    dispatch(searchRecipes(url_tags))
     //const url_tags = `${API_URL}?tags=${searchTag[index]}`
     //dispatch(filter.actions.setSearchTag(searchTag[index]))
-    dispatch(searchRecipes(url_tags))
-    // console.log(url_tags)
-    // console.log(searchBtn)
   }
 
   return (
-    <>
+    <SearchWrapper>
       <Form onSubmit={handleSearch}>
       {/* <Form> */}
         <Input 
@@ -51,63 +54,50 @@ const Searchbar = () => {
           value={searchField}
           onChange={handleSearchFieldChange}
         /> 
-        <Select id="type">
-          <option disables>typ</option>
-          <option value="frukost">Frukost</option>
-          <option value="lunchMiddag">Lunch/middag</option>
-          <option value="fika">Fika</option>
-          <option value="dryck">Dryck</option>
-        </Select>
+        <SubmitButton type="submit">SÖK RECEPT</SubmitButton>
+        </Form>
 
-         <SubmitButton type="submit">sök</SubmitButton>
-      </Form>
+      <BtnWrapper>
+          <TypeContainer>
+            {searchType.map((btn, index) => (
+              <div key={index}>
+                <TypeBtn onClick={() => handleTypeClick(index)}>{btn}</TypeBtn>
+              </div>
+            ))}
+            {/* <option disables>typ</option>
+            <option value="frukost">Frukost</option>
+            <option value="lunchMiddag">Lunch/middag</option>
+            <option value="fika">Fika</option>
+            <option value="dryck">Dryck</option> */}
+          </TypeContainer>
 
-        <TagsContainer>
-          {searchTag.map((btn, index) => (
-            <div key={index}>
-              <button onClick={() => handleClick(index)}>{btn}</button>
-            </div>
-          ))}
-          {/* <TagBtn 
-            id="tags"
-            value="veg">
-              vego
-          </TagBtn>
-          <TagBtn 
-            id="tags"
-            value="glutenfri">
-              glutenfri
-          </TagBtn>
-          <TagBtn 
-            id="tags"
-            value="snabbt">
-              snabbt
-          </TagBtn>
-          <TagBtn 
-            id="tags"
-            value="eldKok">
-              eld/kök
-          </TagBtn> */}
-        </TagsContainer>
-       
-    </>
+          <TagsContainer>
+            {searchTag.map((btn, index) => (
+              <div key={index}>
+                <TagBtn onClick={() => handleTagClick(index)}>{btn}</TagBtn>
+              </div>
+            ))}      
+          </TagsContainer>
+      </BtnWrapper> 
+    </SearchWrapper>
   )
 }
 
 export default Searchbar
 
+const SearchWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 const Form = styled.form`
   background-color: pink;
-  width: 80%;
+  width: 40%;
   margin: 20px auto;
   padding: 15px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-`
-const TagsContainer = styled.div`
-  display: flex;  
-  flex-direction: row;
 `
 const Input = styled.input`
   border: 1px solid #CCC;
@@ -117,28 +107,71 @@ const Input = styled.input`
   height: 40px;
   font-size: 16px;
 `
-const Select = styled.select`
-  border: 1px solid #CCC;
-  margin: 0;
-  padding: 10px;
-  width: 150px;
+const BtnWrapper = styled.div`
+  display: flex;  
+  flex-direction: column;
+`
+const TagsContainer = styled.div`
+  display: flex;  
+  flex-direction: row;
+  margin: 20px 0;
+`
+const TypeContainer = styled.div`
+  display: flex;  
+  flex-direction: row;
+`
+const TypeBtn = styled.button`
+  cursor: pointer;
+  border-radius: 15px;
+  border: 1px solid #fde431;
+  margin: 0 5px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #f15c5c;
+  background: #feee7d;
+  padding: 0 10px;
   height: 40px;
-  font-size: 16px;
+  transition: all 150ms linear;
+  width: 100px;
+
+  &:hover {
+    transition: all 150ms linear;
+    opacity: .85;
+  }
+  &active {
+  }
 `
 const TagBtn = styled.button`
   cursor: pointer;
-  border: 1px solid #CCC;
+  border-radius: 15px;
+  border: none;
   margin: 0 5px;
   font-size: 14px;
-  color: #000;
-  background: #FFF;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #FE8CDF;
+  background: #353866;
   padding: 0 10px;
   height: 40px;
+  transition: all 150ms linear;
+  width: 100px;
 
+  &:hover {
+    transition: all 150ms linear;
+    opacity: .85;
+  }
   &active {
-
   }
 `
 const SubmitButton = styled(TagBtn)`
   background-color: lavender;
 `
+// const Select = styled.select`
+//   border: 1px solid #CCC;
+//   margin: 0;
+//   padding: 10px;
+//   width: 150px;
+//   height: 40px;
+//   font-size: 16px;
+// `
