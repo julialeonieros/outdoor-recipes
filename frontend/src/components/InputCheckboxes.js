@@ -1,26 +1,27 @@
+// import React, { useState } from 'react'
 import React from 'react'
 import styled from 'styled-components'
 
 const InputCheckboxes = ({ data, setData }) => {
 
-  // assigns value to each checkbox
-  const handleChange = (index, event) => {
-    const check = [...data]
-    check[index].value = event.target.value
-
-    setData(check)
+  const handleChange = (index) => {
+    if (data.includes(index)) {
+      setData(data.filter((item) => item !== index))
+    } else {
+      setData(index)
+    }
   }
 
   return (
+
     <Wrapper>
-      {data.map((item, id) => (
-        <TypesContainer>
+      {data.map((item) => (
+        <TypesContainer key={item.title}>
           {item.title}
           <InputField
-            key={item.title}
             type="checkbox"
-            value={item.value}
-            onChange={event => handleChange(id, event)}
+            onChange={() => handleChange(item.value)}
+            checked={data === item.value}
           />
         </TypesContainer>
       ))}

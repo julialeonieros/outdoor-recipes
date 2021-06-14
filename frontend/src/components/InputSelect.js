@@ -6,8 +6,6 @@ const InputSelect = ({ data, setData }) => {
   return (
     <Wrapper>
       <Select
-        // value={data}
-        //value={}
         onChange={event => setData(event.target.value)}
       >
         {data.map((item) => (
