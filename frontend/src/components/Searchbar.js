@@ -1,32 +1,28 @@
-import React from 'react'
-import {  useDispatch, useSelector } from 'react-redux'
+import { React, useState } from 'react'
+import {  useDispatch } from 'react-redux'
 
 import styled from 'styled-components/macro'
 
-// import { filter } from '../reducers/filter'
 import { filter, searchRecipes } from '../reducers/filter'
 import { API_URL } from '../reusables/urls'
 
 const Searchbar = () => {
+
+  const [searchValue, setSearchValue]= useState('')
+
   const dispatch = useDispatch()
-  //const searchBtn = useSelector(store => store.filter.searchTag)
-  const searchField = useSelector(store => store.filter.searchField)
 
   const searchTag = ['veg', 'gluten-free', 'quick', 'fire']
   const searchType = ['breakfast', 'lunchDinner', 'fika', 'beverage']
 
-  const url_title = `${API_URL}?title=${searchField}`
-  //const url_tags = `${API_URL}?tags=${searchBtn}`
-  
-
-  const handleSearchFieldChange = event => {
-    dispatch(filter.actions.setSearchField(event.target.value))
-    //console.log(url)
-  }
-
   const handleSearch = event => {
     event.preventDefault()
+    const url_title = `${API_URL}?title=${searchValue}`
     dispatch(searchRecipes(url_title))
+  }
+
+  const handleResetClick = () => {
+    dispatch(filter.actions.setFiltering(false))
   }
 
   const handleTypeClick = (index) => {
@@ -51,16 +47,19 @@ const Searchbar = () => {
           id="search-field"
           type="text"
           placeholder="fritext"
-          value={searchField}
-          onChange={handleSearchFieldChange}
+          value={searchValue}
+          //onChange={handleSearchFieldChange}
+          onChange={(event) => setSearchValue(event.target.value)}
         /> 
         <SubmitButton type="submit">SÖK RECEPT</SubmitButton>
+
+        <ResetButton onClick={() => handleResetClick()}>VISA ALLA RECEPT</ResetButton>
         </Form>
 
       <BtnWrapper>
           <TypeContainer>
             {searchType.map((btn, index) => (
-              <div key={index}>
+              <div key={btn}>
                 <TypeBtn onClick={() => handleTypeClick(index)}>{btn}</TypeBtn>
               </div>
             ))}
@@ -73,7 +72,7 @@ const Searchbar = () => {
 
           <TagsContainer>
             {searchTag.map((btn, index) => (
-              <div key={index}>
+              <div key={btn}>
                 <TagBtn onClick={() => handleTagClick(index)}>{btn}</TagBtn>
               </div>
             ))}      
@@ -171,6 +170,9 @@ const SubmitButton = styled(TagBtn)`
   &:hover {
     background-color: pink;
   }
+`
+const ResetButton = styled(TagBtn)`
+  background-color: silver;
 `
 // const Select = styled.select`
 //   border: 1px solid #CCC;
