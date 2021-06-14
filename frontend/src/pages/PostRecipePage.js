@@ -3,23 +3,23 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import HeaderSmall from '../components/HeaderSmall'
-import InputCheckboxes from '../components/InputCheckboxes'
+// import InputCheckboxes from '../components/InputCheckboxes'
 import InputSelect from '../components/InputSelect'
-// import InputMultipleFields from '../components/InputComponent'
+import InputMultipleFields from '../components/InputMultipleFields'
 import {API_URL } from '../reusables/urls'
 
 const ContactPage = () => {
   const history = useHistory()
   const [title, setTitle] = useState('')
   const [portions, setPortions] = useState('')
-  // const [ingredients, setIngredients] = useState()
+  const [ingredients, setIngredients] = useState([{ value: null }])
   const [instructions, setInstructions] = useState('')
   const [type, setType] = useState('')
-  const [tags, setTags] = useState([])
+  // const [tags, setTags] = useState([])
   const [createdBy, setCreatedBy] = useState('')
 
   const typesArray = [{value: null, title: 'välj typ'}, {value: 'breakfast', title: 'frukost'}, {value: 'lunchDinner', title: 'lunch/middag'}, {value: 'fika', title: 'fika'}, {value: 'beverage', title: 'dryck'}]
-  const tagsArray = [{value: 'veg', title: 'vego'}, {value: 'glutenFree', title: 'glutenfritt'}, {value: 'quick', title: 'snabbt'}, {value: 'fire', title: 'eld/kök'}]
+  // const tagsArray = [{value: 'veg', title: 'vego'}, {value: 'glutenFree', title: 'glutenfritt'}, {value: 'quick', title: 'snabbt'}, {value: 'fire', title: 'eld/kök'}]
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -31,10 +31,11 @@ const ContactPage = () => {
       },
       body: JSON.stringify({
         title, 
-        portions, 
+        portions,
+        ingredients: ingredients.map((item) => item.value),
         instructions, 
         type,
-        tags: tags.map((item) => item.value),
+        // tags: tags.map((item) => item.value),
         createdBy
       })
     }
@@ -44,7 +45,9 @@ const ContactPage = () => {
       history.push("/")
     })
   }
-  console.log(tags)
+
+  // console.log('tags:', tags)
+  console.log('ingredients:', ingredients)
 
   return (
     <>
@@ -77,14 +80,13 @@ const ContactPage = () => {
               />
             </RecipeLabel>
 
-            {/* <RecipeLabel>
+            <RecipeLabel>
               Ingredienser:
               <InputMultipleFields
-                placeholder="Lägg till ingrediens"
                 data={ingredients}
                 setData={setIngredients}
               />
-            </RecipeLabel> */}
+            </RecipeLabel>
 
             <RecipeLabel>
               Instruktioner:
@@ -97,13 +99,13 @@ const ContactPage = () => {
               />
             </RecipeLabel>
 
-            <RecipeLabelCheckbox>
+            {/* <RecipeLabelCheckbox>
               Taggar:
               <InputCheckboxes 
                 data={tagsArray}
                 setData={setTags}
               />
-            </RecipeLabelCheckbox>
+            </RecipeLabelCheckbox> */}
 
             <RecipeLabelCheckbox>
               Typ:
@@ -140,10 +142,8 @@ export default ContactPage
 // `
 const FormWrapper = styled.div`
   background-color: #668479;
-  // background-color: #FFDAE0;
-  // border: solid #668479 5px;
   width: 400px;
-  padding: 30px;
+  padding: 30px 30px 30px 60px;
   margin: 30px auto 45px;
   display: flex;
   flex-direction: column;

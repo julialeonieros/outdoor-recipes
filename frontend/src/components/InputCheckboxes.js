@@ -5,12 +5,19 @@ import styled from 'styled-components'
 const InputCheckboxes = ({ data, setData }) => {
 
   const handleChange = (index) => {
+    // const input = [...data]
     if (data.includes(index)) {
       setData(data.filter((item) => item !== index))
     } else {
       setData(index)
     }
   }
+
+  // const handleInput = (index, event) => {
+  //   event.preventDefault()
+  //   const input = [...data]
+  //   input[index].value = event.target.value
+  //   setData(input)
 
   return (
 

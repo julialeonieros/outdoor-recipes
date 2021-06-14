@@ -78,10 +78,11 @@ app.get('/recipes', async (req, res) => {
 
 app.post('/recipes', async (req, res) => {
   try {
-    const { title,  portions, instructions, type, tags, createdBy } = req.body
+    const { title,  portions, ingredients, instructions, type, tags, createdBy } = req.body
     const newRecipe = await new Recipe({
       title, 
-      portions, 
+      portions,
+      ingredients,
       instructions, 
       type, 
       tags, 
