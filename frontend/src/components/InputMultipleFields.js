@@ -29,7 +29,7 @@ const InputMultipleFields = ({ data, setData }) => {
         return (
           <InputContainer key={item.title}>
             <InputField 
-              required
+              // required
               type='text'
               placeholder='lägg till ingrediens'
               value={item.value || ""}

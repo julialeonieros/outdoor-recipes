@@ -1,39 +1,38 @@
-// import React, { useState } from 'react'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const InputCheckboxes = ({ data, setData }) => {
 
-  const handleChange = (index) => {
-    // const input = [...data]
-    if (data.includes(index)) {
-      setData(data.filter((item) => item !== index))
+  const [checkedState, setCheckedState] = useState([])
+
+  const handleOnChange = (input) => {
+
+    if (checkedState.includes(input)) {
+      const filteredState = checkedState.filter(item => item !== input)
+      setCheckedState(filteredState)
+      setData(filteredState)
     } else {
-      setData(index)
+      setCheckedState([...checkedState, input])
+      setData([...checkedState,])
     }
   }
-
-  // const handleInput = (index, event) => {
-  //   event.preventDefault()
-  //   const input = [...data]
-  //   input[index].value = event.target.value
-  //   setData(input)
 
   return (
 
     <Wrapper>
-      {data.map((item) => (
-        <TypesContainer key={item.title}>
-          {item.title}
-          <InputField
-            type="checkbox"
-            onChange={() => handleChange(item.value)}
-            checked={data === item.value}
-          />
-        </TypesContainer>
-      ))}
+      {data.map(({ value, title }, index) => {
+        return (
+          <TypesContainer key={title}>
+            {title}
+            <InputField
+              type="checkbox"
+              checked={checkedState.includes(value)}
+              onChange={() => handleOnChange(value)}
+            />
+          </TypesContainer>
+        )
+      })}
     </Wrapper>
-
   )
 }
 
