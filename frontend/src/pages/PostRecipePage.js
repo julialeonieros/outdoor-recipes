@@ -6,9 +6,10 @@ import HeaderSmall from '../components/HeaderSmall'
 import InputCheckboxes from '../components/InputCheckboxes'
 import InputSelect from '../components/InputSelect'
 import InputMultipleFields from '../components/InputMultipleFields'
-import {API_URL } from '../reusables/urls'
+import { API_URL } from '../reusables/urls'
+import { typesArray, tagsArray } from '../reusables/arrays'
 
-const ContactPage = () => {
+const PostRecipePage = () => {
   const history = useHistory()
   const [title, setTitle] = useState('')
   const [portions, setPortions] = useState('')
@@ -17,10 +18,6 @@ const ContactPage = () => {
   const [type, setType] = useState('')
   const [tags, setTags] = useState([])
   const [createdBy, setCreatedBy] = useState('')
-
-  const typesArray = [{value: null, title: 'välj typ'}, {value: 'breakfast', title: 'frukost'}, {value: 'lunchDinner', title: 'lunch/middag'}, {value: 'fika', title: 'fika'}, {value: 'beverage', title: 'dryck'}]
-  const tagsArray = [{value: 'veg', title: 'vego'}, {value: 'glutenFree', title: 'glutenfritt'}, {value: 'quick', title: 'snabbt'}, {value: 'fire', title: 'eld/kök'}]
-  // const tagsArray = ['veg', 'gluten-free', 'quick', 'fire']
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -46,13 +43,10 @@ const ContactPage = () => {
       history.push("/")
     })
   }
-
   console.log('tags: ', tags)
-  // console.log('ingredients:', ingredients)
 
   return (
     <>
-      {/* <Background> */}
         <HeaderSmall />
         <FormWrapper>
           <H2>Lägg till ditt favoritrecept!</H2>
@@ -131,16 +125,12 @@ const ContactPage = () => {
 
           </RecipeForm>
         </FormWrapper>
-      {/* </Background> */}
     </>
   )
 }
 
-export default ContactPage
+export default PostRecipePage
 
-// const Background = styled.div`
-//   background-color: #668479;
-// `
 const FormWrapper = styled.div`
   background-color: #668479;
   width: 400px;
@@ -168,22 +158,7 @@ const RecipeLabelCheckbox = styled(RecipeLabel)`
   display: flex;  
   flex-direction: column;
   margin-top: 20px;
-
 `
-// const Flex = styled.div`
-//   display: flex;  
-//   flex-direction: row;
-//   justify-content: space-between;
-//   margin-top: 8px;
-//   padding: 3px;
-//   width: 300px;
-// `
-// const TypesContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   font-weight: normal;
-// `
 const InputField = styled.input`
   // border: 1px solid #668479;
   border: solid #CCC 1px;
@@ -201,10 +176,6 @@ const InputFieldInstructions = styled.textarea`
   height: 100px;
   font-family: sans-serif;
 `
-// const InputFieldTypes = styled(InputField)`
-//   margin: 0px;
-//   width: 25px;
-// `
 const SubmitBtn = styled.button`
   cursor: pointer;
   border: none;

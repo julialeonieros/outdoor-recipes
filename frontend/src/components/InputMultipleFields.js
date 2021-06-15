@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import uniqid from 'uniqid'
 
 const InputMultipleFields = ({ data, setData }) => {
 
@@ -27,9 +28,8 @@ const InputMultipleFields = ({ data, setData }) => {
 
       {data.map((item, id) => {
         return (
-          <InputContainer key={item.title}>
+          <InputContainer key={uniqid()}>
             <InputField 
-              // required
               type='text'
               placeholder='lägg till ingrediens'
               value={item.value || ""}
