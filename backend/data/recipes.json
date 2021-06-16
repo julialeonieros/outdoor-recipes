@@ -61,7 +61,7 @@
     "instructions": "Blanda kanel, kokossocker, och smör. Rulla ut degen och bred ett lager av kanelblandningen. Rulla ihop och dela i ca 12 bullar. Stek i smör och ringla över lönnsirap, toppa med pekannötter. Ät och njut av din dag utomhus!",
     "createdBy": "Nathalie Spjälle",
     "url": "https://www.foodbynatta.com/blog/kanelbullartrangia",
-    "image": "",
+    "image": "https://res.cloudinary.com/dtsyqfltv/image/upload/v1622726488/outdoor-recipes/183549556_572888070781189_2041583664858473402_n_vv6byq.jpg",
     "photographer": "Julia Ros"
   },
   {
@@ -82,23 +82,22 @@
     "instructions": "Bred nutella på halva tortillan och toppa med bananskivor. Vik ihop tortillan och stek några minuter på varje sida. Ät med färska jordgubbar.",
     "createdBy": "Nathalie Spjälle",
     "url": "https://www.foodbynatta.com/blog/nutella-tortilla-trangia",
-    "image": "",
+    "image": "https://res.cloudinary.com/dtsyqfltv/image/upload/v1623265271/outdoor-recipes/184489224_1632803293591639_7996916258976731007_n_d3ahbb.jpg",
     "photographer": "Julia Ros"
   },
   {
     "title": "Krämig citronpasta",
-    "portions": null,
+    "portions": 2,
     "ingredients": [
-      "Schalottenlök",
-      "Vitlök",
-      "Smör",
-      "Vitt vin",
-      "Grädde",
-      "Parmesan (mycket!)",
-      "Citronzest",
-      "Citronjuice",
-      "Valfri pasta",
-      "Salt och peppar"
+      "1 schalottenlök, hackad",
+      "2 vitlöksklyftor, finhackad eller riven",
+      "0,5 dl vitt vin",
+      "2 dl grädde",
+      "1 dl parmesan, riven",
+      "0,5 citron, juice och zest",
+      "Salt",
+      "Peppar",
+      "Smör"
     ],
     "type": [
       "lunch/dinner"
@@ -106,10 +105,10 @@
     "tags": [
       "fire"
     ],
-    "instructions": "",
+    "instructions": "Över öppen eld eller på ett stormkök: fräs schalottenlök och vitlök i smör i en panna tills det mjuknat utan att ta färg. Tillsätt vinet och låt nästan allt koka bort. Koka under tiden pastan i saltat vatten i en kastrull, koka al dente. Tillsätt grädde i pannan när vinet nästan har kokat bort. När pastan kokat klart, häll av vattnet och tillsätt pastan i pannan med gräddkoket. Tillsätt riven parmesan, citronzest och citronjuice och rör ordentligt. Smaka av med salt och peppar.",
     "createdBy": "Agnes Ros",
     "url": "https://www.instagram.com/p/CO48g9fpl0R/",
-    "image": "",
+    "image": "https://res.cloudinary.com/dtsyqfltv/image/upload/v1623053688/outdoor-recipes/IMG_3310_trrpo6.jpg",
     "photographer": "Agnes Ros"
   },
   {
@@ -132,7 +131,7 @@
     "instructions": "Bred hummus på brödet och toppa med mosad eller skivad avokado, smulad fetaost samt babyspenat. Ät och njut av utsikten.",
     "createdBy": "Agnes Ros",
     "url": null,
-    "image": "",
+    "image": "https://res.cloudinary.com/dtsyqfltv/image/upload/v1623048558/outdoor-recipes/32291FD8-BC83-4BBC-9714-BC669480B9FB_quiodx.jpg",
     "photographer": "Agnes Ros"
   },
   {
