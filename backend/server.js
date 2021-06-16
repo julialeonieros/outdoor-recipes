@@ -2,6 +2,9 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import cloudinaryFramework from 'cloudinary'
+import multer from 'multer'
+import cloudinaryStorage from 'multer-storage-cloudinary'
 
 // import recipes from './data/recipes.json'
 
@@ -12,7 +15,25 @@ const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/outdoorRecipes"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
 
-const port = process.env.PORT || 8081
+const port = process.env.PORT || 8080
+const cloudinary = cloudinaryFramework.v2; 
+cloudinary.config({
+  cloud_name: 'dtsyqfltv',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
+const storage = cloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'recipeImages',
+    allowedFormats: ['jpg', 'png'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }],
+  },
+})
+const parser = multer({ storage })
+
+const port = process.env.PORT || 8080
 const app = express()
 
 app.use(cors())
@@ -90,7 +111,18 @@ app.post('/recipes', async (req, res) => {
     }).save()
     res.json(newRecipe)
   } catch (error) {
-    res.json(400).json(error)
+    res.json(400).json({ error: "Couldn't post recipe", details: error })
+  }
+})
+
+app.post('/recipes/:id/image', parser.single('image'), async (req, res) => {
+  const { id } = req.params
+  try {
+    const imageRecipe = await new Recipe
+      .findOneAndUpdate({ name: req.body.filename, imageUrl: req.file.path })
+    res.json(imageRecipe)
+  } catch (err) {
+    res.status(400).json({ error: 'Something went wrong', details: error })
   }
 })
 
