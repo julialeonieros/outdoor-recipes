@@ -31,5 +31,6 @@ const GalleryWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
   border: 5px pink solid;
 `

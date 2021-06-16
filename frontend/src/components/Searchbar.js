@@ -2,9 +2,31 @@ import { React, useState } from 'react'
 import {  useDispatch } from 'react-redux'
 
 import styled from 'styled-components/macro'
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { filter, searchRecipes } from '../reducers/filter'
 import { API_URL } from '../reusables/urls'
+
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#2f5c47',
+      main: '#013220', // dark moss green
+      dark: '#000d00',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ffc1e3',
+      main: '#f48fb1', // pink
+      dark: '#bf5f82',
+      contrastText: '#000',
+    },
+  },
+});
 
 const Searchbar = () => {
 
@@ -41,43 +63,47 @@ const Searchbar = () => {
 
   return (
     <SearchWrapper>
-      <Form onSubmit={handleSearch}>
-      {/* <Form> */}
-        <Input 
-          id="search-field"
-          type="text"
-          placeholder="fritext"
-          value={searchValue}
-          //onChange={handleSearchFieldChange}
-          onChange={(event) => setSearchValue(event.target.value)}
-        /> 
-        <SubmitButton type="submit">SÖK RECEPT</SubmitButton>
+      <ThemeProvider theme={theme}>
+        <Form onSubmit={handleSearch}>
+        
+          {/* <Input */}
+          <TextField 
+            id="outlined-search" 
+            label="Sök recept" 
+            type="search" 
+            variant="outlined"
+            color='primary'  
+            // id="search-field"
+            // type="text"
+            // placeholder="fritext"
+            value={searchValue}
+            //onChange={handleSearchFieldChange}
+            onChange={(event) => setSearchValue(event.target.value)}
+          /> 
+          <Button variant="contained" color="primary" size="large" type="submit">SÖK RECEPT</Button>
 
-        <ResetButton onClick={() => handleResetClick()}>VISA ALLA RECEPT</ResetButton>
-        </Form>
+          <Button variant="contained" color="secondary" size="large" onClick={() => handleResetClick()}>VISA ALLA RECEPT</Button>
+          </Form>
 
-      <BtnWrapper>
-          <TypeContainer>
-            {searchType.map((btn, index) => (
-              <div key={btn}>
-                <TypeBtn onClick={() => handleTypeClick(index)}>{btn}</TypeBtn>
-              </div>
-            ))}
-            {/* <option disables>typ</option>
-            <option value="frukost">Frukost</option>
-            <option value="lunchMiddag">Lunch/middag</option>
-            <option value="fika">Fika</option>
-            <option value="dryck">Dryck</option> */}
-          </TypeContainer>
+        <BtnWrapper>
+            <TypeContainer>
+              {searchType.map((btn, index) => (
+                <div key={btn}>
+                  <Button variant="outlined" color="primary" onClick={() => handleTypeClick(index)}>{btn}</Button>
+                </div>
+              ))}
+          
+            </TypeContainer>
 
-          <TagsContainer>
-            {searchTag.map((btn, index) => (
-              <div key={btn}>
-                <TagBtn onClick={() => handleTagClick(index)}>{btn}</TagBtn>
-              </div>
-            ))}      
-          </TagsContainer>
-      </BtnWrapper> 
+            <TagsContainer>
+              {searchTag.map((btn, index) => (
+                <div key={btn}>
+                  <Button variant="outlined" color="primary" onClick={() => handleTagClick(index)}>{btn}</Button>
+                </div>
+              ))}      
+            </TagsContainer>
+        </BtnWrapper> 
+      </ThemeProvider>  
     </SearchWrapper>
   )
 }
@@ -90,9 +116,9 @@ const SearchWrapper = styled.div`
   align-items: center;
 `
 const Form = styled.form`
-  background-color: #668479;
-  width: 80%;
-  margin: 20px auto 45px;
+  ${'' /* background-color: #668479; */}
+  width: 60%;
+  margin: 20px auto;
   padding: 15px 20px;
   display: flex;
   justify-content: space-evenly;
@@ -109,15 +135,20 @@ const Input = styled.input`
 const BtnWrapper = styled.div`
   display: flex;  
   flex-direction: column;
+  width: 50%;
+  margin-bottom: 20px;
 `
 const TagsContainer = styled.div`
   display: flex;  
   flex-direction: row;
-  margin: 20px 0;
+  justify-content: space-between;
+  margin: 10px 0;
 `
 const TypeContainer = styled.div`
   display: flex;  
   flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0;
 `
 const TypeBtn = styled.button`
   cursor: pointer;

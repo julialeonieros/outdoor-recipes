@@ -29,7 +29,7 @@ const RecipeWrapper = styled.div`
   height: 250px; */}
   position: relative;
   overflow: hidden;
-  width: 25%;
+  width: 33.333%;
 `
 // const Imagecontainer = styled.div``
 

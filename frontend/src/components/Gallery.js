@@ -1,10 +1,10 @@
-import { React, useEffect, useState } from 'react'
+import { React } from 'react'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
-import { filter } from '../reducers/filter'
-import {API_URL} from '../reusables/urls'
-import RecipeCard from './RecipeCard'
+// import { filter } from '../reducers/filter'
+// import {API_URL} from '../reusables/urls'
+// import RecipeCard from './RecipeCard'
 import StartGallery from './StartGallery'
 import FilteredGallery from '../components/FilteredGallery'
 
