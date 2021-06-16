@@ -10,7 +10,7 @@ export const filter = createSlice({
     notFound: false,
     searchField: "",
     searchType: "",
-    searchTag: '',
+    searchTag: "",
     recipeArray: []
   },
   reducers: {

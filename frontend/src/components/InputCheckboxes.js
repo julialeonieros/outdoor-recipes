@@ -13,7 +13,7 @@ const InputCheckboxes = ({ data, setData }) => {
       setData(filteredState)
     } else {
       setCheckedState([...checkedState, input])
-      setData([...checkedState,])
+      setData([...checkedState, input])
     }
   }
 
