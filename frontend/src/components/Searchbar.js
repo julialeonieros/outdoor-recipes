@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { filter, searchRecipes } from '../reducers/filter'
 import { API_URL } from '../reusables/urls'
+import { typesArrayFilter, tagsArray } from '../reusables/arrays'
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
@@ -31,11 +32,7 @@ const theme = createMuiTheme({
 const Searchbar = () => {
 
   const [searchValue, setSearchValue]= useState('')
-
   const dispatch = useDispatch()
-
-  const searchTag = ['veg', 'gluten-free', 'quick', 'fire']
-  const searchType = ['breakfast', 'lunchDinner', 'fika', 'beverage']
 
   const handleSearch = event => {
     event.preventDefault()
@@ -47,18 +44,16 @@ const Searchbar = () => {
     dispatch(filter.actions.setFiltering(false))
   }
 
-  const handleTypeClick = (index) => {
+  const handleTypeClick = (input) => {
     const URL = 'http://localhost:8080/recipes'
-    const url_tags = `${URL}?type=${searchType[index]}`
+    const url_tags = `${URL}?type=${input}`
     dispatch(searchRecipes(url_tags))
   }
 
-  const handleTagClick = (index) => {
+  const handleTagClick = (input) => {
     const URL = 'http://localhost:8080/recipes'
-    const url_tags = `${URL}?tags=${searchTag[index]}`
+    const url_tags = `${URL}?tags=${input}`
     dispatch(searchRecipes(url_tags))
-    //const url_tags = `${API_URL}?tags=${searchTag[index]}`
-    //dispatch(filter.actions.setSearchTag(searchTag[index]))
   }
 
   return (
@@ -86,22 +81,31 @@ const Searchbar = () => {
           </Form>
 
         <BtnWrapper>
-            <TypeContainer>
-              {searchType.map((btn, index) => (
-                <div key={btn}>
-                  <Button variant="outlined" color="primary" onClick={() => handleTypeClick(index)}>{btn}</Button>
-                </div>
-              ))}
-          
-            </TypeContainer>
-
-            <TagsContainer>
-              {searchTag.map((btn, index) => (
-                <div key={btn}>
-                  <Button variant="outlined" color="primary" onClick={() => handleTagClick(index)}>{btn}</Button>
-                </div>
-              ))}      
-            </TagsContainer>
+            <ButtonsContainer>
+              {typesArrayFilter.map(({ value, title }, index) => {
+                return (
+                  <Button
+                    key={title}
+                    variant="outlined" color="primary" 
+                    onClick={() => handleTypeClick(value)}
+                    >{title}
+                  </Button>
+                )
+              })}
+            </ButtonsContainer>
+            
+            <ButtonsContainer>
+              {tagsArray.map(({ value, title }, index) => {
+                return (
+                  <Button
+                    key={title}
+                    variant="outlined" color="primary" 
+                    onClick={() => handleTagClick(value)}
+                    >{title}
+                  </Button>
+                )
+              })}
+            </ButtonsContainer>
         </BtnWrapper> 
       </ThemeProvider>  
     </SearchWrapper>
@@ -138,13 +142,7 @@ const BtnWrapper = styled.div`
   width: 50%;
   margin-bottom: 20px;
 `
-const TagsContainer = styled.div`
-  display: flex;  
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 10px 0;
-`
-const TypeContainer = styled.div`
+const ButtonsContainer = styled.div`
   display: flex;  
   flex-direction: row;
   justify-content: space-between;
