@@ -18,7 +18,6 @@ const InputCheckboxes = ({ data, setData }) => {
   }
 
   return (
-
     <Wrapper>
       {data.map(({ value, title }, index) => {
         return (

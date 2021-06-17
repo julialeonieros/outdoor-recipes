@@ -1,9 +1,10 @@
-import { React, useEffect, useState } from 'react'
+import React from 'react'
+// import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { filter } from '../reducers/filter'
-import {API_URL} from '../reusables/urls'
+// import { filter } from '../reducers/filter'
+// import {API_URL} from '../reusables/urls'
 import RecipeCard from './RecipeCard'
 
 const FilteredGallery = () => {
