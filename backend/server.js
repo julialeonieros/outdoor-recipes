@@ -41,9 +41,18 @@ const Recipe = mongoose.model('Recipe', {
     type: String,
     lowercase: true
   },
-  url: String,
-  image: String,
-  photographer: String
+  url: {
+    type: String
+  },
+  imageName: {
+    type: String
+  },
+  imageUrl: {
+    type: String
+  },
+  photographer: {
+    type: String
+  }
 })
 
 const port = process.env.PORT || 8080
@@ -119,6 +128,7 @@ app.get('/recipes', async (req, res) => {
   }
 })
 
+// endpoint to post new recipe
 app.post('/recipes', async (req, res) => {
   try {
     const { title,  portions, ingredients, instructions, type, tags, createdBy } = req.body
@@ -137,11 +147,12 @@ app.post('/recipes', async (req, res) => {
   }
 })
 
+// endpoint to add image to recipe-post
 app.post('/recipes/:id/image', parser.single('image'), async (req, res) => {
   const { id } = req.params
   try {
-    const imageRecipe = await new Recipe
-      .findOneAndUpdate({ name: req.body.filename, imageUrl: req.file.path })
+    const imageRecipe = await Recipe
+      .findOneAndUpdate({ id_: id }, { imageName: req.body.filename, imageUrl: req.file.path }, { new: true })
     res.json(imageRecipe)
   } catch (err) {
     res.status(400).json({ error: 'Something went wrong', details: error })
