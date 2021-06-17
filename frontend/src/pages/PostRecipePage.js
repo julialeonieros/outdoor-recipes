@@ -44,6 +44,7 @@ const PostRecipePage = () => {
     })
   }
   console.log('tags: ', tags)
+  console.log('ingr: ', ingredients)
 
   return (
     <>

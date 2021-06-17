@@ -15,29 +15,6 @@ const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/outdoorRecipes"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
 
-const cloudinary = cloudinaryFramework.v2; 
-cloudinary.config({
-  cloud_name: 'dtsyqfltv',
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-})
-
-const storage = cloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: 'recipeImages',
-    allowedFormats: ['jpg', 'png'],
-    transformation: [{ width: 500, height: 500, crop: 'limit' }],
-  },
-})
-const parser = multer({ storage })
-
-const port = process.env.PORT || 8080
-const app = express()
-
-app.use(cors())
-app.use(express.json())
-
 const Recipe = mongoose.model('Recipe', {
   title: {
     type: String,
@@ -69,6 +46,28 @@ const Recipe = mongoose.model('Recipe', {
   photographer: String
 })
 
+const cloudinary = cloudinaryFramework.v2; 
+cloudinary.config({
+  cloud_name: 'dtsyqfltv',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
+const storage = cloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'recipeImages',
+    allowedFormats: ['jpg', 'png'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }],
+  },
+})
+const parser = multer({ storage })
+
+const port = process.env.PORT || 8080
+const app = express()
+
+app.use(cors())
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('Hello world!')
