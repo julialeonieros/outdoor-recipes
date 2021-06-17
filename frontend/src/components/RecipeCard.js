@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 
 import styled from 'styled-components/macro'
 
-const RecipeCard = ({ _id, title, image }) => {
+const RecipeCard = ({ _id, title, imageUrl }) => {
 
   return (
     <RecipeWrapper>
       <Link to={`/recipes/${_id}`}>
         <IMG 
-          src={image}
+          src={imageUrl}
           alt={title}
         />
         <Text>{title}</Text>

@@ -34,7 +34,7 @@ const SingleRecipePage = () => {
       <RecipeWrapper>
         <InnerWrapper>
           <IMG 
-          src={singleRecipe.image}
+          src={singleRecipe.imageUrl}
           alt={singleRecipe.title}
           />
           <h1>{singleRecipe.title}</h1>
