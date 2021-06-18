@@ -25,10 +25,10 @@ const Recipe = mongoose.model('Recipe', {
     type: String,
     lowercase: true
   }],
-  type: [{
+  type: {
     type: String,
     lowercase: true
-  }],
+  },
   tags: [{
     type: String,
     lowercase: true
@@ -87,22 +87,29 @@ app.get('/', (req, res) => {
 // http://localhost:51796/recipes?title=kolbulle
 
 app.get('/recipes', async (req, res) => {
-  const { recipe, title, tags, type } = req.query
+  const { title, type, tags } = req.query
   const titleRegex = new RegExp(title, 'i')
-  const tagsRegex = new RegExp(tags, 'i')
   const typeRegex = new RegExp(type, 'i')
+  const tagsRegex = new RegExp(tags, 'i')
 
   try {
     const recipes = await Recipe.find({
       title: titleRegex,
-      tags: tagsRegex,
       type: typeRegex
+      // tags: tagsRegex,
     })
     res.json({ length: recipes.length, data: recipes})
   } catch (error) {
     res.status(400).json({ error: 'Something went wrong', details: error })
   }
 })
+
+// THIS WORKS:
+// app.get('/recipes', async (req, res) => {
+//   const recipes = await Recipe.find()
+//   res.json({ length: recipes.length, data: recipes })
+// })
+
 
 // endpoint to post new recipe
 app.post('/recipes', async (req, res) => {
@@ -112,8 +119,8 @@ app.post('/recipes', async (req, res) => {
       title, 
       portions,
       ingredients,
-      instructions, 
-      type, 
+      instructions,
+      type,
       tags, 
       createdBy
     }).save()
@@ -128,7 +135,7 @@ app.post('/recipes/:id/image', parser.single('image'), async (req, res) => {
   const { id } = req.params
   try {
     const imageRecipe = await Recipe
-      .findOneAndUpdate({ id_: id }, { imageName: req.body.filename, imageUrl: req.file.path }, { new: true })
+      .findOneAndUpdate({ id_: id }, { imageName: req.file.filename, imageUrl: req.file.path }, { new: true })
     res.json(imageRecipe)
   } catch (err) {
     res.status(400).json({ error: 'Something went wrong', details: error })

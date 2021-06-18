@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
@@ -10,7 +10,6 @@ import { API_URL } from '../reusables/urls'
 import { typesArray, tagsArray } from '../reusables/arrays'
 
 const PostRecipePage = () => {
-  const history = useHistory()
   const [title, setTitle] = useState('')
   const [portions, setPortions] = useState('')
   const [ingredients, setIngredients] = useState([{ value: null }])
@@ -18,6 +17,42 @@ const PostRecipePage = () => {
   const [type, setType] = useState('')
   const [tags, setTags] = useState([])
   const [createdBy, setCreatedBy] = useState('')
+  const [fileName, setFileName] = useState()
+  const history = useHistory()
+  const fileInput = useRef()
+
+  // const handleFormSubmit = (event) => {
+  //   event.preventDefault()
+
+  //   fetch(API_URL, {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       title, 
+  //       portions,
+  //       ingredients: ingredients.map((item) => item.value),
+  //       instructions, 
+  //       type,
+  //       tags: tags.map((item) => item.value),
+  //       createdBy
+  //     }),
+  //     headers: { 'Content-Type': 'application/json' }
+  //   })
+  //   .then((res) => res.json())
+  //   .then(({ _id }) => {
+  //     const formData = new FormData()
+  //       formData.append('image', fileInput.current.files[0])
+  //       fetch(`API_URL`, {
+  //         method: 'POST',
+  //         body: formData
+  //       })
+  //         .then((res) => res.json())
+  //         .then(() => {
+  //           history.push('/')
+  //         })
+  //     })
+  //     .catch((err) => console.log('error', err))
+  // }
+  //   })
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -38,12 +73,24 @@ const PostRecipePage = () => {
       })
     }
     fetch(API_URL, options)
-    .then(res => res.json())
-    .then(() => {
-      history.push("/")
-    })
+      .then(res => res.json())
+      .then(({ _id }) => {
+        const formData = new FormData()
+        formData.append("image", fileInput.current.files[0])
+        fetch(`${API_URL}/${_id}/image`, {
+          method: 'POST',
+          body: formData
+        })
+        history.push("/")
+      })
+      .catch((error) => console.log('error uploading image', error))
+      // .then(() => {
+      //   history.push("/")
+      // })
   }
+
   console.log('tags: ', tags)
+  console.log('type:', type)
   console.log('ingr: ', ingredients)
 
   return (
@@ -120,6 +167,20 @@ const PostRecipePage = () => {
                 value={createdBy}
                 placeholder="Receptets skapare"
               />
+            </RecipeLabel>
+
+            <RecipeLabel>
+              Bifoga bild:
+              <InputField 
+                type="file"
+                // styled={{ display: 'none' }}
+                ref={fileInput}
+                placeholder={"bifoga bild"}
+                onChange={(event) => {
+                  setFileName(event.target.files[0].name)
+                }}
+              />
+              <p>{fileName}</p>
             </RecipeLabel>
 
             <SubmitBtn type="submit">Lägg till recept</SubmitBtn>

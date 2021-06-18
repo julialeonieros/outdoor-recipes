@@ -5,15 +5,29 @@ const InputCheckboxes = ({ data, setData }) => {
 
   const [checkedState, setCheckedState] = useState([])
 
+  // const handleOnChange = (input) => {
+
+  //   if (checkedState.includes(input)) {
+  //     const filteredState = checkedState.filter(item => item !== input)
+  //     setCheckedState(filteredState)
+  //     setData(filteredState)
+  //   } else {
+  //     setCheckedState([...checkedState, input])
+  //     setData([...checkedState, input])
+  //   }
+  // }
+
   const handleOnChange = (input) => {
 
-    if (checkedState.includes(input)) {
+    const ingredient = input.toString()
+
+    if (checkedState.includes(ingredient)) {
       const filteredState = checkedState.filter(item => item !== input)
       setCheckedState(filteredState)
       setData(filteredState)
     } else {
-      setCheckedState([...checkedState, input])
-      setData([...checkedState, input])
+      setCheckedState([...checkedState, ingredient])
+      setData([...checkedState, ingredient])
     }
   }
 
