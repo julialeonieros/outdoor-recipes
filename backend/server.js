@@ -8,7 +8,7 @@ import cloudinaryStorage from 'multer-storage-cloudinary'
 
 // import recipes from './data/recipes.json'
 
-dotenv.config()
+// dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/outdoorRecipes"
 //const mongoUrl = "mongodb://localhost/outdoorRecipes"
@@ -52,14 +52,19 @@ const Recipe = mongoose.model('Recipe', {
   },
   photographer: {
     type: String
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 })
 
 const cloudinary = cloudinaryFramework.v2; 
 cloudinary.config({
   cloud_name: 'dtsyqfltv',
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+  // api_key: process.env.CLOUDINARY_API_KEY,
+  api_key: 782899891247657,
+  api_secret: 'c1whDV2rTxbNW6LvemAPQeKuSLw'
 })
 
 const storage = cloudinaryStorage({
@@ -95,8 +100,8 @@ app.get('/recipes', async (req, res) => {
   try {
     const recipes = await Recipe.find({
       title: titleRegex,
-      type: typeRegex
-      // tags: tagsRegex,
+      type: typeRegex,
+      tags: tagsRegex
     })
     res.json({ length: recipes.length, data: recipes})
   } catch (error) {
@@ -112,7 +117,9 @@ app.get('/recipes', async (req, res) => {
 
 
 // endpoint to post new recipe
-app.post('/recipes', async (req, res) => {
+app.post('/recipes', parser.single('image'), async (req, res) => {
+// parser.single('image')
+
   try {
     const { title,  portions, ingredients, instructions, type, tags, createdBy } = req.body
     const newRecipe = await new Recipe({
@@ -122,7 +129,9 @@ app.post('/recipes', async (req, res) => {
       instructions,
       type,
       tags, 
-      createdBy
+      createdBy,
+      imageName: req.body.filename,
+      imageUrl: req.file.path
     }).save()
     res.json(newRecipe)
   } catch (error) {
@@ -130,17 +139,22 @@ app.post('/recipes', async (req, res) => {
   }
 })
 
-// endpoint to add image to recipe-post
-app.post('/recipes/:id/image', parser.single('image'), async (req, res) => {
-  const { id } = req.params
-  try {
-    const imageRecipe = await Recipe
-      .findOneAndUpdate({ id_: id }, { imageUrl: req.file.path, imageName: req.file.filename }, { new: true })
-    res.json(imageRecipe)
-  } catch (err) {
-    res.status(400).json({ error: 'Something went wrong', details: error })
-  }
+app.post('/recipes/img', parser.single('image'), async (req, res) => {
+  res.json({ imageUrl: req.file.path, imageName: req.file.filename })
 })
+
+// endpoint to add image to recipe-post
+// app.post('/recipes/:id/image', parser.single('image'), async (req, res) => {
+//   const { id } = req.params
+// // app.post('/recipes/image', parser.single('image'), async (req, res) => {
+//   try {
+//     const imageRecipe = await Recipe
+//       .findOneAndUpdate({ id_: id }, { imageUrl: req.file.path, imageName: req.file.filename }, { new: true })
+//     res.json(imageRecipe)
+//   } catch (err) {
+//     res.status(400).json({ error: 'Something went wrong', details: error })
+//   }
+// })
 
 // Endpoint to link to a single recipe by its id. Use this endpoint to link to SingleRecipePage
 app.get('/recipes/:id', async (req, res) => {

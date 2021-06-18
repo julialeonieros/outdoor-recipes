@@ -21,77 +21,71 @@ const PostRecipePage = () => {
   const history = useHistory()
   const fileInput = useRef()
 
-  // const handleFormSubmit = (event) => {
-  //   event.preventDefault()
-
-  //   fetch(API_URL, {
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       title, 
-  //       portions,
-  //       ingredients: ingredients.map((item) => item.value),
-  //       instructions, 
-  //       type,
-  //       tags: tags.map((item) => item.value),
-  //       createdBy
-  //     }),
-  //     headers: { 'Content-Type': 'application/json' }
-  //   })
-  //   .then((res) => res.json())
-  //   .then(({ _id }) => {
-  //     const formData = new FormData()
-  //       formData.append('image', fileInput.current.files[0])
-  //       fetch(`API_URL`, {
-  //         method: 'POST',
-  //         body: formData
-  //       })
-  //         .then((res) => res.json())
-  //         .then(() => {
-  //           history.push('/')
-  //         })
-  //     })
-  //     .catch((err) => console.log('error', err))
-  // }
-  //   })
-
   const handleFormSubmit = (event) => {
     event.preventDefault()
 
-    const options = {
+    fetch(API_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
       body: JSON.stringify({
         title, 
         portions,
         ingredients: ingredients.map((item) => item.value),
         instructions, 
         type,
-        tags: tags.map((item) => item.value),
+        tags,
         createdBy
-      })
-    }
-    fetch(API_URL, options)
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    })
       .then(res => res.json())
       .then(({ _id }) => {
+        console.log(_id)
         const formData = new FormData()
-        formData.append("image", fileInput.current.files[0])
-        fetch(`${API_URL}/${_id}/image`, {
+        formData.append('image', fileInput.current.files[0])
+        fetch(`${API_URL}/img`, {
           method: 'POST',
           body: formData
         })
-        history.push("/")
+          .then((res) => res.json())
+          .then(() => {
+            history.push('/')
+          })
       })
-      .catch((error) => console.log('error uploading image', error))
-      // .then(() => {
-      //   history.push("/")
-      // })
   }
 
-  console.log('tags: ', tags)
-  console.log('type:', type)
-  console.log('ingr: ', ingredients)
+  // const handleFormSubmit = (event) => {
+  //   event.preventDefault()
+  //   fetch(API_URL, {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         title, 
+  //         portions,
+  //         ingredients: ingredients.map((item) => item.value),
+  //         instructions, 
+  //         type,
+  //         tags,
+  //         createdBy
+  //     }),
+  //       headers: { 'Content-Type': 'application/json' }
+  //   })
+  //     .then((res) => res.json())
+  //     .then(() => {
+  //       const formData = new FormData()
+  //       formData.append('image', fileInput.current.files[0])
+  //       formData.append('fileName', fileName)
+  //       fetch(`${API_URL}/img`, 
+  //         { method: 'POST', body: formData })
+  //     })
+  //       .then((res) => res.json())
+  //       .then(() => {
+  //         console.log('final then')
+  //         history.push('/')
+  //       })
+  //     }
+
+  // console.log('tags: ', tags)
+  // console.log('type:', type)
+  // console.log('ingr: ', ingredients)
 
   return (
     <>
@@ -104,7 +98,7 @@ const PostRecipePage = () => {
             <RecipeLabel>
               Titel:
               <InputField
-                required
+                // required
                 type="text"
                 onChange={(event) => setTitle(event.target.value)}
                 value={title}
@@ -115,7 +109,7 @@ const PostRecipePage = () => {
             <RecipeLabel>
               Portioner:
               <InputField
-                required
+                // required
                 type="text"
                 onChange={(event) => setPortions(event.target.value)}
                 value={portions}
@@ -134,7 +128,7 @@ const PostRecipePage = () => {
             <RecipeLabel>
               Instruktioner:
               <InputFieldInstructions
-                required
+                // required
                 type="text"
                 onChange={event => setInstructions(event.target.value)}
                 value={instructions}
@@ -161,7 +155,7 @@ const PostRecipePage = () => {
             <RecipeLabel>
               Skapat av:
               <InputField
-                required
+                // required
                 type="text"
                 onChange={(event) => setCreatedBy(event.target.value)}
                 value={createdBy}
