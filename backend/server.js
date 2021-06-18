@@ -129,7 +129,7 @@ app.post('/recipes/:id/image', parser.single('image'), async (req, res) => {
   const { id } = req.params
   try {
     const imageRecipe = await Recipe
-      .findOneAndUpdate({ id_: id }, { imageName: req.file.filename, imageUrl: req.file.path }, { new: true })
+      .findOneAndUpdate({ id_: id }, { imageUrl: req.file.path, imageName: req.file.filename }, { new: true })
     res.json(imageRecipe)
   } catch (err) {
     res.status(400).json({ error: 'Something went wrong', details: error })
