@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import cloudinaryFramework from 'cloudinary'
 import multer from 'multer'
 import cloudinaryStorage from 'multer-storage-cloudinary'
+import listEndpoints from 'express-list-endpoints'
 
 // import recipes from './data/recipes.json'
 
@@ -79,7 +80,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  res.send('Hello world!')
+  res.send(listEndpoints(app))
 })
 
 // Endpoint that returns one recipe if queried, otherwise returns all recipes in DB.
