@@ -63,6 +63,7 @@ const cloudinary = cloudinaryFramework.v2;
 cloudinary.config({
   cloud_name: 'dtsyqfltv',
   // api_key: process.env.CLOUDINARY_API_KEY,
+  // api_secret: process.env.CLOUDINARY_API_SECRET
   api_key: 782899891247657,
   api_secret: 'c1whDV2rTxbNW6LvemAPQeKuSLw'
 })
@@ -109,19 +110,11 @@ app.get('/recipes', async (req, res) => {
   }
 })
 
-// THIS WORKS:
-// app.get('/recipes', async (req, res) => {
-//   const recipes = await Recipe.find()
-//   res.json({ length: recipes.length, data: recipes })
-// })
-
-
 // endpoint to post new recipe
-app.post('/recipes', parser.single('image'), async (req, res) => {
-// parser.single('image')
+app.post('/recipes', async (req, res) => {
 
   try {
-    const { title,  portions, ingredients, instructions, type, tags, createdBy } = req.body
+    const { title,  portions, ingredients, instructions, type, tags, createdBy, imageUrl, imageName } = req.body
     const newRecipe = await new Recipe({
       title, 
       portions,
@@ -130,8 +123,8 @@ app.post('/recipes', parser.single('image'), async (req, res) => {
       type,
       tags, 
       createdBy,
-      imageName: req.body.filename,
-      imageUrl: req.file.path
+      imageUrl,
+      imageName
     }).save()
     res.json(newRecipe)
   } catch (error) {
@@ -139,22 +132,10 @@ app.post('/recipes', parser.single('image'), async (req, res) => {
   }
 })
 
+// post image that's later posted to new recipe in form
 app.post('/recipes/img', parser.single('image'), async (req, res) => {
   res.json({ imageUrl: req.file.path, imageName: req.file.filename })
 })
-
-// endpoint to add image to recipe-post
-// app.post('/recipes/:id/image', parser.single('image'), async (req, res) => {
-//   const { id } = req.params
-// // app.post('/recipes/image', parser.single('image'), async (req, res) => {
-//   try {
-//     const imageRecipe = await Recipe
-//       .findOneAndUpdate({ id_: id }, { imageUrl: req.file.path, imageName: req.file.filename }, { new: true })
-//     res.json(imageRecipe)
-//   } catch (err) {
-//     res.status(400).json({ error: 'Something went wrong', details: error })
-//   }
-// })
 
 // Endpoint to link to a single recipe by its id. Use this endpoint to link to SingleRecipePage
 app.get('/recipes/:id', async (req, res) => {

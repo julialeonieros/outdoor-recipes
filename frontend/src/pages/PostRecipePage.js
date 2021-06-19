@@ -24,68 +24,36 @@ const PostRecipePage = () => {
   const handleFormSubmit = (event) => {
     event.preventDefault()
 
-    fetch(API_URL, {
+    const formData = new FormData()
+    formData.append('image', fileInput.current.files[0])
+
+    fetch(`${API_URL}/img`, {
       method: 'POST',
-      body: JSON.stringify({
-        title, 
-        portions,
-        ingredients: ingredients.map((item) => item.value),
-        instructions, 
-        type,
-        tags,
-        createdBy
-      }),
-      headers: { 'Content-Type': 'application/json' }
+      body: formData
     })
-      .then(res => res.json())
-      .then(({ _id }) => {
-        console.log(_id)
-        const formData = new FormData()
-        formData.append('image', fileInput.current.files[0])
-        fetch(`${API_URL}/img`, {
+      .then((res) => res.json())
+      .then(({ imageUrl, imageName }) => {
+        fetch(API_URL, {
           method: 'POST',
-          body: formData
+          body: JSON.stringify({
+            title, 
+            portions,
+            ingredients: ingredients.map((item) => item.value),
+            instructions, 
+            type,
+            tags,
+            createdBy,
+            imageUrl,
+            imageName 
+          }),
+          headers: { 'Content-Type': 'application/json' }
         })
-          .then((res) => res.json())
-          .then(() => {
-            history.push('/')
-          })
+        .then(res => res.json())
+        .then(() => {
+          history.push('/')
+        })
       })
   }
-
-  // const handleFormSubmit = (event) => {
-  //   event.preventDefault()
-  //   fetch(API_URL, {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         title, 
-  //         portions,
-  //         ingredients: ingredients.map((item) => item.value),
-  //         instructions, 
-  //         type,
-  //         tags,
-  //         createdBy
-  //     }),
-  //       headers: { 'Content-Type': 'application/json' }
-  //   })
-  //     .then((res) => res.json())
-  //     .then(() => {
-  //       const formData = new FormData()
-  //       formData.append('image', fileInput.current.files[0])
-  //       formData.append('fileName', fileName)
-  //       fetch(`${API_URL}/img`, 
-  //         { method: 'POST', body: formData })
-  //     })
-  //       .then((res) => res.json())
-  //       .then(() => {
-  //         console.log('final then')
-  //         history.push('/')
-  //       })
-  //     }
-
-  // console.log('tags: ', tags)
-  // console.log('type:', type)
-  // console.log('ingr: ', ingredients)
 
   return (
     <>
