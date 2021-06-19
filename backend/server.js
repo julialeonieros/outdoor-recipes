@@ -9,7 +9,7 @@ import listEndpoints from 'express-list-endpoints'
 
 // import recipes from './data/recipes.json'
 
-dotenv.config()
+// dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/outdoorRecipes"
 //const mongoUrl = "mongodb://localhost/outdoorRecipes"
@@ -26,10 +26,10 @@ const Recipe = mongoose.model('Recipe', {
     type: String,
     lowercase: true
   }],
-  type: [{
+  type: {
     type: String,
     lowercase: true
-  }],
+  },
   tags: [{
     type: String,
     lowercase: true
@@ -53,14 +53,20 @@ const Recipe = mongoose.model('Recipe', {
   },
   photographer: {
     type: String
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 })
 
 const cloudinary = cloudinaryFramework.v2; 
 cloudinary.config({
   cloud_name: 'dtsyqfltv',
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+  // api_key: process.env.CLOUDINARY_API_KEY,
+  // api_secret: process.env.CLOUDINARY_API_SECRET
+  api_key: 782899891247657,
+  api_secret: 'c1whDV2rTxbNW6LvemAPQeKuSLw'
 })
 
 const storage = cloudinaryStorage({
@@ -88,7 +94,7 @@ app.get('/', (req, res) => {
 // http://localhost:51796/recipes?title=kolbulle
 
 app.get('/recipes', async (req, res) => {
-  const { recipe, title, type, tags } = req.query
+  const { title, type, tags } = req.query
   const titleRegex = new RegExp(title, 'i')
   const typeRegex = new RegExp(type, 'i')
   const tagsRegex = new RegExp(tags, 'i')
@@ -97,7 +103,7 @@ app.get('/recipes', async (req, res) => {
     const recipes = await Recipe.find({
       title: titleRegex,
       type: typeRegex,
-      // tags: tagsRegex
+      tags: tagsRegex
     })
     res.json({ length: recipes.length, data: recipes})
   } catch (error) {
@@ -107,16 +113,19 @@ app.get('/recipes', async (req, res) => {
 
 // endpoint to post new recipe
 app.post('/recipes', async (req, res) => {
+
   try {
-    const { title,  portions, ingredients, instructions, type, tags, createdBy } = req.body
+    const { title,  portions, ingredients, instructions, type, tags, createdBy, imageUrl, imageName } = req.body
     const newRecipe = await new Recipe({
       title, 
       portions,
       ingredients,
-      instructions, 
-      type, 
+      instructions,
+      type,
       tags, 
-      createdBy
+      createdBy,
+      imageUrl,
+      imageName
     }).save()
     res.json(newRecipe)
   } catch (error) {
@@ -124,16 +133,9 @@ app.post('/recipes', async (req, res) => {
   }
 })
 
-// endpoint to add image to recipe-post
-app.post('/recipes/:id/image', parser.single('image'), async (req, res) => {
-  const { id } = req.params
-  try {
-    const imageRecipe = await Recipe
-      .findOneAndUpdate({ id_: id }, { imageUrl: req.file.path, imageName: req.file.filename }, { new: true })
-    res.json(imageRecipe)
-  } catch (err) {
-    res.status(400).json({ error: 'Something went wrong', details: error })
-  }
+// post image that's later posted to new recipe in form
+app.post('/recipes/img', parser.single('image'), async (req, res) => {
+  res.json({ imageUrl: req.file.path, imageName: req.file.filename })
 })
 
 // Endpoint to link to a single recipe by its id. Use this endpoint to link to SingleRecipePage

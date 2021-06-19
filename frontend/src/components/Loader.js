@@ -23,6 +23,11 @@ export default Loader
 const Container = styled.div`
   background-color: #668479;
   display: flex;
+<<<<<<< HEAD
   align-items: center;
   justify-content: center;
+=======
+  flex-direction: center;
+  align-items: center;
+>>>>>>> img
 `
