@@ -57,98 +57,98 @@ const PostRecipePage = () => {
 
   return (
     <>
-        <HeaderSmall />
-        <FormWrapper>
-          <H2>Lägg till ditt favoritrecept!</H2>
-          <RecipeForm
-            onSubmit={(event) => handleFormSubmit(event)}>
+      <HeaderSmall />
+      <FormWrapper>
+        <H2>Lägg till ditt favoritrecept!</H2>
+        <RecipeForm
+          onSubmit={(event) => handleFormSubmit(event)}>
 
-            <RecipeLabel>
-              Titel:
-              <InputField
-                // required
-                type="text"
-                onChange={(event) => setTitle(event.target.value)}
-                value={title}
-                placeholder="Namn på recept"
-              />
-            </RecipeLabel>
+          <RecipeLabel>
+            Titel:
+            <InputField
+              // required
+              type="text"
+              onChange={(event) => setTitle(event.target.value)}
+              value={title}
+              placeholder="Namn på recept"
+            />
+          </RecipeLabel>
 
-            <RecipeLabel>
-              Portioner:
-              <InputField
-                // required
-                type="text"
-                onChange={(event) => setPortions(event.target.value)}
-                value={portions}
-                placeholder="Antal portioner"
-              />
-            </RecipeLabel>
+          <RecipeLabel>
+            Portioner:
+            <InputField
+              // required
+              type="text"
+              onChange={(event) => setPortions(event.target.value)}
+              value={portions}
+              placeholder="Antal portioner"
+            />
+          </RecipeLabel>
 
-            <RecipeLabel>
-              Ingredienser:
-              <InputMultipleFields
-                data={ingredients}
-                setData={setIngredients}
-              />
-            </RecipeLabel>
+          <RecipeLabel>
+            Ingredienser:
+            <InputMultipleFields
+              data={ingredients}
+              setData={setIngredients}
+            />
+          </RecipeLabel>
 
-            <RecipeLabel>
-              Instruktioner:
-              <InputFieldInstructions
-                // required
-                type="text"
-                onChange={event => setInstructions(event.target.value)}
-                value={instructions}
-                placeholder="Instruktioner"
-              />
-            </RecipeLabel>
+          <RecipeLabel>
+            Instruktioner:
+            <InputFieldInstructions
+              // required
+              type="text"
+              onChange={event => setInstructions(event.target.value)}
+              value={instructions}
+              placeholder="Instruktioner"
+            />
+          </RecipeLabel>
 
-            <RecipeLabelCheckbox>
-              Taggar:
-              <InputCheckboxes 
-                data={tagsArray}
-                setData={setTags}
-              />
-            </RecipeLabelCheckbox>
+          <RecipeLabelCheckbox>
+            Taggar:
+            <InputCheckboxes 
+              data={tagsArray}
+              setData={setTags}
+            />
+          </RecipeLabelCheckbox>
 
-            <RecipeLabelCheckbox>
-              Typ:
-              <InputSelect 
-                data={typesArray}
-                setData={setType}
-              />
-            </RecipeLabelCheckbox>
+          <RecipeLabelCheckbox>
+            Typ:
+            <InputSelect 
+              data={typesArray}
+              setData={setType}
+            />
+          </RecipeLabelCheckbox>
 
-            <RecipeLabel>
-              Skapat av:
-              <InputField
-                // required
-                type="text"
-                onChange={(event) => setCreatedBy(event.target.value)}
-                value={createdBy}
-                placeholder="Receptets skapare"
-              />
-            </RecipeLabel>
+          <RecipeLabel>
+            Skapat av:
+            <InputField
+              // required
+              type="text"
+              onChange={(event) => setCreatedBy(event.target.value)}
+              value={createdBy}
+              placeholder="Receptets skapare"
+            />
+          </RecipeLabel>
 
-            <RecipeLabel>
-              Bifoga bild:
-              <InputField 
-                type="file"
-                // styled={{ display: 'none' }}
-                ref={fileInput}
-                placeholder={"bifoga bild"}
-                onChange={(event) => {
-                  setFileName(event.target.files[0].name)
-                }}
-              />
-              <p>{fileName}</p>
-            </RecipeLabel>
+          <RecipeLabel>
+            Bifoga bild:
+            <InputField 
+              type="file"
+              // styled={{ display: 'none' }}
+              ref={fileInput}
+              placeholder={"bifoga bild"}
+              onChange={(event) => {
+                setFileName(event.target.files[0].name)
+              }}
+            />
+            <p>{fileName}</p>
+          </RecipeLabel>
 
-            <SubmitBtn type="submit">Lägg till recept</SubmitBtn>
+          <SubmitBtn type="submit">Lägg till recept</SubmitBtn>
 
-          </RecipeForm>
-        </FormWrapper>
+        </RecipeForm>
+      </FormWrapper>
     </>
   )
 }

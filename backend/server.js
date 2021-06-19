@@ -7,12 +7,9 @@ import multer from 'multer'
 import cloudinaryStorage from 'multer-storage-cloudinary'
 import listEndpoints from 'express-list-endpoints'
 
-// import recipes from './data/recipes.json'
-
-// dotenv.config()
+dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/outdoorRecipes"
-//const mongoUrl = "mongodb://localhost/outdoorRecipes"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.Promise = Promise
 
@@ -63,10 +60,8 @@ const Recipe = mongoose.model('Recipe', {
 const cloudinary = cloudinaryFramework.v2; 
 cloudinary.config({
   cloud_name: 'dtsyqfltv',
-  // api_key: process.env.CLOUDINARY_API_KEY,
-  // api_secret: process.env.CLOUDINARY_API_SECRET
-  api_key: 782899891247657,
-  api_secret: 'c1whDV2rTxbNW6LvemAPQeKuSLw'
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
 const storage = cloudinaryStorage({
@@ -90,9 +85,6 @@ app.get('/', (req, res) => {
 })
 
 // Endpoint that returns one recipe if queried, otherwise returns all recipes in DB.
-// localhost:8080/recipes?title='title'
-// http://localhost:51796/recipes?title=kolbulle
-
 app.get('/recipes', async (req, res) => {
   const { title, type, tags } = req.query
   const titleRegex = new RegExp(title, 'i')
