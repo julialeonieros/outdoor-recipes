@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import { useParams, Link } from 'react-router-dom'
 
 import HeaderSmall from '../components/HeaderSmall'
-// import { API_URL } from '../reusables/urls'
+import { API_URL } from '../reusables/urls'
 
 
 const SingleRecipePage = () => {
@@ -12,8 +12,7 @@ const SingleRecipePage = () => {
   
   const { id } = useParams()
 
-  const API_RECIPE_URL = `https://outdoor-recipes.herokuapp.com/recipes/${id}`
-  //const API_RECIPE_URL = `${API_URL}/${id}`
+  const API_RECIPE_URL = `${API_URL}/${id}`
 
   useEffect(() => {
     fetch(API_RECIPE_URL)
