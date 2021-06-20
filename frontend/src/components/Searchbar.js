@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, StylesProvider } from '@material-ui/core/styles'
 
 import { filter, searchRecipes } from '../reducers/filter'
 import { API_URL } from '../reusables/urls'
@@ -29,15 +29,8 @@ const theme = createMuiTheme({
   },
 });
 
-const useStyles = makeStyles({
-  searchBtn: {
-    padding: 15
-  }
-});
-
 const Searchbar = () => {
 
-  const classes = useStyles();
   const [searchValue, setSearchValue]= useState('')
   const dispatch = useDispatch()
 
@@ -77,13 +70,15 @@ const Searchbar = () => {
             color='primary'             
             value={searchValue}
             onChange={(event) => setSearchValue(event.target.value)}
+            style={{backgroundColor: "#fefdfb9f", border: "2px solid #01322079", borderRight: 0, borderRadius: 8}}
           /> 
-          <Button className={classes.searchBtn} variant="contained" color="primary" size="large" type="submit">SÖK</Button>
+          <ButtonSearch variant="contained" color="primary" type="submit">SÖK</ButtonSearch>
 
           
         </Form>
 
         <BtnWrapper>
+          <div>
             <ButtonsContainer>
               {typesArrayFilter.map(({ value, title }, index) => {
                 return (
@@ -91,6 +86,7 @@ const Searchbar = () => {
                     key={title}
                     variant="outlined" color="primary" 
                     onClick={() => handleTypeClick(value)}
+                    style={{margin: "0 10px"}}
                     >{title}
                   </Button>
                 )
@@ -104,13 +100,14 @@ const Searchbar = () => {
                     key={title}
                     variant="outlined" color="primary" 
                     onClick={() => handleTagClick(value)}
+                    style={{margin: "0 10px"}}
                     >{title}
                   </Button>
                 )
               })}
             </ButtonsContainer>
-
-            <Button variant="contained" color="secondary" size="large" onClick={() => handleResetClick()}>VISA ALLA RECEPT</Button>
+          </div>
+          <ButtonReset variant="contained" color="secondary" size="large" onClick={() => handleResetClick()}>VISA ALLA RECEPT</ButtonReset>
 
             
         </BtnWrapper> 
@@ -132,8 +129,10 @@ const Form = styled.form`
   margin: 20px auto;
   padding: 15px 10px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  position: absolute;
+  top: 700px;
 `
 // const Input = styled.input`
 //   border: 1px solid #CCC;
@@ -145,9 +144,11 @@ const Form = styled.form`
 // `
 const BtnWrapper = styled.div`
   display: flex;  
-  flex-direction: column;
-  width: 60%;
-  margin-bottom: 20px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  ${'' /* width: 70%; */}
+  margin: 25px 0;
 `
 const ButtonsContainer = styled.div`
   display: flex;  
@@ -155,6 +156,21 @@ const ButtonsContainer = styled.div`
   justify-content: space-between;
   margin: 10px 0;
 `
+
+const ButtonSearch = styled(Button)({
+  padding: '20 50px',
+  height: 56,
+  width: 80,
+  borderRadius: 8,
+})
+const ButtonReset = styled(Button)({
+  margin: '0 20px',
+  height: 80,
+  width: 100,
+  borderRadius: '50px',
+})
+
+
 // const TypeBtn = styled.button`
 //   cursor: pointer;
 //   border-radius: 15px;

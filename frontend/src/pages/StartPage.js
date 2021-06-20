@@ -14,14 +14,14 @@ const StartPage = () => {
           <Title>(&thinsp;Friluftsmat&thinsp;)</Title>
           <TitleTwo>Laga din mat ute!</TitleTwo>
         </TitleWrapper>
-      </Header>
+     
       {/* <InfoContainer>
         {/* <InfoBackground> */}
           {/* <Info>Här är lite text ... Här är lite text ... Här är lite text ... Här är lite text ...</Info> */}
         {/*</InfoBackground> */}
      {/* </InfoContainer> */}
       <Searchbar />
-
+      </Header>
       
       <Gallery />
       <Footer />   
@@ -61,12 +61,12 @@ const TitleTwo = styled(Title)`
   font-size: 40px;
   font-family: 'Josefin Sans', sans-serif;
 `
-const InfoContainer = styled.div`
-  // background-color: #668479;
-  background-color: #FFDAE0;
-  width: 400px;
-  height: 200px;
-  padding: 20px 30px;
-  margin: 30px auto 40px;
-`
-const Info = styled.p``
+// const InfoContainer = styled.div`
+//   // background-color: #668479;
+//   background-color: #FFDAE0;
+//   width: 400px;
+//   height: 200px;
+//   padding: 20px 30px;
+//   margin: 30px auto 40px;
+// `
+// const Info = styled.p``
