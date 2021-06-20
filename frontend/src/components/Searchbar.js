@@ -29,8 +29,15 @@ const theme = createMuiTheme({
   },
 });
 
+const useStyles = makeStyles({
+  searchBtn: {
+    padding: 15
+  }
+});
+
 const Searchbar = () => {
 
+  const classes = useStyles();
   const [searchValue, setSearchValue]= useState('')
   const dispatch = useDispatch()
 
@@ -67,18 +74,14 @@ const Searchbar = () => {
             label="Sök recept" 
             type="search" 
             variant="outlined"
-            color='primary'  
-            // id="search-field"
-            // type="text"
-            // placeholder="fritext"
+            color='primary'             
             value={searchValue}
-            //onChange={handleSearchFieldChange}
             onChange={(event) => setSearchValue(event.target.value)}
           /> 
-          <Button variant="contained" color="primary" size="large" type="submit">SÖK RECEPT</Button>
+          <Button className={classes.searchBtn} variant="contained" color="primary" size="large" type="submit">SÖK</Button>
 
-          <Button variant="contained" color="secondary" size="large" onClick={() => handleResetClick()}>VISA ALLA RECEPT</Button>
-          </Form>
+          
+        </Form>
 
         <BtnWrapper>
             <ButtonsContainer>
@@ -106,6 +109,10 @@ const Searchbar = () => {
                 )
               })}
             </ButtonsContainer>
+
+            <Button variant="contained" color="secondary" size="large" onClick={() => handleResetClick()}>VISA ALLA RECEPT</Button>
+
+            
         </BtnWrapper> 
       </ThemeProvider>  
     </SearchWrapper>
@@ -123,23 +130,23 @@ const Form = styled.form`
   ${'' /* background-color: #668479; */}
   width: 60%;
   margin: 20px auto;
-  padding: 15px 20px;
+  padding: 15px 10px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 `
-const Input = styled.input`
-  border: 1px solid #CCC;
-  margin: 0;
-  padding: 10px;
-  width: 200px;
-  height: 40px;
-  font-size: 16px;
-`
+// const Input = styled.input`
+//   border: 1px solid #CCC;
+//   margin: 0;
+//   padding: 10px;
+//   width: 200px;
+//   height: 40px;
+//   font-size: 16px;
+// `
 const BtnWrapper = styled.div`
   display: flex;  
   flex-direction: column;
-  width: 50%;
+  width: 60%;
   margin-bottom: 20px;
 `
 const ButtonsContainer = styled.div`
@@ -148,61 +155,61 @@ const ButtonsContainer = styled.div`
   justify-content: space-between;
   margin: 10px 0;
 `
-const TypeBtn = styled.button`
-  cursor: pointer;
-  border-radius: 15px;
-  border: 1px solid #fde431;
-  margin: 0 5px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.3;
-  color: #f15c5c;
-  background: #feee7d;
-  padding: 0 10px;
-  height: 40px;
-  transition: all 150ms linear;
-  width: 100px;
+// const TypeBtn = styled.button`
+//   cursor: pointer;
+//   border-radius: 15px;
+//   border: 1px solid #fde431;
+//   margin: 0 5px;
+//   font-size: 14px;
+//   font-weight: 500;
+//   line-height: 1.3;
+//   color: #f15c5c;
+//   background: #feee7d;
+//   padding: 0 10px;
+//   height: 40px;
+//   transition: all 150ms linear;
+//   width: 100px;
 
-  &:hover {
-    transition: all 150ms linear;
-    opacity: .85;
-  }
-  &active {
-  }
-`
-const TagBtn = styled.button`
-  cursor: pointer;
-  border-radius: 15px;
-  border: none;
-  margin: 0 5px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.3;
-  color: #FE8CDF;
-  background: #353866;
-  padding: 0 10px;
-  height: 40px;
-  transition: all 150ms linear;
-  width: 100px;
+//   &:hover {
+//     transition: all 150ms linear;
+//     opacity: .85;
+//   }
+//   &active {
+//   }
+// `
+// const TagBtn = styled.button`
+//   cursor: pointer;
+//   border-radius: 15px;
+//   border: none;
+//   margin: 0 5px;
+//   font-size: 14px;
+//   font-weight: 500;
+//   line-height: 1.3;
+//   color: #FE8CDF;
+//   background: #353866;
+//   padding: 0 10px;
+//   height: 40px;
+//   transition: all 150ms linear;
+//   width: 100px;
 
-  &:hover {
-    transition: all 150ms linear;
-    opacity: .85;
-  }
-  &active {
-  }
-`
-const SubmitButton = styled(TagBtn)`
-  background-color: #FFDAE0;
-  font-weight: bold;
+//   &:hover {
+//     transition: all 150ms linear;
+//     opacity: .85;
+//   }
+//   &active {
+//   }
+// `
+// const SubmitButton = styled(TagBtn)`
+//   background-color: #FFDAE0;
+//   font-weight: bold;
 
-  &:hover {
-    background-color: pink;
-  }
-`
-const ResetButton = styled(TagBtn)`
-  background-color: silver;
-`
+//   &:hover {
+//     background-color: pink;
+//   }
+// `
+// const ResetButton = styled(TagBtn)`
+//   background-color: silver;
+// `
 // const Select = styled.select`
 //   border: 1px solid #CCC;
 //   margin: 0;
