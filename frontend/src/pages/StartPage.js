@@ -3,24 +3,28 @@ import styled from 'styled-components/macro'
 
 import Searchbar from '../components/Searchbar'
 import Gallery from '../components/Gallery'
+import Footer from '../components/Footer'
 
 const StartPage = () => {
   return (
     <>
       <Header>
-        <Image src="/assets/header-image.jpg" alt=""/>
+        <Image src="/assets/scenery.jpg" alt="scenery image"/>
         <TitleWrapper>
           <Title>(&thinsp;Friluftsmat&thinsp;)</Title>
           <TitleTwo>Laga din mat ute!</TitleTwo>
         </TitleWrapper>
       </Header>
-      <InfoContainer>
+      {/* <InfoContainer>
         {/* <InfoBackground> */}
-          <Info>Här är lite text ... Här är lite text ... Här är lite text ... Här är lite text ...</Info>
-        {/* </InfoBackground> */}
-      </InfoContainer>
+          {/* <Info>Här är lite text ... Här är lite text ... Här är lite text ... Här är lite text ...</Info> */}
+        {/*</InfoBackground> */}
+     {/* </InfoContainer> */}
       <Searchbar />
-      <Gallery />   
+
+      
+      <Gallery />
+      <Footer />   
     </>
   )
 }
