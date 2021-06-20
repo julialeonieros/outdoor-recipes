@@ -1,7 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import DeleteIcon from '@material-ui/icons/Delete'
+import FormControl from '@material-ui/core/FormControl'
+import { makeStyles } from '@material-ui/core/styles'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
-const InputMultipleFields = ({ data, setData }) => {
+const InputMultipleFields = ({ data, setData, label }) => {
 
   const handleInput = (index, event) => {
     event.preventDefault()
@@ -27,17 +34,29 @@ const InputMultipleFields = ({ data, setData }) => {
       {data.map((item, id) => {
         return (
           <InputContainer key={`${item} + ${id}`}>
-            <InputField 
-              // required
+            <TextField 
+              required="true"
+              label={label}
+              id="ingredienser"
               type="text"
-              placeholder="lägg till ingrediens"
-              value={item.value || ""}
               onChange={event => handleInput(id, event)}
+              value={item.value || ""}
+              placeholder="Lägg till ingrediens"
+              variant="outlined"
+              color="primary"
+              margin="normal"
+              fullWidth="true"
+              size="small"
             />
-            <DeleteBtn
-              type='button'
+            <IconButton 
+              variant="contained" 
+              color="primary" 
+              size="small" 
               onClick={() => handleRemoveIngredient(id)}
-            >x</DeleteBtn>
+              aria-label="ta bort fält"
+            >
+              <DeleteIcon />
+            </IconButton>
           </InputContainer>
         )
       })}
