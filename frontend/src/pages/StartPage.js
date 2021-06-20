@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 
 import Searchbar from '../components/Searchbar'
 import Gallery from '../components/Gallery'
+import Footer from '../components/Footer'
 
 const StartPage = () => {
   return (
@@ -20,7 +21,8 @@ const StartPage = () => {
         {/* </InfoBackground> */}
       </InfoContainer>
       <Searchbar />
-      <Gallery />   
+      <Gallery />
+      <Footer />   
     </>
   )
 }

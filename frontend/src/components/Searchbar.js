@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import {  useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import styled from 'styled-components/macro'
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import { makeStyles } from '@material-ui/core/styles'
 
 import { filter, searchRecipes } from '../reducers/filter'
 import { API_URL } from '../reusables/urls'
 import { typesArrayFilter, tagsArray } from '../reusables/arrays'
 
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 const theme = createMuiTheme({
   palette: {

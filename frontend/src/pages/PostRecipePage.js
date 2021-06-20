@@ -8,6 +8,7 @@ import InputSelect from '../components/InputSelect'
 import InputMultipleFields from '../components/InputMultipleFields'
 import { API_URL } from '../reusables/urls'
 import { typesArray, tagsArray } from '../reusables/arrays'
+import Footer from '../components/Footer'
 
 const PostRecipePage = () => {
   const history = useHistory()
@@ -126,6 +127,7 @@ const PostRecipePage = () => {
 
           </RecipeForm>
         </FormWrapper>
+        <Footer />
     </>
   )
 }

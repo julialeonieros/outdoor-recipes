@@ -9,7 +9,7 @@ import StartPage from './pages/StartPage'
 import SingleRecipePage from './pages/SingleRecipePage'
 import PostRecipePage from './pages/PostRecipePage'
 import ContactPage from './pages/ContactPage'
-import Footer from './components/Footer'
+//import Footer from './components/Footer'
 
 const reducer = combineReducers({
   filter: filter.reducer
@@ -28,7 +28,7 @@ const App = () => {
             <Route path="/skapa-recept" component={PostRecipePage} />
             <Route path="/kontakt" component={ContactPage}/>
           </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </Provider>
   )
