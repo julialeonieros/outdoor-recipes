@@ -7,7 +7,7 @@ import multer from 'multer'
 import cloudinaryStorage from 'multer-storage-cloudinary'
 import listEndpoints from 'express-list-endpoints'
 
-// dotenv.config()
+dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/outdoorRecipes"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })

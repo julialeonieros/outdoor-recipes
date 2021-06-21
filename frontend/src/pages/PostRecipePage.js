@@ -5,6 +5,8 @@ import InputLabel from '@material-ui/core/InputLabel'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
+import FormLabel from '@material-ui/core/FormLabel'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { makeStyles } from '@material-ui/core/styles'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
@@ -88,11 +90,10 @@ const PostRecipePage = () => {
           {/* <RecipeForm noValidate autoComplete="off" */}
             
             <FormControl
-              fullWidth="true"
+              fullWidth={true}
             >
-              {/* <InputLabel htmlFor="titel">Titel:</InputLabel> */}
               <TextField
-                required="true"
+                required={true}
                 label="Titel"
                 id="titel"
                 type="text"
@@ -100,18 +101,18 @@ const PostRecipePage = () => {
                 value={title}
                 placeholder="Namn på recept"
                 variant="outlined"
-                // color="primary"
                 color="primary"
                 margin="normal"
-                fullWidth="true"
+                fullWidth={true}
+                // focused="true"
               />
             </FormControl>
   
             <FormControl
-              fullWidth="true"
+              fullWidth={true}
             >
               <TextField
-                // required
+                required={true}
                 label="Portioner"
                 id="titel"
                 type="text"
@@ -121,13 +122,11 @@ const PostRecipePage = () => {
                 variant="outlined"
                 color="primary"
                 margin="normal"
-                fullWidth="true"
+                // focused="true"
               />
             </FormControl>
 
-            <FormControl
-              fullWidth="true"
-            >
+            <FormControl>
               <InputMultipleFields
                   data={ingredients}
                   setData={setIngredients}
@@ -135,37 +134,49 @@ const PostRecipePage = () => {
                 />
             </FormControl>
 
-            <RecipeLabel>
-              Instruktioner:
-              <InputFieldInstructions
-                // required
-                type="text"
-                onChange={event => setInstructions(event.target.value)}
-                value={instructions}
-                placeholder="Instruktioner"
-              />
-            </RecipeLabel>
+            <div>
+              <FormControl>
+                <TextField
+                  required={true}
+                  label="Instruktioner"
+                  id="instruktioner"
+                  type="text"
+                  onChange={event => setInstructions(event.target.value)}
+                  value={instructions}
+                  placeholder="Instruktioner"
+                  variant="outlined"
+                  color="primary"
+                  margin="normal"
+                  fullWidth={true}
+                  multiline={true}
+                />
+              </FormControl>
+            </div>
 
-            <RecipeLabelCheckbox>
-              Taggar:
+            <FormControl>
+              <FormLabel>Taggar</FormLabel>
               <InputCheckboxes 
                 data={tagsArray}
                 setData={setTags}
+                label={"Ingredienser"}
               />
-            </RecipeLabelCheckbox>
+            </FormControl>
 
-            <RecipeLabelCheckbox>
-              Typ:
-              <InputSelect 
-                data={typesArray}
-                setData={setType}
-              />
-            </RecipeLabelCheckbox>
+            <div>
+              <FormControl variant="outlined">
+                <InputLabel id="typ">Typ</InputLabel>
+                <InputSelect 
+                  data={typesArray}
+                  setData={setType}
+                  label={"Typ"}
+                />
+              </FormControl>
+            </div>
 
             <RecipeLabel>
               Skapat av:
               <InputField
-                // required
+                required={true}
                 type="text"
                 onChange={(event) => setCreatedBy(event.target.value)}
                 value={createdBy}
