@@ -7,7 +7,7 @@ import multer from 'multer'
 import cloudinaryStorage from 'multer-storage-cloudinary'
 import listEndpoints from 'express-list-endpoints'
 
-// dotenv.config()
+dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/outdoorRecipes"
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -60,10 +60,8 @@ const Recipe = mongoose.model('Recipe', {
 const cloudinary = cloudinaryFramework.v2; 
 cloudinary.config({
   cloud_name: 'dtsyqfltv',
-  // api_key: process.env.CLOUDINARY_API_KEY,
-  // api_secret: process.env.CLOUDINARY_API_SECRET
-  api_key: 995948921185183,
-  api_secret: 'remQ-6xSJaA6Oa7QKx2FH55XS14'
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 })
 
 const storage = cloudinaryStorage({
