@@ -11,7 +11,7 @@
       "Lingonsylt till servering"
     ],
     "type":
-      "lunch/dinner",
+      "lunchDinner",
     "tags": [
       "fire"
     ],
@@ -92,7 +92,7 @@
       "Peppar",
       "Smör"
     ],
-    "type": "lunch/dinner",
+    "type": "lunchDinner",
     "tags": [
       "fire"
     ],
