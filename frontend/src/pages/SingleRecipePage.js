@@ -10,7 +10,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import HeaderSmall from '../components/HeaderSmall'
+//import HeaderSmall from '../components/HeaderSmall'
 import { API_URL } from '../reusables/urls'
 
 const useStyles = makeStyles({
@@ -116,7 +116,6 @@ const RecipeWrapper = styled.div`
   align-items: center;
   ${'' /* height: 100vh; */}
   position: relative;
-  
 `
 
 const TextWrapper = styled.div`
@@ -133,29 +132,9 @@ const InstructionsWrapper = styled.div`
    padding: 0 20px;
    width: 60%;
 `
-
-// const InnerWrapper = styled.div`
-//   position: absolute;
-//   display: flex;
-//   flex-direction: column;
-//   width: 50%;
-//   margin: auto 0;
-// `
 const ImageBackground = styled.img`
   ${'' /* width: 100vw; */}
   height: 120vh;
   width: 100%;
   object-fit: cover;
-  
 `
-
-
-
-// const IMG = styled.img`
-//   width: 100%;
-//   ${'' /* height: 200px; */}
-//   object-fit: cover;
-//   ${'' /* border: solid black 1px; */}
-// `
-// const BACK = styled.p`
-// `

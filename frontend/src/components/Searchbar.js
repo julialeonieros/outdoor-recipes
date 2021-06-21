@@ -27,9 +27,29 @@ const theme = createMuiTheme({
       contrastText: '#000',
     },
   },
+  breakpoints: {
+    values: {
+      sm: 500,
+      md: 768,
+    },
+  },
 });
 
+const useStyles = makeStyles((theme) => ({
+  buttonFilter: {
+    margin: "0 10px",
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 10,
+      
+      
+    }
+  },
+  
+}))
+
 const Searchbar = () => {
+
+  const classes = useStyles()
 
   const [searchValue, setSearchValue]= useState('')
   const dispatch = useDispatch()
@@ -38,6 +58,7 @@ const Searchbar = () => {
     event.preventDefault()
     const url_title = `${API_URL}?title=${searchValue}`
     dispatch(searchRecipes(url_title))
+    setSearchValue('')
   }
 
   const handleResetClick = () => {
@@ -70,15 +91,20 @@ const Searchbar = () => {
             color='primary'             
             value={searchValue}
             onChange={(event) => setSearchValue(event.target.value)}
-            style={{backgroundColor: "#fefdfb9f", border: "2px solid #01322079", borderRight: 0, borderRadius: 8}}
+            style={{backgroundColor: "#fefdfb9f", border: "2px solid #01322079", borderRight: 0, borderRadius: '50px 0 0 50px'}}
           /> 
-          <ButtonSearch variant="contained" color="primary" type="submit">SÖK</ButtonSearch>
+          <ButtonSearch 
+            variant="contained" 
+            color="primary" 
+            type="submit" 
+            style={{borderRadius: '0 50px 50px 0', paddingRight: 30}}>
+            SÖK
+          </ButtonSearch>
 
-          
         </Form>
 
         <BtnWrapper>
-          <div>
+          <BtnInnerWrapper>
             <ButtonsContainer>
               {typesArrayFilter.map(({ value, title }, index) => {
                 return (
@@ -86,7 +112,8 @@ const Searchbar = () => {
                     key={title}
                     variant="outlined" color="primary" 
                     onClick={() => handleTypeClick(value)}
-                    style={{margin: "0 10px"}}
+                    // style={{margin: "0 10px"}}
+                    className={classes.buttonFilter}
                     >{title}
                   </Button>
                 )
@@ -100,14 +127,15 @@ const Searchbar = () => {
                     key={title}
                     variant="outlined" color="primary" 
                     onClick={() => handleTagClick(value)}
-                    style={{margin: "0 10px"}}
+                    // style={{margin: "0 10px"}}
+                    className={classes.buttonFilter}
                     >{title}
                   </Button>
                 )
               })}
             </ButtonsContainer>
-          </div>
-          <ButtonReset variant="contained" color="secondary" size="large" onClick={() => handleResetClick()}>VISA ALLA RECEPT</ButtonReset>
+          </BtnInnerWrapper>
+          <ButtonReset variant="contained" color="secondary" size="large" onClick={() => handleResetClick()}>VISA ALLA</ButtonReset>
 
             
         </BtnWrapper> 
@@ -122,6 +150,12 @@ const SearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 768px) {
+    
+  }
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `
 const Form = styled.form`
   ${'' /* background-color: #668479; */}
@@ -132,105 +166,54 @@ const Form = styled.form`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 700px;
+  bottom: 200px;
+  @media (max-width: 768px) {
+    
+  }
+  @media (max-width: 500px) {
+    bottom: 250px;
+  }
 `
-// const Input = styled.input`
-//   border: 1px solid #CCC;
-//   margin: 0;
-//   padding: 10px;
-//   width: 200px;
-//   height: 40px;
-//   font-size: 16px;
-// `
 const BtnWrapper = styled.div`
   display: flex;  
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  ${'' /* width: 70%; */}
   margin: 25px 0;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `
+const BtnInnerWrapper = styled.div`
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+`
+
 const ButtonsContainer = styled.div`
   display: flex;  
   flex-direction: row;
   justify-content: space-between;
   margin: 10px 0;
+  @media (max-width: 768px) {
+    
+  }
+  @media (max-width: 500px) {
+    ${'' /* max-width: 500px; */}
+    ${'' /* justify-content: center; */}
+    
+  }
 `
-
 const ButtonSearch = styled(Button)({
-  padding: '20 50px',
-  height: 56,
-  width: 80,
-  borderRadius: 8,
+  height: 60,
+  width: 90,
 })
 const ButtonReset = styled(Button)({
-  margin: '0 20px',
-  height: 80,
-  width: 100,
+  
+  height: 40,
+  width: 125,
   borderRadius: '50px',
 })
-
-
-// const TypeBtn = styled.button`
-//   cursor: pointer;
-//   border-radius: 15px;
-//   border: 1px solid #fde431;
-//   margin: 0 5px;
-//   font-size: 14px;
-//   font-weight: 500;
-//   line-height: 1.3;
-//   color: #f15c5c;
-//   background: #feee7d;
-//   padding: 0 10px;
-//   height: 40px;
-//   transition: all 150ms linear;
-//   width: 100px;
-
-//   &:hover {
-//     transition: all 150ms linear;
-//     opacity: .85;
-//   }
-//   &active {
-//   }
-// `
-// const TagBtn = styled.button`
-//   cursor: pointer;
-//   border-radius: 15px;
-//   border: none;
-//   margin: 0 5px;
-//   font-size: 14px;
-//   font-weight: 500;
-//   line-height: 1.3;
-//   color: #FE8CDF;
-//   background: #353866;
-//   padding: 0 10px;
-//   height: 40px;
-//   transition: all 150ms linear;
-//   width: 100px;
-
-//   &:hover {
-//     transition: all 150ms linear;
-//     opacity: .85;
-//   }
-//   &active {
-//   }
-// `
-// const SubmitButton = styled(TagBtn)`
-//   background-color: #FFDAE0;
-//   font-weight: bold;
-
-//   &:hover {
-//     background-color: pink;
-//   }
-// `
-// const ResetButton = styled(TagBtn)`
-//   background-color: silver;
-// `
-// const Select = styled.select`
-//   border: 1px solid #CCC;
-//   margin: 0;
-//   padding: 10px;
-//   width: 150px;
-//   height: 40px;
-//   font-size: 16px;
-// `

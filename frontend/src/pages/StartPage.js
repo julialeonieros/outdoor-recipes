@@ -56,10 +56,23 @@ const Title = styled.h1`
   color: #FFF;
   font-family: 'brokenbrushregular';
   margin: 0;
+  @media (max-width: 768px) {
+    font-size: 80px;
+  }
+  @media (max-width: 500px) {
+    font-size: 50px;
+  }
+  
 `
 const TitleTwo = styled(Title)`
   font-size: 40px;
   font-family: 'Josefin Sans', sans-serif;
+  @media (max-width: 768px) {
+    font-size: 34px;
+  }
+  @media (max-width: 500px) {
+    font-size: 21px;
+  }
 `
 // const InfoContainer = styled.div`
 //   // background-color: #668479;

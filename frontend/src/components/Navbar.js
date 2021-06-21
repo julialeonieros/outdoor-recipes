@@ -6,6 +6,21 @@ const Navbar = () => {
 
   return (
     <Nav>
+
+
+      <Ul>
+        <Li>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <NavLink>Start</NavLink>
+          </Link>
+        </Li>
+        <Li>
+          <Link to="/kontakt" style={{ textDecoration: 'none' }}>
+            <NavLink>Kontakt</NavLink>
+          </Link>
+        </Li>
+      </Ul>
+
       <IconContainer>
         <Icon>
           <i className="fas fa-campground"></i>
@@ -17,23 +32,16 @@ const Navbar = () => {
           <i className="fas fa-mountain"></i>
         </Icon>
       </IconContainer>
+
       <Ul>
-        <Li>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <NavLink>Start</NavLink>
-          </Link>
-        </Li>
         <Li>
           <Link to="/skapa-recept" style={{ textDecoration: 'none' }}>
             <NavLink>Lägg till recept</NavLink>
           </Link>
         </Li>
-        <Li>
-          <Link to="/kontakt" style={{ textDecoration: 'none' }}>
-            <NavLink>Kontakt</NavLink>
-          </Link>
-        </Li>
       </Ul>
+       
+      
     </Nav>
   )
 }
@@ -50,11 +58,16 @@ const Nav = styled.nav`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 `
 const IconContainer = styled.div`
   display: flex;
   flex-direction: row;
   font-size: xx-large;
+  @media (max-width: 768px) {
+    padding: 0 25px;
+
+  }
 `
 const Icon = styled.div`
   margin-left: 7px;
@@ -62,15 +75,31 @@ const Icon = styled.div`
 const Ul = styled.ul`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  padding-right: 50px;
+  @media (max-width: 768px) {
+    padding: 0;
+
+  }
+  @media (max-width: 500px) {
+    display: none;
+    
+  }
 `
 const Li = styled.li`
   list-style-type: none;
   padding: 0 16px;
   cursor: pointer;
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `
 const NavLink = styled.a`
   color: #000;
   font-size: 20px;
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
   
   &:hover {
     color: #013220;

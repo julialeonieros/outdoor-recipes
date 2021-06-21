@@ -27,5 +27,5 @@ const GalleryWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border: 5px yellow solid;
+  justify-content: center;
 `

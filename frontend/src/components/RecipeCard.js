@@ -21,17 +21,16 @@ const RecipeCard = ({ _id, title, imageUrl }) => {
 export default RecipeCard
 
 const RecipeWrapper = styled.div`
-  
-  ${'' /* margin: 30px auto;
-  padding: 20px;
-  margin: 20px;
-  width: 250px;
-  height: 250px; */}
   position: relative;
   overflow: hidden;
   width: 33.333%;
+  @media (max-width: 768px) {
+    
+  }
+  @media (max-width: 500px) {
+    width: 50%;
+  }
 `
-// const Imagecontainer = styled.div``
 
 const Text = styled.p`
   position: absolute;
