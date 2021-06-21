@@ -24,7 +24,6 @@ const InputCheckboxes = ({ data, setData }) => {
     <FormGroup row>
       {data.map(({ value, title }, index) => {
         return (
-
           <div key={value}>
             <FormControlLabel
               control={< Checkbox 
@@ -32,6 +31,7 @@ const InputCheckboxes = ({ data, setData }) => {
                 onChange={() => handleOnChange(value)}
                 name={value}
                 color="primary"
+                required={false}
               />}
               label={title}
               labelPlacement="bottom"
@@ -45,26 +45,3 @@ const InputCheckboxes = ({ data, setData }) => {
 }
 
 export default InputCheckboxes
-
-const Wrapper = styled.div`
-  // display: flex;  
-  // flex-direction: row;
-  // justify-content: space-between;
-  // margin-top: 8px;
-  // padding: 3px;
-  // width: 300px;
-  margin-top: 30px;
-`
-const Container = styled.div`
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // font-weight: normal;
-`
-const InputField = styled.input`
-  border: 1px solid #CCC;
-  margin: 0px;
-  padding: 10px;
-  width: 25px;
-  height: 40px;
-`
