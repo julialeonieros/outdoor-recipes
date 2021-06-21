@@ -46,7 +46,6 @@ const InputMultipleFields = ({ data, setData, label }) => {
               variant="outlined"
               color="primary"
               margin="normal"
-              fullWidth={true}
               size="small"
             />
             <IconButton  

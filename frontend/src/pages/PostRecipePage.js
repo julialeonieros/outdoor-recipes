@@ -1,14 +1,17 @@
 import React, { useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import InputLabel from '@material-ui/core/InputLabel'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import FormControl from '@material-ui/core/FormControl'
-import FormLabel from '@material-ui/core/FormLabel'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import { makeStyles } from '@material-ui/core/styles'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { createMuiTheme, ThemeProvider, InputLabel, Input, TextField, Button, FormControl, FormLabel, 
+  FormControlLabel, makeStyles, IconButton } from '@material-ui/core'
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
+// import InputLabel from '@material-ui/core/InputLabel'
+// import TextField from '@material-ui/core/TextField'
+// import Button from '@material-ui/core/Button'
+// import FormControl from '@material-ui/core/FormControl'
+// import FormLabel from '@material-ui/core/FormLabel'
+// import FormControlLabel from '@material-ui/core/FormControlLabel'
+// import { makeStyles } from '@material-ui/core/styles'
+// import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 import HeaderSmall from '../components/HeaderSmall'
 import InputCheckboxes from '../components/InputCheckboxes'
@@ -89,53 +92,57 @@ const PostRecipePage = () => {
           <RecipeForm onSubmit={(event) => handleFormSubmit(event)}>
           {/* <RecipeForm noValidate autoComplete="off" */}
             
-            <FormControl
-              fullWidth={true}
-            >
-              <TextField
-                required={true}
-                label="Titel"
-                id="titel"
-                type="text"
-                onChange={(event) => setTitle(event.target.value)}
-                value={title}
-                placeholder="Namn på recept"
-                variant="outlined"
-                color="primary"
-                margin="normal"
-                fullWidth={true}
-                // focused="true"
-              />
-            </FormControl>
-  
-            <FormControl
-              fullWidth={true}
-            >
-              <TextField
-                required={true}
-                label="Portioner"
-                id="titel"
-                type="text"
-                onChange={(event) => setPortions(event.target.value)}
-                value={portions}
-                placeholder="Antal portioner"
-                variant="outlined"
-                color="primary"
-                margin="normal"
-                // focused="true"
-              />
-            </FormControl>
-
-            <FormControl>
-              <InputMultipleFields
-                  data={ingredients}
-                  setData={setIngredients}
-                  label={"Ingredienser"}
+            <Container>
+              <FormControl fullWidth={true}>
+                <TextField
+                  required={true}
+                  label="Titel"
+                  id="titel"
+                  type="text"
+                  onChange={(event) => setTitle(event.target.value)}
+                  value={title}
+                  placeholder="Namn på recept"
+                  variant="outlined"
+                  color="primary"
+                  margin="normal"
+                  // focused="true"
                 />
-            </FormControl>
+              </FormControl>
+            </Container>
+  
+            <Container>
+              <FormControl
+                fullWidth={false}
+              >
+                <TextField
+                  // required={true}
+                  label="Portioner"
+                  id="titel"
+                  type="text"
+                  onChange={(event) => setPortions(event.target.value)} 
+                  value={portions}
+                  placeholder="Antal portioner"
+                  variant="outlined"
+                  color="primary"
+                  margin="normal"
+                  // fullWidth={false}
+                  // focused="true"
+                />
+              </FormControl>
+            </Container>
 
-            <div>
+            <Container>
               <FormControl>
+                <InputMultipleFields
+                    data={ingredients}
+                    setData={setIngredients}
+                    label={"Ingredienser"}
+                  />
+              </FormControl>
+            </Container>
+
+            <Container>
+              <FormControl fullWidth={true}>
                 <TextField
                   required={true}
                   label="Instruktioner"
@@ -148,57 +155,87 @@ const PostRecipePage = () => {
                   color="primary"
                   margin="normal"
                   fullWidth={true}
-                  multiline={true}
+                  multiLine={true}
                 />
               </FormControl>
-            </div>
+            </Container>
 
-            <FormControl>
-              <FormLabel>Taggar</FormLabel>
-              <InputCheckboxes 
-                data={tagsArray}
-                setData={setTags}
-                label={"Ingredienser"}
-              />
-            </FormControl>
+            <ContainerTags>
+              <FormControl>
+                <FormLabel>Taggar</FormLabel>
+                <InputCheckboxes 
+                  data={tagsArray}
+                  setData={setTags}
+                  label={"Ingredienser"}
+                />
+              </FormControl>
+            </ContainerTags>
 
-            <div>
+            <Container>
               <FormControl variant="outlined">
-                <InputLabel id="typ">Typ</InputLabel>
+                <FormLabel id="typ">Typ</FormLabel>
                 <InputSelect 
                   data={typesArray}
                   setData={setType}
                   label={"Typ"}
                 />
               </FormControl>
-            </div>
+            </Container>
 
-            <RecipeLabel>
-              Skapat av:
-              <InputField
-                required={true}
-                type="text"
-                onChange={(event) => setCreatedBy(event.target.value)}
-                value={createdBy}
-                placeholder="Receptets skapare"
-              />
-            </RecipeLabel>
+            <Container>
+              <FormControl fullWidth={true}>
+                <TextField
+                  label="Skapare"
+                  id="skapare"
+                  type="text"
+                  onChange={(event) => setCreatedBy(event.target.value)}
+                  value={createdBy}
+                  placeholder="Receptets skapare"
+                  variant="outlined"
+                  color="primary"
+                  margin="normal"
+                  fullWidth={true}
+                />
+              </FormControl>
+            </Container>
 
-            <RecipeLabel>
-              Bifoga bild:
-              <InputField 
-                type="file"
-                // styled={{ display: 'none' }}
-                ref={fileInput}
-                placeholder={"bifoga bild"}
-                onChange={(event) => {
-                  setFileName(event.target.files[0].name)
-                }}
-              />
-              <p>{fileName}</p>
-            </RecipeLabel>
+            <Container>
+                <InputLabel 
+                  id="file"
+                  // style={{ display: 'none' }}
+                >Ladda upp foto
+                  <Input 
+                    label="file"
+                    id="file"
+                    type="file"
+                    style={{ display: 'none' }}
+                    ref={fileInput}
+                    placeholder={"bifoga bild"}
+                    onChange={(event) => {
+                      setFileName(event.target.files[0].name)
+                    }}
+                  />
+                  <FlexRow>
+                    <IconButton
+                      color="primary"
+                      aria-label="ladda upp foto"
+                      component="span"
+                    >
+                      <AddAPhotoIcon fontSize="large"/>
+                    </IconButton>
+                    <p>{fileName}</p>
+                  </FlexRow>
+                </InputLabel>
+            </Container>
 
-            <SubmitBtn type="submit">Lägg till recept</SubmitBtn>
+            <ButtonContainer>
+              <Button 
+                type="submit"
+                color="primary"
+                aria-label="lägg till recept"
+                variant="contained"
+              >Lägg till recept</Button>
+            </ButtonContainer>
 
           </RecipeForm>
         </ThemeProvider>
@@ -212,18 +249,38 @@ export default PostRecipePage
 const FormWrapper = styled.div`
   // background-color: #668479;
   background-color: #FFF;
-  // width: 400px;
+  width: 500px;
   padding: 30px 30px 30px 60px;
   margin: 30px auto 45px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: solid pink 2px;
 `
 const H2 = styled.h2`
   display: inline-block;
 `
 const RecipeForm = styled.form``
+
+const Container = styled.div`
+  border: solid black 1px;
+  display: flex;
+  flex-direction: column;
+`
+const ContainerTags = styled(Container)`
+  margin: 20px 0;
+`
+const FlexRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+const ButtonContainer = styled.div`
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+`
 
 const RecipeLabel = styled.label`
   display: flex;
