@@ -5,12 +5,12 @@ import styled from 'styled-components/macro'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 import { filter, searchRecipes } from '../reducers/filter'
 import { API_URL } from '../reusables/urls'
 import { typesArrayFilter, tagsArray } from '../reusables/arrays'
 
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 const theme = createMuiTheme({
   palette: {
@@ -27,17 +27,51 @@ const theme = createMuiTheme({
       contrastText: '#000',
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 500,
+      md: 768,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
 });
 
-const useStyles = makeStyles({
-  searchBtn: {
-    padding: 15
-  }
-});
+const useStyles = makeStyles((theme) => ({
+  btnSearch: {
+    height: 60,
+    width: 90,
+    color: "#fff",
+    background: '#013220',
+    '&:hover': {
+      background: '#000d00'
+    }
+  },
+  btnReset: {
+    height: 40,
+    width: 80,
+    borderRadius: '50px',
+    color: "black",
+    background: '#f48fb1',
+    '&:hover': {
+      background: '#bf5f82'
+    }
+  },
+  buttonFilter: {
+    margin: "0 10px",
+    color: "#000d00",  
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 11,
+    }
+  },
+  
+}))
 
 const Searchbar = () => {
 
-  const classes = useStyles();
+  const classes = useStyles()
+
   const [searchValue, setSearchValue]= useState('')
   const dispatch = useDispatch()
 
@@ -45,6 +79,7 @@ const Searchbar = () => {
     event.preventDefault()
     const url_title = `${API_URL}?title=${searchValue}`
     dispatch(searchRecipes(url_title))
+    setSearchValue('')
   }
 
   const handleResetClick = () => {
@@ -67,8 +102,6 @@ const Searchbar = () => {
     <SearchWrapper>
       <ThemeProvider theme={theme}>
         <Form onSubmit={handleSearch}>
-        
-          {/* <Input */}
           <TextField 
             id="outlined-search" 
             label="Sök recept" 
@@ -77,13 +110,21 @@ const Searchbar = () => {
             color='primary'             
             value={searchValue}
             onChange={(event) => setSearchValue(event.target.value)}
+            style={{backgroundColor: "#fefdfb9f", border: "2px solid #01322079", borderRight: 0, borderRadius: '50px 0 0 50px'}}
           /> 
-          <Button className={classes.searchBtn} variant="contained" color="primary" size="large" type="submit">SÖK</Button>
-
-          
+          <Button
+            variant="contained" 
+            color="primary" 
+            type="submit" 
+            style={{borderRadius: '0 50px 50px 0', paddingRight: 30}}
+            className={classes.btnSearch}
+            >
+            SÖK
+          </Button>
         </Form>
 
         <BtnWrapper>
+          <BtnInnerWrapper>
             <ButtonsContainer>
               {typesArrayFilter.map(({ value, title }, index) => {
                 return (
@@ -91,6 +132,8 @@ const Searchbar = () => {
                     key={title}
                     variant="outlined" color="primary" 
                     onClick={() => handleTypeClick(value)}
+                    // style={{margin: "0 10px"}}
+                    className={classes.buttonFilter}
                     >{title}
                   </Button>
                 )
@@ -104,15 +147,16 @@ const Searchbar = () => {
                     key={title}
                     variant="outlined" color="primary" 
                     onClick={() => handleTagClick(value)}
+                    // style={{margin: "0 10px"}}
+                    className={classes.buttonFilter}
                     >{title}
                   </Button>
                 )
               })}
             </ButtonsContainer>
+          </BtnInnerWrapper>
+          <Button variant="contained" color="secondary" size="large" onClick={() => handleResetClick()} className={classes.btnReset}>ALLA</Button>
 
-            <Button variant="contained" color="secondary" size="large" onClick={() => handleResetClick()}>VISA ALLA RECEPT</Button>
-
-            
         </BtnWrapper> 
       </ThemeProvider>  
     </SearchWrapper>
@@ -125,96 +169,55 @@ const SearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `
 const Form = styled.form`
-  ${'' /* background-color: #668479; */}
   width: 60%;
   margin: 20px auto;
   padding: 15px 10px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: 200px;
+  @media (max-width: 500px) {
+    bottom: 250px;
+  }
 `
-// const Input = styled.input`
-//   border: 1px solid #CCC;
-//   margin: 0;
-//   padding: 10px;
-//   width: 200px;
-//   height: 40px;
-//   font-size: 16px;
-// `
 const BtnWrapper = styled.div`
   display: flex;  
-  flex-direction: column;
-  width: 60%;
-  margin-bottom: 20px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 25px 0;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+  @media (max-width: 500px) {
+    width: 100%;
+    margin: 15px 0;
+  }
 `
+const BtnInnerWrapper = styled.div`
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+`
+
 const ButtonsContainer = styled.div`
   display: flex;  
   flex-direction: row;
   justify-content: space-between;
   margin: 10px 0;
 `
-// const TypeBtn = styled.button`
-//   cursor: pointer;
-//   border-radius: 15px;
-//   border: 1px solid #fde431;
-//   margin: 0 5px;
-//   font-size: 14px;
-//   font-weight: 500;
-//   line-height: 1.3;
-//   color: #f15c5c;
-//   background: #feee7d;
-//   padding: 0 10px;
-//   height: 40px;
-//   transition: all 150ms linear;
-//   width: 100px;
-
-//   &:hover {
-//     transition: all 150ms linear;
-//     opacity: .85;
-//   }
-//   &active {
-//   }
-// `
-// const TagBtn = styled.button`
-//   cursor: pointer;
-//   border-radius: 15px;
-//   border: none;
-//   margin: 0 5px;
-//   font-size: 14px;
-//   font-weight: 500;
-//   line-height: 1.3;
-//   color: #FE8CDF;
-//   background: #353866;
-//   padding: 0 10px;
-//   height: 40px;
-//   transition: all 150ms linear;
-//   width: 100px;
-
-//   &:hover {
-//     transition: all 150ms linear;
-//     opacity: .85;
-//   }
-//   &active {
-//   }
-// `
-// const SubmitButton = styled(TagBtn)`
-//   background-color: #FFDAE0;
-//   font-weight: bold;
-
-//   &:hover {
-//     background-color: pink;
-//   }
-// `
-// const ResetButton = styled(TagBtn)`
-//   background-color: silver;
-// `
-// const Select = styled.select`
-//   border: 1px solid #CCC;
-//   margin: 0;
-//   padding: 10px;
-//   width: 150px;
-//   height: 40px;
-//   font-size: 16px;
-// `
+// const ButtonSearch = styled(Button)({
+//   height: 60,
+//   width: 90,
+// })
+// const ButtonReset = styled(Button)({
+//   height: 40,
+//   width: 125,
+//   borderRadius: '50px',
+// })

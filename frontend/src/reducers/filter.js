@@ -8,9 +8,9 @@ export const filter = createSlice({
     isFiltering: false,
     isLoading: false,
     notFound: false,
-    searchField: "",
-    searchType: "",
-    searchTag: "",
+    searchValue: "",
+    // searchType: "",
+    // searchTag: "",
     recipeArray: []
   },
   reducers: {
@@ -23,15 +23,15 @@ export const filter = createSlice({
     setNotFound: (store, action) => {
       store.notFound = action.payload
     },
-    setSearchField: (store, action) => {
+    setSearchValue: (store, action) => {
       store.searchField = action.payload
     },
-    setSearchType: (store, action) => {
-      store.searchType = action.payload
-    },
-    setSearchTag: (store, action) => {
-      store.searchTag = action.payload
-    },
+    // setSearchType: (store, action) => {
+    //   store.searchType = action.payload
+    // },
+    // setSearchTag: (store, action) => {
+    //   store.searchTag = action.payload
+    // },
     // push selected values into recipeArray
     setCurrentQuery: (store, action) => {
       store.recipeArray = []
@@ -53,10 +53,10 @@ export const searchRecipes = (url) => {
         }
       })
       .then(data => {
-        console.log('this', url, data)
+        // console.log('this', url, data)
         dispatch(filter.actions.setCurrentQuery(data.data))
         dispatch(filter.actions.setFiltering(true))
-        dispatch(filter.actions.setSearchTag())
+        // dispatch(filter.actions.setSearchTag())
         dispatch(filter.actions.setNotFound(false))
         dispatch(filter.actions.setLoading(false))
       })
