@@ -60,7 +60,12 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonFilter: {
     margin: "0 10px",
-    color: "#000d00",  
+    color: "#fff",
+    background: '#2f5c47',
+    '&:hover': {
+      color: '#013220',
+      border: '2px solid #013220',
+    },
     [theme.breakpoints.down('sm')]: {
       fontSize: 11,
     }
