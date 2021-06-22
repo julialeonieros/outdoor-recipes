@@ -52,7 +52,10 @@ const Text = styled.p`
   :hover {
     background: rgba(0, 0, 0, 0.7);
     opacity: 1;
-  }  
+  }
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `
 
 const IMG = styled.img`

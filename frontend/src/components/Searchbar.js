@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components/macro'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { makeStyles, StylesProvider } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 import { filter, searchRecipes } from '../reducers/filter'
 import { API_URL } from '../reusables/urls'
 import { typesArrayFilter, tagsArray } from '../reusables/arrays'
 
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
 const theme = createMuiTheme({
   palette: {
@@ -29,19 +29,40 @@ const theme = createMuiTheme({
   },
   breakpoints: {
     values: {
+      xs: 0,
       sm: 500,
       md: 768,
+      lg: 1280,
+      xl: 1920,
     },
   },
 });
 
 const useStyles = makeStyles((theme) => ({
+  btnSearch: {
+    height: 60,
+    width: 90,
+    color: "#fff",
+    background: '#013220',
+    '&:hover': {
+      background: '#000d00'
+    }
+  },
+  btnReset: {
+    height: 40,
+    width: 80,
+    borderRadius: '50px',
+    color: "black",
+    background: '#f48fb1',
+    '&:hover': {
+      background: '#bf5f82'
+    }
+  },
   buttonFilter: {
     margin: "0 10px",
+    color: "#000d00",  
     [theme.breakpoints.down('sm')]: {
-      fontSize: 10,
-      
-      
+      fontSize: 11,
     }
   },
   
@@ -81,8 +102,6 @@ const Searchbar = () => {
     <SearchWrapper>
       <ThemeProvider theme={theme}>
         <Form onSubmit={handleSearch}>
-        
-          {/* <Input */}
           <TextField 
             id="outlined-search" 
             label="Sök recept" 
@@ -93,14 +112,15 @@ const Searchbar = () => {
             onChange={(event) => setSearchValue(event.target.value)}
             style={{backgroundColor: "#fefdfb9f", border: "2px solid #01322079", borderRight: 0, borderRadius: '50px 0 0 50px'}}
           /> 
-          <ButtonSearch 
+          <Button
             variant="contained" 
             color="primary" 
             type="submit" 
-            style={{borderRadius: '0 50px 50px 0', paddingRight: 30}}>
+            style={{borderRadius: '0 50px 50px 0', paddingRight: 30}}
+            className={classes.btnSearch}
+            >
             SÖK
-          </ButtonSearch>
-
+          </Button>
         </Form>
 
         <BtnWrapper>
@@ -135,9 +155,8 @@ const Searchbar = () => {
               })}
             </ButtonsContainer>
           </BtnInnerWrapper>
-          <ButtonReset variant="contained" color="secondary" size="large" onClick={() => handleResetClick()}>VISA ALLA</ButtonReset>
+          <Button variant="contained" color="secondary" size="large" onClick={() => handleResetClick()} className={classes.btnReset}>ALLA</Button>
 
-            
         </BtnWrapper> 
       </ThemeProvider>  
     </SearchWrapper>
@@ -150,15 +169,11 @@ const SearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (max-width: 768px) {
-    
-  }
   @media (max-width: 500px) {
     width: 100%;
   }
 `
 const Form = styled.form`
-  ${'' /* background-color: #668479; */}
   width: 60%;
   margin: 20px auto;
   padding: 15px 10px;
@@ -167,9 +182,6 @@ const Form = styled.form`
   align-items: center;
   position: absolute;
   bottom: 200px;
-  @media (max-width: 768px) {
-    
-  }
   @media (max-width: 500px) {
     bottom: 250px;
   }
@@ -185,6 +197,7 @@ const BtnWrapper = styled.div`
   }
   @media (max-width: 500px) {
     width: 100%;
+    margin: 15px 0;
   }
 `
 const BtnInnerWrapper = styled.div`
@@ -198,22 +211,13 @@ const ButtonsContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin: 10px 0;
-  @media (max-width: 768px) {
-    
-  }
-  @media (max-width: 500px) {
-    ${'' /* max-width: 500px; */}
-    ${'' /* justify-content: center; */}
-    
-  }
 `
-const ButtonSearch = styled(Button)({
-  height: 60,
-  width: 90,
-})
-const ButtonReset = styled(Button)({
-  
-  height: 40,
-  width: 125,
-  borderRadius: '50px',
-})
+// const ButtonSearch = styled(Button)({
+//   height: 60,
+//   width: 90,
+// })
+// const ButtonReset = styled(Button)({
+//   height: 40,
+//   width: 125,
+//   borderRadius: '50px',
+// })

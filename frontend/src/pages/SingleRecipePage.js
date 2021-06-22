@@ -9,22 +9,43 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
-//import HeaderSmall from '../components/HeaderSmall'
 import { API_URL } from '../reusables/urls'
 
-const useStyles = makeStyles({
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 500,
+      md: 768,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+});
+
+const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 800,
+    maxWidth: 700,
     position: 'absolute',
     margin: 'auto',
-    padding: 20
+    padding: 20,
+    top: 150,
+    [theme.breakpoints.down('500')]: {
+      top: 75,
+      padding: 0,
+      height: '110vh',
+    }
   },
   media: {
-    height: 400,
+    height: 350,
   },
   text: {
     marginBottom: 8,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 11,
+    }
   },
   button: {
     background:'#013220',
@@ -33,14 +54,12 @@ const useStyles = makeStyles({
       background: '#2f5c47'
     }
   }
-});
+}))
 
 const SingleRecipePage = () => {
 
   const classes = useStyles();
-
   const [singleRecipe, setSingleRecipe] = useState({})
-  
   const { id } = useParams()
 
   const API_RECIPE_URL = `${API_URL}/${id}`
@@ -57,53 +76,54 @@ const SingleRecipePage = () => {
   const instructions = singleRecipe.instructions
 
   return (
-    <>
-      {/* <HeaderSmall /> */}
-      <RecipeWrapper>
-      <ImageBackground src="/assets/header-image-small.jpg" alt=""/>
-
-        <Card className={classes.root}>
-
-          <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image={singleRecipe.imageUrl}
-              title={singleRecipe.title}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {singleRecipe.title}
-              </Typography>
-
-              <TextWrapper>
-                <IngredientsWrapper>
-                  {ingredients && ingredients.map((item, index) => (           
-                    <Typography key={index} variant="body2" color="textSecondary" component="p" className={classes.text}>
-                      {item}
-                    </Typography>
+    <RecipeWrapper>
+      <ThemeProvider theme={theme}>
+        <ImageBackground src="/assets/DSC_4305.jpg" alt="forest"/>
+          <Card className={classes.root}>
+            <CardActionArea>
+              <CardMedia
+                className={classes.media}
+                image={singleRecipe.imageUrl}
+                title={singleRecipe.title}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {singleRecipe.title}
+                </Typography>
+                <TextWrapper>
+                  <IngredientsWrapper>
+                    {ingredients && ingredients.map((item, index) => (           
+                      <Typography 
+                        key={index} 
+                        variant="body2" 
+                        color="textSecondary" 
+                        component="p" 
+                        className={classes.text}>
+                        {item}
+                      </Typography>
+                      ))}
+                  </IngredientsWrapper>
+                  <InstructionsWrapper>
+                    {instructions && instructions.split('.').map((item, index) => (
+                      <Typography 
+                        key={index} 
+                        variant="body2" 
+                        color="textSecondary" 
+                        component="p" 
+                        className={classes.text}>               
+                        {item}
+                      </Typography>
                     ))}
-                </IngredientsWrapper>
-
-                <InstructionsWrapper>
-                  {instructions && instructions.split('.').map((item, index) => (
-                  <Typography key={index} variant="body2" color="textSecondary" component="p" className={classes.text}>               
-                    {item}
-                  </Typography>
-                  ))}
-                </InstructionsWrapper>
-              </TextWrapper>
-
-            </CardContent>
-          </CardActionArea>
-
-          <CardActions>
-            <Link to="/" style={{ textDecoration: 'none'}}><Button variant="contained" className={classes.button}  size="large">TILLBAKA</Button></Link>
-
-          </CardActions>
-
-        </Card>
-      </RecipeWrapper>
-    </>
+                  </InstructionsWrapper>
+                </TextWrapper>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Link to="/" style={{ textDecoration: 'none'}}><Button variant="contained" className={classes.button}  size="large">TILLBAKA</Button></Link>
+            </CardActions>
+          </Card>
+        </ThemeProvider>
+    </RecipeWrapper>
   )
 }
 
@@ -114,10 +134,8 @@ const RecipeWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  ${'' /* height: 100vh; */}
   position: relative;
 `
-
 const TextWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -126,15 +144,23 @@ const TextWrapper = styled.div`
 `
 const IngredientsWrapper = styled.div` 
   background-color: #F3FAF4;
-  padding: 7px;
+  padding: 12px;
+  @media (max-width: 500px) {
+    padding: 0 12px 0 0 ;
+  }
 `
 const InstructionsWrapper = styled.div`
    padding: 0 20px;
-   width: 60%;
+   width: 70%;
+   @media (max-width: 500px) {
+    padding: 0 0 0 12px;
+  }
 `
 const ImageBackground = styled.img`
-  ${'' /* width: 100vw; */}
   height: 120vh;
   width: 100%;
   object-fit: cover;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `
