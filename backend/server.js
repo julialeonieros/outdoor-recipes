@@ -96,11 +96,33 @@ app.get('/recipes', async (req, res) => {
       title: titleRegex,
       type: typeRegex,
       tags: tagsRegex
-    })
+    }).sort({ createdAt: -1 })
     res.json({ length: recipes.length, data: recipes})
   } catch (error) {
     res.status(400).json({ error: 'Something went wrong', details: error })
   }
+})
+
+// Endpoint to link to a single recipe by its id. Use this endpoint to link to SingleRecipePage
+app.get('/recipes/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const findRecipe = await Recipe.findOne({ _id: id })
+    if (findRecipe) {
+      res.json(findRecipe)
+    } else {
+      res.status(404).json({ error: 'id not found' })
+    }
+  } catch (error) {
+    res.status(400).json({ error: 'request not valid' })
+  }
+})
+
+// post image that's later posted to new recipe in form
+app.post('/recipes/img', parser.single('image'), async (req, res) => {
+  res.json({ 
+    imageUrl: req.file.path, 
+    imageName: req.file.filename })
 })
 
 // endpoint to post new recipe
@@ -122,26 +144,6 @@ app.post('/recipes', async (req, res) => {
     res.json(newRecipe)
   } catch (error) {
     res.json(400).json({ error: "Couldn't post recipe", details: error })
-  }
-})
-
-// post image that's later posted to new recipe in form
-app.post('/recipes/img', parser.single('image'), async (req, res) => {
-  res.json({ imageUrl: req.file.path, imageName: req.file.filename })
-})
-
-// Endpoint to link to a single recipe by its id. Use this endpoint to link to SingleRecipePage
-app.get('/recipes/:id', async (req, res) => {
-  const { id } = req.params
-  try {
-    const findRecipe = await Recipe.findOne({ _id: id })
-    if (findRecipe) {
-      res.json(findRecipe)
-    } else {
-      res.status(404).json({ error: 'id not found' })
-    }
-  } catch (error) {
-    res.status(400).json({ error: 'request not valid' })
   }
 })
 

@@ -35,13 +35,13 @@ const PostRecipePage = () => {
   const [ingredients, setIngredients] = useState([{ value: null }])
   const [instructions, setInstructions] = useState('')
   const [type, setType] = useState('')
-  const [tags, setTags] = useState([])
+  const [tags, setTags] = useState([''])
   const [createdBy, setCreatedBy] = useState('')
   const [fileName, setFileName] = useState()
   const history = useHistory()
   const fileInput = useRef()
 
-  console.log(fileInput)
+  console.log(tags)
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
@@ -196,7 +196,7 @@ const PostRecipePage = () => {
 
               <ContainerMargin>
                 <LabelUpload id="file">
-                  Ladda upp foto
+                  Ladda upp foto *
                   <FlexRow>
                     <IconButton
                       color="primary"
@@ -209,7 +209,7 @@ const PostRecipePage = () => {
                   </FlexRow>
                   <input
                     type="file"
-                    required={true}
+                    required
                     id="file"
                     style={{ display: 'none' }}
                     ref={fileInput}
