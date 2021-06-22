@@ -5,12 +5,10 @@ import { createMuiTheme, ThemeProvider, TextField, Button, FormControl, FormLabe
   IconButton, Select, MenuItem } from '@material-ui/core'
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 
-import HeaderSmall from '../components/HeaderSmall'
 import InputCheckboxes from '../components/InputCheckboxes'
 import InputMultipleFields from '../components/InputMultipleFields'
 import { API_URL } from '../reusables/urls'
 import { typesArray, tagsArray } from '../reusables/arrays'
-import Footer from '../components/Footer'
 
 const theme = createMuiTheme({
   palette: {
@@ -79,7 +77,6 @@ const PostRecipePage = () => {
 
   return (
     <>
-      <HeaderSmall />
       <Background>
         <FormWrapper>
           <ThemeProvider theme={theme}>
@@ -96,15 +93,13 @@ const PostRecipePage = () => {
                     value={title}
                     placeholder="Namn på recept"
                     variant="outlined"
-                    color="primary"
+                    color="primary"                  
                   />
                 </FormControl>
               </Container>
     
               <Container>
-                <FormControl
-                  fullWidth={false}
-                >
+                <FormControl fullWidth={false}>
                   <TextField
                     required={true}
                     label="Portioner"
@@ -267,7 +262,7 @@ const Container = styled.div`
   margin: 25px 0;
 `
 const ContainerTags = styled(Container)`
-  margin: 28px 0;
+  margin: 37px 0;
 `
 const ContainerMargin = styled.div`
 margin: 35px 0;
