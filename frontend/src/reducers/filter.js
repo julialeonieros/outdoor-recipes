@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-//const searchTag = ['veg', 'gluten-free', 'quick', 'fire']
-
 export const filter = createSlice({
   name: 'filter',
   initialState: {
@@ -53,7 +51,6 @@ export const searchRecipes = (url) => {
         }
       })
       .then(data => {
-        // console.log('this', url, data)
         dispatch(filter.actions.setCurrentQuery(data.data))
         dispatch(filter.actions.setFiltering(true))
         // dispatch(filter.actions.setSearchTag())
