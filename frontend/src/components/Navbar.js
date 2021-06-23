@@ -1,44 +1,53 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import { slide as Menu } from 'react-burger-menu'
+
 
 const Navbar = () => {
 
   return (
-    <Nav>
-      <Ul>
-        <Li>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <NavLink>Start</NavLink>
-          </Link>
-        </Li>
-        <Li>
-          <Link to="/kontakt" style={{ textDecoration: 'none' }}>
-            <NavLink>Kontakt</NavLink>
-          </Link>
-        </Li>
-      </Ul>
-      <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
-        <IconContainer>
-            <Icon>
-              <i className="fas fa-campground"></i>
-            </Icon>
-            <Icon>
-              <i className="fas fa-tree"></i>
-            </Icon>
-            <Icon>
-              <i className="fas fa-mountain"></i>
-            </Icon>
-        </IconContainer>
-      </Link>
-      <Ul>
-        <Li>
-          <Link to="/skapa-recept" style={{ textDecoration: 'none' }}>
-            <NavLink>Lägg till recept</NavLink>
-          </Link>
-        </Li>
-      </Ul>
-    </Nav>
+    <>
+      <Menu>
+        <a id="home" className="menu-item" href="/">Start</a>
+        <a id="about" className="menu-item" href="/">Kontakt</a>
+        <a id="contact" className="menu-item" href="/">Lägg till recept</a>
+      </Menu>
+      <Nav>
+        <Ul>
+          <Li>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <NavLink>Start</NavLink>
+            </Link>
+          </Li>
+          <Li>
+            <Link to="/kontakt" style={{ textDecoration: 'none' }}>
+              <NavLink>Kontakt</NavLink>
+            </Link>
+          </Li>
+        </Ul>
+        <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <IconContainer>
+              <Icon>
+                <i className="fas fa-campground"></i>
+              </Icon>
+              <Icon>
+                <i className="fas fa-tree"></i>
+              </Icon>
+              <Icon>
+                <i className="fas fa-mountain"></i>
+              </Icon>
+          </IconContainer>
+        </Link>
+        <Ul>
+          <Li>
+            <Link to="/skapa-recept" style={{ textDecoration: 'none' }}>
+              <NavLink>Lägg till recept</NavLink>
+            </Link>
+          </Li>
+        </Ul>
+      </Nav>
+    </>
   )
 }
 
