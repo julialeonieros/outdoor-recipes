@@ -145,6 +145,7 @@ const TextWrapper = styled.div`
 const IngredientsWrapper = styled.div` 
   background-color: #F3FAF4;
   padding: 12px;
+
   @media (max-width: 500px) {
     padding: 0 12px 0 0 ;
   }
@@ -152,6 +153,7 @@ const IngredientsWrapper = styled.div`
 const InstructionsWrapper = styled.div`
    padding: 0 20px;
    width: 70%;
+
    @media (max-width: 500px) {
     padding: 0 0 0 12px;
   }
@@ -160,6 +162,7 @@ const ImageBackground = styled.img`
   height: 120vh;
   width: 100%;
   object-fit: cover;
+  
   @media (max-width: 500px) {
     display: none;
   }

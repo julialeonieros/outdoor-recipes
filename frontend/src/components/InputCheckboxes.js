@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormGroup from '@material-ui/core/FormGroup'
+import styled from 'styled-components/macro' 
 
 const InputCheckboxes = ({ data, setData }) => {
 
@@ -20,7 +20,7 @@ const InputCheckboxes = ({ data, setData }) => {
   }
 
   return (
-    <FormGroup row>
+    <Wrapper>
       {data.map(({ value, title }, index) => {
         return (
           <div key={value}>
@@ -39,8 +39,22 @@ const InputCheckboxes = ({ data, setData }) => {
           
         )
       })}
-    </FormGroup>
+    </Wrapper>
   )
 }
 
 export default InputCheckboxes
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  @media (max-width: 768px) {
+    padding: 0 40px;
+  }
+  @media (max-width: 500px) {
+    padding: 0 40px;
+  }
+`

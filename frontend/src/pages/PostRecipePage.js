@@ -40,9 +40,15 @@ const PostRecipePage = () => {
   const fileInput = useRef()
 
   console.log(tags)
+  console.log(type)
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
+
+    // if (tags.length === 0) {
+    //   setTags('')
+    // }
+    // console.log(tags)
 
     const formData = new FormData()
     formData.append('image', fileInput.current.files[0])
@@ -77,6 +83,7 @@ const PostRecipePage = () => {
 
   return (
     <>
+<<<<<<< HEAD
       <Background>
         <FormWrapper>
           <ThemeProvider theme={theme}>
@@ -113,155 +120,239 @@ const PostRecipePage = () => {
                   />
                 </FormControl>
               </Container>
+=======
+        <Wrapper>
+        <BackgroundImg src="/assets/ice.jpg" alt="a person ice-skating" />
+          <FormBackground>
+            <ThemeProvider theme={theme}>
+              <H2>Lägg till ditt favoritrecept!</H2>
+              <RecipeForm onSubmit={(event) => handleFormSubmit(event)}>
+                <FieldContainer>
+                  <FormControl fullWidth={true}>
+                    <TextField
+                      required={true}
+                      label="Titel"
+                      id="titel"
+                      type="text"
+                      onChange={(event) => setTitle(event.target.value)}
+                      value={title}
+                      placeholder="Namn på recept"
+                      variant="outlined"
+                      color="primary"
+                    />
+                  </FormControl>
+                </FieldContainer>
+      
+                <FieldContainer>
+                  <FormControl
+                    fullWidth={false}
+                  >
+                    <TextField
+                      required={true}
+                      label="Portioner"
+                      id="titel"
+                      type="text"
+                      onChange={(event) => setPortions(event.target.value)} 
+                      value={portions}
+                      placeholder="Antal portioner"
+                      variant="outlined"
+                      color="primary"
+                    />
+                  </FormControl>
+                </FieldContainer>
+>>>>>>> formres
 
-              <Container>
-                <FormControl fullWidth={true}>
-                  <InputMultipleFields
-                      data={ingredients}
-                      setData={setIngredients}
+                <FieldContainer>
+                  <FormControl fullWidth={true}>
+                    <InputMultipleFields
+                        data={ingredients}
+                        setData={setIngredients}
+                        label={"Ingredienser"}
+                      />
+                  </FormControl>
+                </FieldContainer>
+
+                <FieldContainer>
+                  <FormControl fullWidth={true}>
+                    <TextField
+                      required={true}
+                      label="Instruktioner"
+                      id="instruktioner"
+                      type="text"
+                      onChange={event => setInstructions(event.target.value)}
+                      value={instructions}
+                      placeholder="Instruktioner"
+                      variant="outlined"
+                      color="primary"
+                      fullWidth={true}
+                      multiline={true}
+                    />
+                  </FormControl>
+                </FieldContainer>
+
+                <ContainerTags>
+                  <FormControl>
+                    <FormLabel>Taggar</FormLabel>
+                    <InputCheckboxes 
+                      data={tagsArray}
+                      setData={setTags}
                       label={"Ingredienser"}
                     />
-                </FormControl>
-              </Container>
+                  </FormControl>
+                </ContainerTags>
 
-              <Container>
-                <FormControl fullWidth={true}>
-                  <TextField
-                    required={true}
-                    label="Instruktioner"
-                    id="instruktioner"
-                    type="text"
-                    onChange={event => setInstructions(event.target.value)}
-                    value={instructions}
-                    placeholder="Instruktioner"
-                    variant="outlined"
-                    color="primary"
-                    fullWidth={true}
-                    multiline={true}
-                  />
-                </FormControl>
-              </Container>
-
-              <ContainerTags>
-                <FormControl>
-                  <FormLabel>Taggar</FormLabel>
-                  <InputCheckboxes 
-                    data={tagsArray}
-                    setData={setTags}
-                    label={"Ingredienser"}
-                  />
-                </FormControl>
-              </ContainerTags>
-
-              <Container>
-                <FormControl>
-                  <FormLabel>Typ</FormLabel>
-                  <Select
-                    labelId="typ"
-                    value={type}
-                    onChange={event => setType(event.target.value)}
-                    variant="filled"
-                    color="primary"
-                  >
-                    {typesArray.map((item) => (
-                      <MenuItem
-                        value={item.value || ''}
-                        key={item.title}
-                      >{item.title}</MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Container>
-
-              <ContainerMargin>
-                <FormControl fullWidth={true}>
-                  <TextField
-                    label="Skapat av"
-                    id="skapare"
-                    type="text"
-                    onChange={event => setCreatedBy(event.target.value)}
-                    value={createdBy}
-                    placeholder="Receptets skapare"
-                    variant="outlined"
-                    color="primary"
-                    fullWidth={true}
-                  />
-                </FormControl>
-              </ContainerMargin>
-
-              <ContainerMargin>
-                <LabelUpload id="file">
-                  Ladda upp foto *
-                  <FlexRow>
-                    <IconButton
+                <FieldContainer>
+                  <FormControl>
+                    <FormLabel>Typ</FormLabel>
+                    <Select
+                      labelId="typ"
+                      value={type}
+                      onChange={event => setType(event.target.value)}
+                      variant="filled"
                       color="primary"
-                      aria-label="ladda upp foto"
-                      component="span"
                     >
-                      <AddAPhotoIcon fontSize="large"/>
-                    </IconButton>
-                    <p>{fileName}</p>
-                  </FlexRow>
-                  <input
-                    type="file"
-                    required
-                    id="file"
-                    style={{ display: 'none' }}
-                    ref={fileInput}
-                    placeholder={"bifoga bild"}
-                    onChange={(event) => {
-                      setFileName(event.target.files[0].name)
-                    }}
-                  />
-                </LabelUpload>
-              </ContainerMargin>
+                      {typesArray.map((item) => (
+                        <MenuItem
+                          value={item.value || ''}
+                          key={item.title}
+                        >{item.title}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </FieldContainer>
 
-              <ButtonContainer>
-                <Button 
-                  type="submit"
-                  color="primary"
-                  aria-label="lägg till recept"
-                  variant="contained"
-                >Lägg till recept</Button>
-              </ButtonContainer>
+                <ContainerMargin>
+                  <FormControl fullWidth={true}>
+                    <TextField
+                      label="Skapat av"
+                      id="skapare"
+                      type="text"
+                      onChange={event => setCreatedBy(event.target.value)}
+                      value={createdBy}
+                      placeholder="Receptets skapare"
+                      variant="outlined"
+                      color="primary"
+                      fullWidth={true}
+                    />
+                  </FormControl>
+                </ContainerMargin>
 
-            </RecipeForm>
-          </ThemeProvider>
-        </FormWrapper>
-      </Background>
+                <ContainerMargin>
+                  <LabelUpload id="file">
+                    Ladda upp foto *
+                    <FlexRow>
+                      <IconButton
+                        color="primary"
+                        aria-label="ladda upp foto"
+                        component="span"
+                      >
+                        <AddAPhotoIcon fontSize="large"/>
+                      </IconButton>
+                      <p>{fileName}</p>
+                    </FlexRow>
+                    <input
+                      type="file"
+                      required
+                      id="file"
+                      style={{ display: 'none' }}
+                      ref={fileInput}
+                      placeholder={"bifoga bild"}
+                      onChange={(event) => {
+                        setFileName(event.target.files[0].name)
+                      }}
+                    />
+                  </LabelUpload>
+                </ContainerMargin>
+
+                <ButtonContainer>
+                  <Button 
+                    type="submit"
+                    color="primary"
+                    aria-label="lägg till recept"
+                    variant="contained"
+                  >Lägg till recept</Button>
+                </ButtonContainer>
+
+              </RecipeForm>
+            </ThemeProvider>
+          </FormBackground>
+
+        </Wrapper>
     </>
   )
 }
 
 export default PostRecipePage
 
-const Background = styled.div`
-  background-color: pink;
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  // @media (max-width: 768px) {
+  //   padding: 120px 0 15px;
+  // }
+  // @media (max-width: 500px) {
+  //   padding: 90px 0 15px;
+  // }
+`
+const BackgroundImg = styled.img`
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+  position: fixed;
+  // left:0;
+  // top:0;
+  // right:0;
+  // bottom:0;
+  // z-index:-1;
 `
 
-const FormWrapper = styled.div`
+const FormBackground = styled.div`
   background-color: #FFF;
   width: 500px;
-  padding: 30px 30px 50px;
-  margin: 30px auto 45px;
+  padding: 30px 0 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // border: solid pink 2px;
   border-radius: 10px;
+  position: absolute;
+  top: 130px;
+
+  @media (max-width: 768px) {
+    width: 500px;
+  }
+  @media (max-width: 500px) {
+    top: 100px;
+    width: 95%;
+  }
 `
 const H2 = styled.h2`
-  display: inline-block;
+  @media (max-width: 768px) {
+    font-size: 23px;
+  }
 `
-const RecipeForm = styled.form``
+const RecipeForm = styled.form`
 
-const Container = styled.div`
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+  @media (max-width: 500px) {
+    padding: 0 15px;
+  }
+`
+
+const FieldContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 25px 0;
 `
+<<<<<<< HEAD
 const ContainerTags = styled(Container)`
+=======
+const ContainerTags = styled(FieldContainer)`
+>>>>>>> formres
   margin: 37px 0;
 `
 const ContainerMargin = styled.div`
@@ -276,6 +367,13 @@ const ButtonContainer = styled.div`
   margin-top: 30px;
   display: flex;
   justify-content: center;
+
+  @media (max-width: 768px) {
+   
+  }
+  @media (max-width: 500px) {
+    margin: 0;
+  }
 `
 const LabelUpload = styled.label`
   font-family: 'Roboto', sans-serif;
