@@ -137,7 +137,6 @@ const Searchbar = () => {
                     key={title}
                     variant="outlined" color="primary" 
                     onClick={() => handleTypeClick(value)}
-                    // style={{margin: "0 10px"}}
                     className={classes.buttonFilter}
                     >{title}
                   </Button>
@@ -152,7 +151,6 @@ const Searchbar = () => {
                     key={title}
                     variant="outlined" color="primary" 
                     onClick={() => handleTagClick(value)}
-                    // style={{margin: "0 10px"}}
                     className={classes.buttonFilter}
                     >{title}
                   </Button>
@@ -210,19 +208,9 @@ const BtnInnerWrapper = styled.div`
     width: 100%;
   }
 `
-
 const ButtonsContainer = styled.div`
   display: flex;  
   flex-direction: row;
   justify-content: space-between;
   margin: 10px 0;
 `
-// const ButtonSearch = styled(Button)({
-//   height: 60,
-//   width: 90,
-// })
-// const ButtonReset = styled(Button)({
-//   height: 40,
-//   width: 125,
-//   borderRadius: '50px',
-// })

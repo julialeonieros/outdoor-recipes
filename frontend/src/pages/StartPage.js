@@ -14,12 +14,6 @@ const StartPage = () => {
           <Title>(&thinsp;Friluftsmat&thinsp;)</Title>
           <TitleTwo>Laga din mat ute!</TitleTwo>
         </TitleWrapper>
-     
-      {/* <InfoContainer>
-        {/* <InfoBackground> */}
-          {/* <Info>Här är lite text ... Här är lite text ... Här är lite text ... Här är lite text ...</Info> */}
-        {/*</InfoBackground> */}
-     {/* </InfoContainer> */}
       <Searchbar />
       </Header>
       
@@ -62,7 +56,6 @@ const Title = styled.h1`
   @media (max-width: 500px) {
     font-size: 50px;
   }
-  
 `
 const TitleTwo = styled(Title)`
   font-size: 40px;
@@ -74,12 +67,3 @@ const TitleTwo = styled(Title)`
     font-size: 21px;
   }
 `
-// const InfoContainer = styled.div`
-//   // background-color: #668479;
-//   background-color: #FFDAE0;
-//   width: 400px;
-//   height: 200px;
-//   padding: 20px 30px;
-//   margin: 30px auto 40px;
-// `
-// const Info = styled.p``

@@ -1,18 +1,28 @@
-import React from 'react'
+import { React, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import { slide as Menu } from 'react-burger-menu'
 
+import Hamburger from './Hamburger'
 
 const Navbar = () => {
 
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleStateChange = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const handleCloseMenu = () => {
+    setIsOpen(false)
+  }
+
   return (
     <>
-      <Menu>
-        <a id="home" className="menu-item" href="/">Start</a>
-        <a id="about" className="menu-item" href="/">Kontakt</a>
-        <a id="contact" className="menu-item" href="/">Lägg till recept</a>
-      </Menu>
+      <Hamburger
+      isOpen={isOpen}
+      onStateChange={handleStateChange}
+      onCloseMenu={handleCloseMenu}
+      />
       <Nav>
         <Ul>
           <Li>
@@ -52,6 +62,8 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+//Hamburger menu styling located in index.css
 
 const Nav = styled.nav`
   background-color: rgba(255,255,255, 0.5);
