@@ -24,14 +24,10 @@ const RecipeWrapper = styled.div`
   position: relative;
   overflow: hidden;
   width: 33.333%;
-  @media (max-width: 768px) {
-    
-  }
   @media (max-width: 500px) {
     width: 50%;
   }
 `
-
 const Text = styled.p`
   position: absolute;
   top: 0;
@@ -48,7 +44,6 @@ const Text = styled.p`
   text-align: center;
   padding: 12px;
   transition: all 0.5s ease;
-
   :hover {
     background: rgba(0, 0, 0, 0.7);
     opacity: 1;
@@ -57,7 +52,6 @@ const Text = styled.p`
     font-size: 20px;
   }
 `
-
 const IMG = styled.img`
   width: 100%;
   height: 100%;

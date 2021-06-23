@@ -1,48 +1,69 @@
-import React from 'react'
+import { React, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
+import Hamburger from './Hamburger'
+
 const Navbar = () => {
 
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleStateChange = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const handleCloseMenu = () => {
+    setIsOpen(false)
+  }
+
   return (
-    <Nav>
-      <Ul>
-        <Li>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <NavLink>Start</NavLink>
-          </Link>
-        </Li>
-        <Li>
-          <Link to="/kontakt" style={{ textDecoration: 'none' }}>
-            <NavLink>Kontakt</NavLink>
-          </Link>
-        </Li>
-      </Ul>
-      <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
-        <IconContainer>
-            <Icon>
-              <i className="fas fa-campground"></i>
-            </Icon>
-            <Icon>
-              <i className="fas fa-tree"></i>
-            </Icon>
-            <Icon>
-              <i className="fas fa-mountain"></i>
-            </Icon>
-        </IconContainer>
-      </Link>
-      <Ul>
-        <Li>
-          <Link to="/skapa-recept" style={{ textDecoration: 'none' }}>
-            <NavLink>Lägg till recept</NavLink>
-          </Link>
-        </Li>
-      </Ul>
-    </Nav>
+    <>
+      <Hamburger
+      isOpen={isOpen}
+      onStateChange={handleStateChange}
+      onCloseMenu={handleCloseMenu}
+      />
+      <Nav>
+        <Ul>
+          <Li>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <NavLink>Start</NavLink>
+            </Link>
+          </Li>
+          <Li>
+            <Link to="/kontakt" style={{ textDecoration: 'none' }}>
+              <NavLink>Kontakt</NavLink>
+            </Link>
+          </Li>
+        </Ul>
+        <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <IconContainer>
+              <Icon>
+                <i className="fas fa-campground"></i>
+              </Icon>
+              <Icon>
+                <i className="fas fa-tree"></i>
+              </Icon>
+              <Icon>
+                <i className="fas fa-mountain"></i>
+              </Icon>
+          </IconContainer>
+        </Link>
+        <Ul>
+          <Li>
+            <Link to="/skapa-recept" style={{ textDecoration: 'none' }}>
+              <NavLink>Lägg till recept</NavLink>
+            </Link>
+          </Li>
+        </Ul>
+      </Nav>
+    </>
   )
 }
 
 export default Navbar
+
+//Hamburger menu styling located in index.css
 
 const Nav = styled.nav`
   background-color: rgba(255,255,255, 0.5);
