@@ -40,9 +40,15 @@ const PostRecipePage = () => {
   const fileInput = useRef()
 
   console.log(tags)
+  console.log(type)
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
+
+    // if (tags.length === 0) {
+    //   setTags('')
+    // }
+    // console.log(tags)
 
     const formData = new FormData()
     formData.append('image', fileInput.current.files[0])
@@ -79,11 +85,11 @@ const PostRecipePage = () => {
     <>
         <Wrapper>
         <BackgroundImg src="/assets/ice.jpg" alt="a person ice-skating" />
-          <FormWrapper>
+          <FormBackground>
             <ThemeProvider theme={theme}>
               <H2>Lägg till ditt favoritrecept!</H2>
               <RecipeForm onSubmit={(event) => handleFormSubmit(event)}>
-                <Container>
+                <FieldContainer>
                   <FormControl fullWidth={true}>
                     <TextField
                       required={true}
@@ -97,9 +103,9 @@ const PostRecipePage = () => {
                       color="primary"
                     />
                   </FormControl>
-                </Container>
+                </FieldContainer>
       
-                <Container>
+                <FieldContainer>
                   <FormControl
                     fullWidth={false}
                   >
@@ -115,9 +121,9 @@ const PostRecipePage = () => {
                       color="primary"
                     />
                   </FormControl>
-                </Container>
+                </FieldContainer>
 
-                <Container>
+                <FieldContainer>
                   <FormControl fullWidth={true}>
                     <InputMultipleFields
                         data={ingredients}
@@ -125,9 +131,9 @@ const PostRecipePage = () => {
                         label={"Ingredienser"}
                       />
                   </FormControl>
-                </Container>
+                </FieldContainer>
 
-                <Container>
+                <FieldContainer>
                   <FormControl fullWidth={true}>
                     <TextField
                       required={true}
@@ -143,7 +149,7 @@ const PostRecipePage = () => {
                       multiline={true}
                     />
                   </FormControl>
-                </Container>
+                </FieldContainer>
 
                 <ContainerTags>
                   <FormControl>
@@ -156,7 +162,7 @@ const PostRecipePage = () => {
                   </FormControl>
                 </ContainerTags>
 
-                <Container>
+                <FieldContainer>
                   <FormControl>
                     <FormLabel>Typ</FormLabel>
                     <Select
@@ -174,7 +180,7 @@ const PostRecipePage = () => {
                       ))}
                     </Select>
                   </FormControl>
-                </Container>
+                </FieldContainer>
 
                 <ContainerMargin>
                   <FormControl fullWidth={true}>
@@ -230,7 +236,8 @@ const PostRecipePage = () => {
 
               </RecipeForm>
             </ThemeProvider>
-          </FormWrapper>
+          </FormBackground>
+
         </Wrapper>
     </>
   )
@@ -251,22 +258,21 @@ const Wrapper = styled.div`
   // }
 `
 const BackgroundImg = styled.img`
-  // height: 100vh;
+  height: 100vh;
   width: 100vw;
   object-fit: cover;
-
-  @media (max-width: 500px) {
-    min-height: 100%;
-    // width: 100%;
-  }
+  position: fixed;
+  // left:0;
+  // top:0;
+  // right:0;
+  // bottom:0;
+  // z-index:-1;
 `
 
-const FormWrapper = styled.div`
+const FormBackground = styled.div`
   background-color: #FFF;
   width: 500px;
   padding: 30px 0 50px;
-  // padding: 30px 30px 50px;
-  // margin: 0 auto 45px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -274,16 +280,11 @@ const FormWrapper = styled.div`
   border-radius: 10px;
   position: absolute;
   top: 130px;
-  // right: 0;
-  // bottom: 0;
-  // left: 0;
 
   @media (max-width: 768px) {
-    // padding: 15px 0 35px;
     width: 500px;
   }
   @media (max-width: 500px) {
-    // padding: 15px 0 35px;
     top: 100px;
     width: 95%;
   }
@@ -292,7 +293,6 @@ const H2 = styled.h2`
   @media (max-width: 768px) {
     font-size: 23px;
   }
-
 `
 const RecipeForm = styled.form`
 
@@ -304,12 +304,12 @@ const RecipeForm = styled.form`
   }
 `
 
-const Container = styled.div`
+const FieldContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 25px 0;
 `
-const ContainerTags = styled(Container)`
+const ContainerTags = styled(FieldContainer)`
   margin: 37px 0;
 `
 const ContainerMargin = styled.div`
