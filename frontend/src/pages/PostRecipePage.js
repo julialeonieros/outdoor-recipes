@@ -83,44 +83,6 @@ const PostRecipePage = () => {
 
   return (
     <>
-<<<<<<< HEAD
-      <Background>
-        <FormWrapper>
-          <ThemeProvider theme={theme}>
-            <H2>Lägg till ditt favoritrecept!</H2>
-            <RecipeForm onSubmit={(event) => handleFormSubmit(event)}>
-              <Container>
-                <FormControl fullWidth={true}>
-                  <TextField
-                    required={true}
-                    label="Titel"
-                    id="titel"
-                    type="text"
-                    onChange={(event) => setTitle(event.target.value)}
-                    value={title}
-                    placeholder="Namn på recept"
-                    variant="outlined"
-                    color="primary"                  
-                  />
-                </FormControl>
-              </Container>
-    
-              <Container>
-                <FormControl fullWidth={false}>
-                  <TextField
-                    required={true}
-                    label="Portioner"
-                    id="titel"
-                    type="text"
-                    onChange={(event) => setPortions(event.target.value)} 
-                    value={portions}
-                    placeholder="Antal portioner"
-                    variant="outlined"
-                    color="primary"
-                  />
-                </FormControl>
-              </Container>
-=======
         <Wrapper>
         <BackgroundImg src="/assets/ice.jpg" alt="a person ice-skating" />
           <FormBackground>
@@ -160,7 +122,6 @@ const PostRecipePage = () => {
                     />
                   </FormControl>
                 </FieldContainer>
->>>>>>> formres
 
                 <FieldContainer>
                   <FormControl fullWidth={true}>
@@ -348,11 +309,7 @@ const FieldContainer = styled.div`
   flex-direction: column;
   margin: 25px 0;
 `
-<<<<<<< HEAD
-const ContainerTags = styled(Container)`
-=======
 const ContainerTags = styled(FieldContainer)`
->>>>>>> formres
   margin: 37px 0;
 `
 const ContainerMargin = styled.div`
