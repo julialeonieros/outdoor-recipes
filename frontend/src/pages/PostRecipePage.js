@@ -83,7 +83,7 @@ const PostRecipePage = () => {
   return (
     <>
       <Wrapper>
-      <BackgroundImg src="/assets/ice.jpg" alt="a person ice-skating" />
+      <BackgroundImg src="/assets/mountain.jpg" alt="view from a mountain" />
         <FormBackground>
           {loading && <Loader />}
 
@@ -112,7 +112,6 @@ const PostRecipePage = () => {
                 fullWidth={false}
               >
                 <TextField
-                  required={true}
                   label="Portioner"
                   id="titel"
                   type="text"
@@ -187,6 +186,7 @@ const PostRecipePage = () => {
             <ContainerMargin>
               <FormControl fullWidth={true}>
                 <TextField
+                  required={true}
                   label="Skapat av"
                   id="skapare"
                   type="text"
