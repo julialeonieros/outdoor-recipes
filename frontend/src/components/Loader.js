@@ -21,7 +21,6 @@ const Loader = () => {
 export default Loader
 
 const Container = styled.div`
-  background-color: #668479;
   display: flex;
   align-items: center;
   justify-content: center;
