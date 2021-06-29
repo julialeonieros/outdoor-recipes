@@ -16,28 +16,28 @@ mongoose.Promise = Promise
 const Recipe = mongoose.model('Recipe', {
   title: {
     type: String,
-    // lowercase: true
+    
   },
   portions: Number,
   ingredients: [{
     type: String,
-    // lowercase: true
+    
   }],
   type: {
     type: String,
-    // lowercase: true
+    
   },
   tags: [{
     type: String,
-    // lowercase: true
+    
   }],
   instructions: {
     type: String,
-    // lowercase: true
+    
   },
   createdBy: {
     type: String,
-    // lowercase: true
+    
   },
   url: {
     type: String

@@ -8,7 +8,6 @@ import RecipeCard from './RecipeCard'
 const FilteredGallery = () => {
 
   const recipe = useSelector((store) => store.filter.recipeArray)
-  console.log('recipe', recipe[0].length)
 
   return (
     <GalleryWrapper>

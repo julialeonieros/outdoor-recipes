@@ -45,11 +45,6 @@ const PostRecipePage = () => {
   const handleFormSubmit = (event) => {
     event.preventDefault()
 
-    // if (tags.length === 0) {
-    //   setTags('')
-    // }
-    // console.log(tags)
-
     const formData = new FormData()
     formData.append('image', fileInput.current.files[0])
 
@@ -336,3 +331,15 @@ const LabelUpload = styled.label`
   font-family: 'Roboto', sans-serif;
   color: #757575;
 `
+
+
+
+
+
+
+
+
+    // if (tags.length === 0) {
+    //   setTags('')
+    // }
+    // console.log(tags)
