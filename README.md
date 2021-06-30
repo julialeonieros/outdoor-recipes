@@ -24,5 +24,5 @@ The website can be viewed on desktop, tablet and mobile, so you can bring the re
 * Mongoose
 
 ## View it live:
-The finished project:
+The finished project: https://friluftsmat.netlify.app/
 The API: https://outdoor-recipes.herokuapp.com/
