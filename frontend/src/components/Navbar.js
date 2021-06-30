@@ -6,24 +6,24 @@ import Hamburger from './Hamburger'
 
 const Navbar = () => {
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [Open, setOpen] = useState(false)
 
-  const handleStateChange = () => {
-    setIsOpen(!isOpen)
+  const handleOpenBurger = () => {
+    setOpen(!Open)
   }
 
-  const handleCloseMenu = () => {
-    setIsOpen(false)
+  const handleCloseBurger = () => {
+    setOpen(false)
   }
 
   return (
     <>
-      <Hamburger
-      isOpen={isOpen}
-      onStateChange={handleStateChange}
-      onCloseMenu={handleCloseMenu}
-      />
+      
       <Nav>
+        <Burger onClick={handleOpenBurger}>
+          <i className={Open ? "fas fa-times" : "fas fa-bars"}></i>
+        </Burger>
+        {Open && <Hamburger onCloseBurger={handleCloseBurger}/>}
         <Ul>
           <Li>
             <Link to="/" style={{ textDecoration: 'none' }}>
@@ -63,7 +63,18 @@ const Navbar = () => {
 
 export default Navbar
 
-//Hamburger menu styling located in index.css
+const Burger = styled.div`
+  display: none;
+  @media (max-width: 500px) {
+    display: block;
+    position: absolute;
+    left: 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.8rem;
+    z-index: 1;
+  }
+`
 
 const Nav = styled.nav`
   background-color: rgba(255,255,255, 0.5);
@@ -108,7 +119,7 @@ const Li = styled.li`
     padding: 0 10px;
   }
 `
-const NavLink = styled.a`
+const NavLink = styled.p`
   color: #000;
   font-size: 20px;
   @media (max-width: 768px) {
