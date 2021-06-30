@@ -119,7 +119,7 @@ const Li = styled.li`
     padding: 0 10px;
   }
 `
-const NavLink = styled.a`
+const NavLink = styled.p`
   color: #000;
   font-size: 20px;
   @media (max-width: 768px) {
