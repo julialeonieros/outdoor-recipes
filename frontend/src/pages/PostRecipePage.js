@@ -41,9 +41,6 @@ const PostRecipePage = () => {
   const history = useHistory()
   const fileInput = useRef()
 
-  console.log('tag length', tags.length)
-  console.log(tags)
-
   const handleFormSubmit = (event) => {
     event.preventDefault()
     setLoading(true)
@@ -321,15 +318,3 @@ const LabelUpload = styled.label`
   font-family: 'Roboto', sans-serif;
   color: #757575;
 `
-
-
-
-
-
-
-
-
-    // if (tags.length === 0) {
-    //   setTags('')
-    // }
-    // console.log(tags)
