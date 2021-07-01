@@ -92,14 +92,14 @@ const Searchbar = () => {
   }
 
   const handleTypeClick = (input) => {
-    const URL = 'http://localhost:8080/recipes'
-    const url_tags = `${URL}?type=${input}`
+    //const URL = 'http://localhost:8080/recipes'
+    const url_tags = `${API_URL}?type=${input}`
     dispatch(searchRecipes(url_tags))
   }
 
   const handleTagClick = (input) => {
-    const URL = 'http://localhost:8080/recipes'
-    const url_tags = `${URL}?tags=${input}`
+    //const URL = 'http://localhost:8080/recipes'
+    const url_tags = `${API_URL}?tags=${input}`
     dispatch(searchRecipes(url_tags))
   }
 
