@@ -21,6 +21,7 @@ The website can be viewed on desktop, tablet and mobile, so you can bring the re
 ### Backend:
 * RESTful API
 * Express
+* MongoDB
 * Mongoose
 
 ## View it live:
