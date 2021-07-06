@@ -65,6 +65,7 @@ export default Navbar
 
 const Burger = styled.div`
   display: none;
+
   @media (max-width: 500px) {
     display: block;
     position: absolute;
@@ -81,7 +82,7 @@ const Nav = styled.nav`
   width: 100%;
   position: fixed;
   top: 0;
-  padding: 18px 50px 18px 30px;
+  padding: 13px 50px 13px 30px;
   z-index: 1;
   display: flex;
   flex-direction: row;
@@ -92,6 +93,7 @@ const IconContainer = styled.div`
   display: flex;
   flex-direction: row;
   font-size: xx-large;
+
   @media (max-width: 768px) {
     padding: 0 25px;
   }
@@ -104,6 +106,8 @@ const Ul = styled.ul`
   flex-direction: row;
   align-items: center;
   padding-right: 50px;
+  margin: 0;
+
   @media (max-width: 768px) {
     padding: 0;
   }
@@ -115,6 +119,7 @@ const Li = styled.li`
   list-style-type: none;
   padding: 0 16px;
   cursor: pointer;
+
   @media (max-width: 768px) {
     padding: 0 10px;
   }
@@ -122,6 +127,7 @@ const Li = styled.li`
 const NavLink = styled.p`
   color: #000;
   font-size: 20px;
+
   @media (max-width: 768px) {
     font-size: 15px;
   }

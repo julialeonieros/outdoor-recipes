@@ -92,13 +92,11 @@ const Searchbar = () => {
   }
 
   const handleTypeClick = (input) => {
-    //const URL = 'http://localhost:8080/recipes'
-    const url_tags = `${API_URL}?type=${input}`
-    dispatch(searchRecipes(url_tags))
+    const url_types = `${API_URL}?type=${input}`
+    dispatch(searchRecipes(url_types))
   }
 
   const handleTagClick = (input) => {
-    //const URL = 'http://localhost:8080/recipes'
     const url_tags = `${API_URL}?tags=${input}`
     dispatch(searchRecipes(url_tags))
   }
@@ -149,7 +147,7 @@ const Searchbar = () => {
                 return (
                   <Button
                     key={title}
-                    variant="outlined" color="primary" 
+                    variant="outlined" color="primary"
                     onClick={() => handleTagClick(value)}
                     className={classes.buttonFilter}
                     >{title}

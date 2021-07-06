@@ -74,6 +74,7 @@ const SingleRecipePage = () => {
 
   const ingredients = singleRecipe.ingredients
   const instructions = singleRecipe.instructions
+  const createdBy = singleRecipe.createdBy
 
   return (
     <RecipeWrapper>
@@ -116,6 +117,9 @@ const SingleRecipePage = () => {
                     ))}
                   </InstructionsWrapper>
                 </TextWrapper>
+                <CreatedByWrapper>
+                  <P>Skapat av: {createdBy}</P>
+                </CreatedByWrapper>
               </CardContent>
             </CardActionArea>
             <CardActions>
@@ -141,6 +145,11 @@ const TextWrapper = styled.div`
   flex-direction: row;
   justify-content: space-around;
   margin: 20px 5px;
+`
+const CreatedByWrapper = styled.div`
+`
+const P = styled.p`
+  margin: 25px 5px 0;
 `
 const IngredientsWrapper = styled.div` 
   background-color: #F3FAF4;
